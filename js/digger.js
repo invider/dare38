@@ -1,6 +1,8 @@
 var Digger = function(params) {
 	var x = params.x || 0
-	var y = Utils.y(params.y)
+	var y = {
+		x: params.y || 0
+	}
 	var tiles = params.tiles
 	return {
 		evolve : function(delta) {
