@@ -9,7 +9,10 @@ var Digger = function(x, y) {
 		},
 		
 		render : function(ctx) {
-			//ctx.
+			ctx.beginPath()
+			ctx.rect(p.x, p.y, 5, 5)
+			ctx.fillStyle = 'green'
+			ctx.fill()
 		},
 	}
 }
