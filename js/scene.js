@@ -17,6 +17,11 @@ var scene = {
 
     // root node
     root: _$root,
+
+    attach: function(node) {
+        root.entity.push(node)
+        if (node.init) node.init(root, scene)
+    }
 }
 scene.root.init(scene, scene)
 
@@ -70,11 +75,6 @@ function evolve(delta) {
 
 var fps = 0, fpsa = 1, fpsc = 0
 function render(delta) {
-    // clear
-    //ctx.fillStyle = "#220044"
-    //ctx.fillRect(0,0,ctx.width,ctx.height)
-    canvas.width = canvas.width
-
 
     // draw root node
     scene.root.render(ctx, scene)
