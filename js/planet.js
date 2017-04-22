@@ -8,6 +8,11 @@ var _titleBuilder = function (type) {
             return new Wall();
         case " ":
             return new EmptySpace();
+        case "P":
+            //
+            //  TODO: implement this
+            //
+            return new Player()
     }
 };
 
