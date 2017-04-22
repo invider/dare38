@@ -13,6 +13,7 @@ var Wall = function () {
         this.hp -= v;
         console.log("Ooooh, you have broke the wall, so what you are going to do in neibouring cell?");
         this.scene.root.planet.removeNode(this);
+        Util.playSound("WallBroken");
         return this.hp >= 0;
     };
 

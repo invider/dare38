@@ -62,6 +62,7 @@ var PlanetProto = function () {
 		var elem = this.findWallBelow(point.x - 0.5, point.x + 0.5, y);
 		return Util.boundY(point, y - 1, y - 0.5 + (elem ? 0 : 1)) ? elem : undefined;
     };
+
     this.findWallBelow = function(x1, x2, y) {
     	var y = Math.ceil(y);
 		var elem = this.getElement(x1, y)

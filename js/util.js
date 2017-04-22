@@ -79,5 +79,9 @@ var Util = {
 			return true
 		}
 		return false
+    },
+    playSound:function(audio){
+        var audio = new Audio("sound/" + audio + ".wav");
+        audio.play();
     }
 };
