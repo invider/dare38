@@ -49,6 +49,22 @@ var _$root = {
         this.scene.planet.kill(x, y, r);
     },
     /**
+     * returns nodelist of nodes in given raduis
+     * NOTE: this is only active nodes
+     * @param x
+     * @param y
+     * @param r - radius to detect
+     */
+    getNearbyNodes: function(x, y, r){
+        var res = [];
+        for (var i=0; i < this.entity.length; i++){
+            if (Math.sqrt(Math.pow(x - this.entity[i].x, 2) + Math.pow(y - this.entity[i].y, 2)) <= r){
+                res.push(this.entity[i]);
+            }
+        }
+        return res;
+    },
+    /**
      * kills only active units on coordinates
      * @param x
      * @param y
@@ -59,12 +75,7 @@ var _$root = {
         //
         //  TODO: fix and optimize this
         //
-        var toKill = [];
-        for (var i=0; i < this.entity.length; i++){
-            if (Math.sqrt(Math.pow(x - this.entity[i].x, 2) + Math.pow(y - this.entity[i].y, 2)) <= r){
-                toKill.push(this.entity[i]);
-            }
-        }
+        var toKill = this.getNearbyNodes(x,y,r);
         for (var i=0; i < toKill.length; i++){
             this._killNode(toKill[i]);
         }

@@ -118,6 +118,22 @@ var PlanetProto = function () {
             Util.renderChildren(this.children[k], ctx, scene);
         }
     };
+    /**
+     * returns nodelist of nodes in given raduis
+     * NOTE: this is only planet nodes
+     * @param x
+     * @param y
+     * @param r - radius to detect
+     */
+    this.getNearbyNodes = function(x, y, r){
+        var res = [];
+        this.eachNode(function(node, xx, yy){
+            if (Math.sqrt(Math.pow(x - xx, 2) + Math.pow(y - yy, 2)) <= r){
+                res.push(this.entity[i]);
+            }
+        });
+        return res;
+    };
     this.kill = function(x,y, r){
         //
         //  TODO: kill in radius
@@ -126,12 +142,7 @@ var PlanetProto = function () {
         //
         //  TODO: fix and optimize this
         //
-        var toKill = [];
-        this.eachNode(function(node, xx, yy){
-            if (Math.sqrt(Math.pow(x - xx, 2) + Math.pow(y - yy, 2)) <= r){
-                toKill.push(this.entity[i]);
-            }
-        });
+        var toKill = this.getNearbyNodes(x, y, r);
         for (var i=0; i < toKill.length; i++){
             this.removeNode(toKill[i]);
         }
