@@ -8,7 +8,7 @@ var _$root = {
         this.background = _background;
         this.planet = _Planet;
         this.planet.init(this, scene);
-        scene.attach(Digger(20, 40, this.planet))
+        scene.attach(Digger(2.2, 1.4, this.planet))
         scene.attach(_wonderer);
     },
 
