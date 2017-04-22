@@ -81,11 +81,11 @@ var PlanetProto = function () {
     };
 
     this.removeNode = function(node){
-        this.children[node.x][node.x] = this._initElement(new EmptySpace());
+        this.children[node.x][node.x] = this._initElement(new EmptySpace(), this.scene);
     };
 
-    this._initElement = function(node, parentNode, scene){
-        node.init(parentNode, scene);
+    this._initElement = function(node, scene){
+        node.init(this, scene);
         return node;
     };
     this.eachNode = function(fn){
@@ -98,7 +98,7 @@ var PlanetProto = function () {
 
     this.init = function (parentNode, scene) {
         this.scene = scene;
-        this.eachNode(function(node, x, y) { my._initElement(node, parentNode, scene)});
+        this.eachNode(function(node, x, y) { my._initElement(node, this.scene)});
     };
 
     this.evolve = function (delta, scene) {
