@@ -13,7 +13,7 @@ var _titleBuilder = function (type) {
 
 var PlanetProto = function () {
     var field = [];
-    for (var i = 1; i < arguments.lenght; i++) {
+    for (var i = 0; i < arguments.length; i++) {
         var chunk = arguments[i].split("\n")
             .map(function (s) {
                 return s.trim();
@@ -99,3 +99,5 @@ var _Planet = new PlanetProto(
     "X                                                         X",
     "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 );
+
+scene.attach(_Planet);
