@@ -3,7 +3,7 @@ var _wonderer = {
     x: 0, y: 0,
     dx: 0, dy: 0,
     dt: 0, 
-    SPEED: 100,
+    SPEED: 50,
 
     init: function(parent, scene) {
         this.x = 400

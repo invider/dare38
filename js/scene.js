@@ -13,17 +13,14 @@ var scene = {
     mouseX: 0,
     mouseY: 0,
     mouseButton: '---',
+    statusLine: 'Score: ???',
     keys: {},
-
-    // root node
-    root: _$root,
 
     attach: function(node) {
         this.root.entity.push(node)
         if (node.init) node.init(this.root, scene)
     }
 }
-scene.root.init(scene, scene)
 
 
 // === INIT ====
@@ -39,14 +36,22 @@ function expandCanvas() {
 }
 
 function init() {
+	load()
+
+    // setup canvas
     canvas= document.getElementById("canvas")
     ctx = canvas.getContext("2d")
-    //canvas.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT); //Chrome
-    //canvas.mozRequestFullScreen(); //Firefox
-
+    if (canvas.webkitRequestFullScreen) {
+        canvas.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT); //Chrome
+    }
+    if (canvas.mozRequestFullScreen) {
+        canvas.mozRequestFullScreen(); //Firefox
+    }
     expandCanvas()
 
-	load()
+    // setup scene
+    scene.root = _$root
+    scene.root.init(scene, scene)
 
     // initiate the game loop
     if (TARGET_FPS <= 0) {
@@ -77,7 +82,7 @@ var fps = 0, fpsa = 1, fpsc = 0
 function render(delta) {
 
     // draw root node
-    scene.root.render(ctx, scene)
+    if (scene.root) scene.root.render(ctx, scene)
 
     // draw status
     ctx.fillStyle = "#FFFF00"
@@ -102,6 +107,8 @@ function render(delta) {
     status += '-'
     status += ' #' + scene.height + 'x' + scene.width +'!'
     ctx.fillText(status, 10, 30)
+
+    ctx.fillText(scene.statusLine, 10, 60)
 }
 
 
