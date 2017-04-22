@@ -1,4 +1,4 @@
-
+/** @type Entity */
 var _$root = {
     x: 100,
     y: 100,
@@ -11,4 +11,4 @@ var _$root = {
         ctx.rect(this.x,this.y,40,40);
         ctx.stroke();
     }
-}
+};
