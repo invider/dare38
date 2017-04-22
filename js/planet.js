@@ -120,6 +120,19 @@ var PlanetProto = function () {
         //
         //  TODO: kill in radius
         //
+        r = r || 1;
+        //
+        //  TODO: fix and optimize this
+        //
+        var toKill = [];
+        this.eachNode(function(node, xx, yy){
+            if (Math.sqrt(Math.pow(x - xx, 2) + Math.pow(y - yy, 2)) <= r){
+                toKill.push(this.entity[i]);
+            }
+        });
+        for (var i=0; i < toKill.length; i++){
+            this.removeNode(toKill[i]);
+        }
     };
 };
 
