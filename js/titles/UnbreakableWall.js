@@ -8,5 +8,5 @@ var UnbreakableWall = function () {
     }
 };
 
-util.extend(UnbreakableWall, Wall);
+Util.extend(UnbreakableWall, Wall);
 

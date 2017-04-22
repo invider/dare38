@@ -1,26 +1,5 @@
-/**
- * Created by shaddy on 22.04.17.
- */
-/*
- this.x=0
- this.y=0;
- this.init = function(parentNode, scene){
- };
-
- this.evolve=function(delta, scene) {
- };
-
- this.stroke = function(v){
- }
- this.render = function(ctx, scene) {
- };
- */
-
 var Wall = function () {
-    this.x = 0;
-    this.y = 0;
-    this.width = 1;
-    this.height = 1;
+    PlanetElement.call(this);
     this.hp = 100;
     this.init = function (parentNode, scene) {
         this.scene = scene;
@@ -45,3 +24,4 @@ var Wall = function () {
     };
 };
 
+Util.extend(Wall, PlanetElement);
