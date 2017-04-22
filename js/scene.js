@@ -5,7 +5,7 @@ _ = scene = (function(window) {
 var TARGET_FPS = 60
 var MAX_EVO_TIME = 0.1
 
-var cnv, ctx
+var canvas, ctx
 var lastFrame = Date.now()
 
 var scene = {
@@ -13,6 +13,7 @@ var scene = {
     mouseY: 0,
     mouseButton: '---',
     keys: {},
+    rootNode: _$root,
 }
 
 
@@ -29,10 +30,10 @@ function expandCanvas() {
 }
 
 function init() {
-    cnv = document.getElementById("canvas")
-    ctx = cnv.getContext("2d")
-    //cnv.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT); //Chrome
-    //cnv.mozRequestFullScreen(); //Firefox
+    canvas= document.getElementById("canvas")
+    ctx = canvas.getContext("2d")
+    //canvas.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT); //Chrome
+    //canvas.mozRequestFullScreen(); //Firefox
 
     expandCanvas()
 
@@ -51,7 +52,6 @@ function load() {
 }
 
 
-
 // === GAME LOOP ===
 
 // process input events (controls, random, AI)
@@ -60,16 +60,20 @@ function input(delta) {
 }
 
 function evolve(delta) {
-	// update scene
+	// update root node
+    scene.rootNode.evolve(delta, scene)
 }
 
 var fps = 0, fpsa = 1, fpsc = 0
 function render(delta) {
     // clear
-    ctx.fillStyle = "#220044"
-    ctx.fillRect(0,0,cnv.width,cnv.height)
+    //ctx.fillStyle = "#220044"
+    //ctx.fillRect(0,0,ctx.width,ctx.height)
+    canvas.width = canvas.width
 
-    // draw everything
+
+    // draw root node
+    scene.rootNode.render(ctx, scene)
 
     // draw status
     ctx.fillStyle = "#FFFF00"
@@ -92,6 +96,7 @@ function render(delta) {
         status += "-" + k
     }
     status += '-'
+    status += ' #' + scene.height + 'x' + scene.width +'!'
     ctx.fillText(status, 10, 30)
 }
 
@@ -101,7 +106,6 @@ function loop() {
     var delta = (now - lastFrame)/1000
 
     // show, react and update cycle
-    render(delta)
     input(delta)
 
     // evolve multiple times in small quants
@@ -114,6 +118,9 @@ function loop() {
         }
         delta -= MAX_EVO_TIME
     }
+    
+    render(delta)
+
     lastFrame = now
 }
 
