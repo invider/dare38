@@ -5,7 +5,7 @@ var Digger = function(x, y) {
 	return {
 		evolve : function(delta, scene) {
 			Util.fall(p, delta);
-			Util.boundY(p, 0, scene.height);
+			Util.boundY(p, 0, 300);//scene.height);
 		},
 		
 		render : function(ctx) {

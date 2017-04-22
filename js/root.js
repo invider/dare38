@@ -5,10 +5,11 @@ var _$root = {
 
     init: function(parent, scene) {
         this.background = _background;
+        this.entity.push(Digger(20,20));
     },
 
     evolve: function(delta, scene) {
-        Util.evolveChildren(entity, delta, scene);
+        Util.evolveChildren(this.entity, delta, scene);
     },
 
     render: function(ctx, scene) {
