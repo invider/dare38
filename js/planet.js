@@ -58,7 +58,7 @@ var PlanetProto = function () {
         return this.children[yy][xx];
     };
     this.setElement = function(x, y, element){
-        if (!this.children[yy] || !this.children[yy][xx]){
+        if (!this.children[y] || !this.children[y][x]){
             return element;
         }
         this.children[Math.floor(y)][Math.floor(x)] = element;
