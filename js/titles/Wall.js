@@ -22,10 +22,12 @@ var Wall = function () {
     };
 
     this.evolve = function (delta, scene) {
+
     };
 
     this.render = function (ctx, scene) {
-        ctx.strokeStyle = "red";
+        ctx.beginPath();
+        ctx.strokeStyle = "green";
         ctx.rect(this.x, this.y, this.width, this.height);
         ctx.stroke();
     };

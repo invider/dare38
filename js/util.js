@@ -4,7 +4,7 @@
 var Util = {
     initChildren: function(obj, parent, scene){
         for (var i=0; i < obj.length; i++){
-            obj[i].init.call(obj[i], ctx, parent, scene);
+            obj[i].init.call(obj[i], parent, scene);
         }
     },
     

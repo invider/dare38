@@ -42,14 +42,14 @@ var PlanetProto = function () {
      * @returns {Entity}
      */
     this.getElementByCell = function(x, y){
-        return this.children[x][y];
+        return this.children[y][x];
     };
     this.getRatio = function(){
         return {
             x: this.xSize / this.scene.width,
             y: this.ySize / this.scene.height
         }
-    }
+    };
     /**
      *  returns element by physical coordinates
      * @param x
@@ -57,29 +57,33 @@ var PlanetProto = function () {
      * @returns {Entity}
      */
     this.getElement = function(x, y){
-        var ratio = this.getRatio();
-        return this.getElementByCell(Math.round(x * ratio.x), Math.round(y * ratio.y));
+        return this.getElementByCell(Math.round(x * this.ratio.x), Math.round(y * this.ratio.y));
     };
 
     this.init = function (parentNode, scene) {
         this.scene = scene;
-        Util.initChildren(this, parentNode, scene);
+        this.ratio = this.getRatio();
+        for (var y = 0; y < this.ySize; y++) {
+            for (var x = 0; x < this.xSize; x++) {
+                this.getElementByCell(x, y).width = this.scene.width / this.xSize;
+                this.getElementByCell(x, y).height = this.scene.height / this.ySize;
+            }
+        }
+        for (var k in this.children) {
+            Util.initChildren(this.children[k], parentNode, scene);
+        }
     };
 
     this.evolve = function (delta, scene) {
-        //none done here
-        var ratio = this.getRatio();
-        for (var y = 0; y < this.ySize; y++) {
-            for (var x = 0; x < this.xSize; x++) {
-                this.getElementByCell(x, y).width = 20;
-                this.getElementByCell(x, y).height = 20;
-            }
+        for (var k in this.children) {
+            Util.evolveChildren(this.children[k], delta, scene);
         }
-        Util.evolveChildren(this, delta, scene);
     };
 
     this.render = function (ctx, scene) {
-        Util.renderChildren(this, delta, scene);
+        for (var k in this.children) {
+            Util.renderChildren(this.children[k], ctx, scene);
+        }
     }
 };
 
