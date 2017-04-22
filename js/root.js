@@ -11,8 +11,8 @@ var _$root = {
         scene.attach(Digger(2.2, 1.4, this.planet));
         scene.attach(_wonderer);
 
-        scene.width = 59
-        scene.height = 18
+        scene.width = this.planet.xSize
+        scene.height = this.planet.ySize
     },
 
     evolve: function(delta, scene) {
