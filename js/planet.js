@@ -12,6 +12,7 @@ var _titleBuilder = function (type) {
 };
 
 var PlanetProto = function () {
+    var my = this;
     var field = [];
     for (var i = 0; i < arguments.length; i++) {
         var chunk = arguments[i].split("\n")
@@ -41,63 +42,37 @@ var PlanetProto = function () {
      * @param y
      * @returns {Entity}
      */
-    this.getElementByCell = function(x, y){
-        return this.children[y][x];
-    };
-
-    this.relativeToAbsoluteX = function(x){
-        return Math.round(x * this.ratio.x);
-    };
-
-    this.relativeToAbsoluteY = function(y){
-        return Math.round(y * this.ratio.y);
+    this.getElement = function(x, y){
+        return this.children[Math.ceil(y)][Math.ceil(x)];
     };
 
     this.removeNode = function(node){
-        this.children[node.relativeY][node.relativeX] = this._initElement(new EmptySpace());
+        this.children[node.x][node.x] = this._initElement(new EmptySpace());
     };
 
-    this.getRatio = function(){
-        return {
-            x: this.scene.width /this.xSize,
-            y: this.scene.height / this.ySize
-        }
-    };
-    this._initElement= function(node, x, y){
-        node.width = this.scene.width / this.xSize;
-        node.height = this.scene.height / this.ySize;
-        //Util.initChildren(this.children[k], parentNode, scene);
-        node.relativeX = x;
-        node.relativeY = y;
+    this._initElement = function(node){
+        node.width = 1;
+        node.height = 1;
         return node;
     };
-    /**
-     *  returns element by physical coordinates
-     * @param x
-     * @param y
-     * @returns {Entity}
-     */
-    this.getElement = function(x, y){
-        return this.getElementByCell(this.relativeToAbsoluteX(x), this.relativeToAbsoluteY(y));
+    this.eachNode = function(fn){
+        for (var y = 0; y < this.ySize; y++) {
+            for (var x = 0; x < this.xSize; x++) {
+                fn(node, x, y);
+            }
+        }
     };
 
     this.init = function (parentNode, scene) {
         this.scene = scene;
-        this.ratio = this.getRatio();
-        for (var y = 0; y < this.ySize; y++) {
-            for (var x = 0; x < this.xSize; x++) {
-                this._initElement(this.getElementByCell(x, y), x ,y)
-            }
-        }
+        this.eachNode(function(node, x, y) { my._initElement(node)});
     };
 
     this.evolve = function (delta, scene) {
-        for (var y = 0; y < this.ySize; y++) {
-            for (var x = 0; x < this.xSize; x++) {
-                this.getElementByCell(x, y).x = this.relativeToAbsoluteX(x);
-                this.getElementByCell(x, y).y = this.relativeToAbsoluteY(y);
-            }
-        }
+        this.eachNode(function(node, x, y) {
+            node.x = x;
+            node.y = y;
+        });
         for (var k in this.children) {
             Util.evolveChildren(this.children[k], delta, scene);
         }
@@ -119,10 +94,20 @@ var PlanetProto = function () {
 var _Planet = new PlanetProto(
     "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
     "X                                                         X",
-    "X                XXXXXXXXXX                               X",
-    "X                X        X                               X",
-    "X                X        X                               X",
-    "X                X        X                               X",
-    "X                XXXXXXXXXX                               X",
+    "X                XXXXXXXXXX           XXXXXXXXXX          X",
+    "X                X        X           X        X          X",
+    "X                X        X           X        X          X",
+    "X                X        X           X        X          X",
+    "X                X        X           X        X          X",
+    "X                XXXXXXXXXX           XXXXXXXXXX          X",
+    "X                             X                           X",
+    "X                              X                          X",
+    "X                              X                          X",
+    "X                              X                          X",
+    "X                            XXXX                         X",
+    "X              X                              X           X",
+    "X               XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX            X",
+    "X                                                         X",
+    "X                                                         X",
     "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 );

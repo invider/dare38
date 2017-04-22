@@ -35,6 +35,7 @@ var Wall = function () {
     };
 
     this.render = function (ctx, scene) {
+        debugger;
         ctx.beginPath();
         ctx.strokeStyle = "green";
         ctx.rect(this.x, this.y, this.width, this.height);
