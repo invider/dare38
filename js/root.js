@@ -7,11 +7,12 @@ var _$root = {
         this.background = _background;
         this.planet = _Planet;
         this.planet.init(this, scene);
-        if (this.planet) scene.statusLine = 'planet defined'
-        else scene.statusLine = 'No Planet!!!'
         scene.attach(Digger(15.2, 3, this.planet));
         scene.attach(Digger(2.2, 1.4, this.planet));
         scene.attach(_wonderer);
+
+        scene.width = 59
+        scene.height = 18
     },
 
     evolve: function(delta, scene) {
@@ -26,6 +27,9 @@ var _$root = {
         var wFactor = scene.screenWidth / scene.width
         var hFactor = scene.screenHeight / scene.height
         var scaleFactor = Math.min(wFactor, hFactor)
+        var verticalEdge =  scene.screenHeight - (scene.height * scaleFactor)
+        var horizontalEdge = scene.screenWidth - (scene.width * scaleFactor)
+        ctx.translate(horizontalEdge/2,verticalEdge/2)
         ctx.scale(scaleFactor, scaleFactor)
 
         this.planet.render(ctx, scene);
