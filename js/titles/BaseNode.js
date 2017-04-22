@@ -1,6 +1,6 @@
-var Wall = function () {
-    PlanetElement.call(this);
-    this.hp = 100;
+var BaseNode = function () {
+    Wall.call(this);
+    this.hp = 10000;
 
     this.stroke = function(v){
         this.hp -= v;
@@ -12,13 +12,13 @@ var Wall = function () {
         Util.playSound("WallBroken");
         return false;
     };
-
     this.render = function (ctx, scene) {
         ctx.beginPath();
-        ctx.fillStyle = "green";
+        ctx.fillStyle = "blue";
         ctx.rect(this.x, this.y, this.width, this.height);
         ctx.fill();
     };
+
 };
 
-Util.extend(Wall, PlanetElement);
+Util.extend(BaseNode, Wall);

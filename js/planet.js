@@ -12,6 +12,8 @@ var _titleBuilder = function (type) {
             return new EmptySpace();
         case "P":
             return new PlayerSpawn();
+        case "B":
+            return new BaseNode();
     }
 };
 
@@ -156,9 +158,9 @@ var _Planet = new PlanetProto(
     "X                              X                          X",
     "X                              X                          X",
     "X                            XXXX                         X",
-    "X              X                              X           X",
-    "X         XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX            X",
-    "X           XXXXXXXXXXX                                   X",
-    "X              XXXXXXXXXXXX   P                           X",
+    "X              X           BB                 X           X",
+    "X         XXXXXXXXXXXXXXXXBBBBXXXXXXXXXXXXXXXX            X",
+    "X           XXXXXXXXXXX  BBBBBBB                          X",
+    "X              XXXXXXXXXXBB   P                           X",
     "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
 );
