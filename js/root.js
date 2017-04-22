@@ -4,7 +4,6 @@ var _$root = {
     entity: [],
 
     init: function(parent, scene) {
-
         // Create the World!
         this.background = _background;
         this.planet = _Planet;
@@ -20,6 +19,9 @@ var _$root = {
 
     render: function(ctx, scene) {
         this.background.render(ctx, scene)
+
+        // translate to camera view
+
         this.planet.render(ctx, scene);
         Util.renderChildren(this.entity, ctx, scene);
     }
