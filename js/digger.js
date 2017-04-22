@@ -1,4 +1,4 @@
-var Digger = function(x, y) {
+var Digger = function(x, y, planet) {
 	
 	var p = Util.point(x, y)
 	var w=10;
