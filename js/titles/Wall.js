@@ -39,9 +39,9 @@ var Wall = function () {
 
     this.render = function (ctx, scene) {
         ctx.beginPath();
-        ctx.strokeStyle = "green";
+        ctx.fillStyle = "green";
         ctx.rect(this.x, this.y, this.width, this.height);
-        ctx.stroke();
+        ctx.fill();
     };
 };
 
