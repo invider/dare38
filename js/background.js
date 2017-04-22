@@ -8,7 +8,7 @@ var _background = {
 
     render: function(ctx, scene) {
         ctx.beginPath();
-        ctx.rect(0, 0, scene.width, scene.height);
+        ctx.rect(0, 0, scene.screenWidth, scene.screenHeight);
         ctx.fillStyle = "#220044"
         ctx.fill();
     }

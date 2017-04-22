@@ -10,8 +10,8 @@ var lastFrame = Date.now()
 
 var scene = {
     name: "Scene",
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 80,
     // event flags
     mouseX: 0,
     mouseY: 0,
@@ -31,8 +31,8 @@ function expandCanvas() {
     var canvas = document.getElementById('canvas')
     var newWidth = window.innerWidth
     var newHeight = window.innerHeight
-    canvas.width = newWidth
-    canvas.height = newHeight
+    canvas.width = scene.screenWidth = newWidth
+    canvas.height = scene.screenHeight = newHeight
     canvas.style.width = newWidth + 'px'
     canvas.style.height = newHeight + 'px'
     render(0)

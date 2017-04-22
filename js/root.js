@@ -21,8 +21,15 @@ var _$root = {
         this.background.render(ctx, scene)
 
         // translate to camera view
+        var wFactor = scene.screenWidth / scene.width
+        var hFactor = scene.screenHeight / scene.height
+        var scaleFactor = Math.min(wFactor, hFactor)
+        ctx.scale(scaleFactor, scaleFactor)
 
         this.planet.render(ctx, scene);
         Util.renderChildren(this.entity, ctx, scene);
+
+        // transform back to origins
+        ctx.setTransform(1, 0, 0, 1, 0, 0)
     }
 };
