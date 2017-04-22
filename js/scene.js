@@ -39,6 +39,8 @@ function expandCanvas() {
 }
 
 function init() {
+    scene.manifest = _$ResourceManifest,
+    scene.spriteManager = _$SpriteManager,
 	load()
 
     // setup canvas
@@ -53,8 +55,6 @@ function init() {
     expandCanvas()
 
     // setup scene
-    scene.manifest = _$ResourceManifest,
-    scene.spriteManager = _$SpriteManager,
     scene.root = _$root
     scene.root.init(scene, scene)
 
