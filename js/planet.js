@@ -6,6 +6,8 @@ var _titleBuilder = function (type) {
     switch (type) {
         case "X":
             return new Wall();
+        case "U":
+            return new UnbreakableWall();
         case " ":
             return new EmptySpace();
         case "P":
@@ -79,9 +81,13 @@ var PlanetProto = function () {
     this.getElement = function(x, y){
         return this.children[Math.floor(y)][Math.floor(x)];
     };
+    this.setElement = function(x, y, element){
+        this.children[Math.floor(y)][Math.floor(x)] = element;
+        return element;
+    };
 
     this.removeNode = function(node){
-        this.children[node.x][node.x] = this._initElement(new EmptySpace(), this.scene);
+        this.setElement(node.x, node.y, this._initElement(new EmptySpace(), this.scene))
     };
 
     this._initElement = function(node, scene){
@@ -142,5 +148,5 @@ var _Planet = new PlanetProto(
     "X               XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX            X",
     "X                                                         X",
     "X                                                         X",
-    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
 );
