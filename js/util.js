@@ -1,13 +1,36 @@
 /**
  * Created by shaddy on 22.04.17.
  */
+if (typeof Object.create !== 'function') {
+    Object.create = function (o) {
+        function F() { };
+        F.prototype = o;
+        return new F();
+    };
+}
 var Util = {
     initChildren: function(obj, parent, scene){
         for (var i=0; i < obj.length; i++){
             obj[i].init.call(obj[i], parent, scene);
         }
     },
-    
+
+    extend: function(child, parent) {
+        child.func = {};
+        // extends prototype
+        if (child.__extended) {
+            for ( var k in parent.prototype) {
+                child.prototype[k] = parent.prototype[k];
+            }
+        } else {
+            child.prototype = Object.create(parent.prototype);
+            child.prototype.constructor = child;
+            child.__extended = true;
+            child.superClass = parent;
+        }
+        return child.prototype;
+    },
+
     renderChildren: function(obj, ctx, scene){
         for (var i=0; i < obj.length; i++){
             obj[i].render.call(obj[i], ctx, scene);
