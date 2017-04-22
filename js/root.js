@@ -8,7 +8,7 @@ var _$root = {
     },
 
     evolve: function(delta, scene) {
-        
+        Util.evolveChildren(entity, delta, scene)
     },
 
     render: function(ctx, scene) {
