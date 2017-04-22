@@ -1,6 +1,6 @@
 var Digger = function(x, y) {
 	
-	var p = Utils.point(x, y)
+	var p = Util.point(x, y)
 	
 	return {
 		evolve : function(delta) {
