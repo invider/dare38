@@ -5,7 +5,7 @@ var _$root = {
 
     init: function(parent, scene) {
         this.background = _background;
-        this.entity.push(Digger(20,20));
+        this.entity.push(Digger(20, 20));
     },
 
     evolve: function(delta, scene) {
