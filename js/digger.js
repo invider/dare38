@@ -3,11 +3,15 @@ var Digger = function(x, y, planet) {
 	var p = Util.point(x, y)
 
 	return {
+		x:x,
+		y:y,
 		evolve : function(delta, scene) {
 			var elem = planet.gravitate(p, delta)
 			if (elem && elem.stroke) {
 				elem.stroke(1);
 			}
+			this.x = p.x;
+			this.y = p.y;
 		},
 
 		render : function(ctx) {

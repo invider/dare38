@@ -6,6 +6,7 @@ var _$root = {
         // Create the World!
         this.background = _background;
         this.planet = _Planet;
+        this.scene = scene;
         this.planet.init(this, scene);
         this.evilSource = _evilSource
 
@@ -22,6 +23,48 @@ var _$root = {
         this.evilSource.evolve(delta, scene)
         this.planet.evolve(delta, scene);
         Util.evolveChildren(this.entity, delta, scene);
+    },
+    _killNode: function(node){
+        //
+        //  TODO: optimize this
+        //
+        var counter = 0;
+        while (counter < this.entity.length){
+            if (this.entity[counter] == node){
+                this.entity.splice(counter, 1);
+                counter --;
+            }
+            counter ++;
+        }
+    },
+    /**
+     * kills all units on coordinates, both root and planet
+     * @param x
+     * @param y
+     */
+    killAll:function(x,y){
+        rgis.kill(x, y);
+        this.scene.planet.kill(x, y);
+    },
+    /**
+     * kills only active units on coordinates
+     * @param x
+     * @param y
+     */
+    kill:function(x, y){
+        //
+        //  TODO: fix and optimize this
+        //
+        var toKill = [];
+        for (var i=0; i < this.entity.length; i++){
+            if (Math.sqrt(Math.pow(x - this.entity[i].x, 2) + Math.pow(y - this.entity[i].y, 2)) <= 1){
+                toKill.push(this.entity[i]);
+            }
+        }
+        for (var i=0; i < toKill.length; i++){
+            this._killNode(toKill[i]);
+        }
+
     },
 
     render: function(ctx, scene) {
