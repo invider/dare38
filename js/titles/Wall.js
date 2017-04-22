@@ -10,9 +10,12 @@
  this.evolve=function(delta, scene) {
  };
 
+ this.stroke = function(v){
+ }
  this.render = function(ctx, scene) {
  };
  */
+
 var Wall = function () {
     this.x = 0;
     this.y = 0;
@@ -35,7 +38,6 @@ var Wall = function () {
     };
 
     this.render = function (ctx, scene) {
-        debugger;
         ctx.beginPath();
         ctx.strokeStyle = "green";
         ctx.rect(this.x, this.y, this.width, this.height);
