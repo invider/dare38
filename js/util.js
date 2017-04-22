@@ -43,19 +43,19 @@ var Util = {
         }
     },
     
-    point: function(x0, y0, v0) {
+    point: function(x, y) {
     	return {
-    		x: x0 || 0,
-    		y: y0 || 0,
-    		v: v0 || 0,
-    		g: 9.8
+    		x: x || 0,
+    		y: y || 0,
+    		velocity: 0,
+    		acceleration: 0
     	}
     },
     
     fall: function(point, delta) {
-    	var dv = point.g * delta;
-    	point.y += point.v * delta + 0.5 * dv * delta;
-    	point.v += dv;
+    	var v0 = point.velocity
+    	point.velocity += (9.8 - point.acceleration) * delta
+    	point.y += 0.5 * (v0 + point.velocity) * delta
     },
     
     boundX: function(point, a, b) {
@@ -72,11 +72,11 @@ var Util = {
     boundY: function(point, a, b) {
 		if(point.y < Math.min(a, b)) {
 			point.y = Math.min(a, b);
-			point.v = 0
+			point.velocity = 0
 			return true
 		} else if(point.y > Math.max(a, b)) {
 			point.y = Math.max(a, b);
-			point.v = 0
+			point.velocity = 0
 			return true
 		}
 		return false
