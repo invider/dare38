@@ -39,10 +39,6 @@ function expandCanvas() {
 function init() {
 	load()
 
-    // setup scene
-    scene.root = _$root
-    scene.root.init(scene, scene)
-
     // setup canvas
     canvas= document.getElementById("canvas")
     ctx = canvas.getContext("2d")
@@ -53,6 +49,11 @@ function init() {
         canvas.mozRequestFullScreen(); //Firefox
     }
     expandCanvas()
+
+    // setup scene
+    scene.root = _$root
+    scene.root.init(scene, scene)
+
 
     // initiate the game loop
     if (TARGET_FPS <= 0) {
@@ -83,7 +84,7 @@ var fps = 0, fpsa = 1, fpsc = 0
 function render(delta) {
 
     // draw root node
-    scene.root.render(ctx, scene)
+    if (scene.root) scene.root.render(ctx, scene)
 
     // draw status
     ctx.fillStyle = "#FFFF00"
