@@ -86,7 +86,7 @@ var PlanetProto = function () {
         this.ratio = this.getRatio();
         for (var y = 0; y < this.ySize; y++) {
             for (var x = 0; x < this.xSize; x++) {
-                this._initElement(this.getElementByCell(x, y), x,y)
+                this._initElement(this.getElementByCell(x, y), x ,y)
             }
         }
     };
@@ -95,7 +95,7 @@ var PlanetProto = function () {
         for (var y = 0; y < this.ySize; y++) {
             for (var x = 0; x < this.xSize; x++) {
                 this.getElementByCell(x, y).x = this.relativeToAbsoluteX(x);
-                this.getElementByCell(x, y).y = this.relativeToAbsoluteX(y);
+                this.getElementByCell(x, y).y = this.relativeToAbsoluteY(y);
             }
         }
         for (var k in this.children) {
@@ -119,10 +119,10 @@ var PlanetProto = function () {
 var _Planet = new PlanetProto(
     "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
     "X                                                         X",
-    "X                                                         X",
-    "X                                                         X",
-    "X                                                         X",
-    "X                                                         X",
-    "X                                                         X",
+    "X                XXXXXXXXXX                               X",
+    "X                X        X                               X",
+    "X                X        X                               X",
+    "X                X        X                               X",
+    "X                XXXXXXXXXX                               X",
     "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 );
