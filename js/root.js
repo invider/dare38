@@ -9,7 +9,7 @@ var _$root = {
         this.background = _background;
         this.planet = _Planet;
         this.planet.init(this, scene);
-        scene.attach(Digger(20, 20));
+        scene.attach(Digger(20, 40, this.planet))
         scene.attach(_wonderer);
     },
 
