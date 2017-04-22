@@ -1,12 +1,10 @@
 var Digger = function(params) {
-	var x = params.x || 0
-	var y = {
-		x: params.y || 0
-	}
-	var tiles = params.tiles
+	var x = Utils.point(params.x)
+	var y = Utils.point(params.y)
 	return {
 		evolve : function(delta) {
-			y.move(delta).bound(0, 200);
+			Utils.fall(point, delta);
+			Utils.bound(point, 0, 200);
 		},
 		render : function(ctx) {
 		}
