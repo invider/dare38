@@ -8,10 +8,9 @@ var _$root = {
         // Create the World!
         this.background = _background;
         this.planet = _Planet;
-        scene.attach(Digger(20, 20));
+        scene.attach(Digger(20, 40, this.planet));
         scene.attach(_wonderer);
         this.planet.init(this, scene);
-        this.entity.push(Digger(20, 20, this.planet));
     },
 
     evolve: function(delta, scene) {
