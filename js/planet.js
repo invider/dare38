@@ -53,11 +53,23 @@ var PlanetProto = function () {
         return Math.round(y * this.ratio.y);
     };
 
+    this.removeNode = function(node){
+        this.children[node.relativeY][node.relativeX] = this._initElement(new EmptySpace());
+    };
+
     this.getRatio = function(){
         return {
             x: this.xSize / this.scene.width,
             y: this.ySize / this.scene.height
         }
+    };
+    this._initElement= function(node, x, y){
+        node.width = this.scene.width / this.xSize;
+        node.height = this.scene.height / this.ySize;
+        //Util.initChildren(this.children[k], parentNode, scene);
+        node.relativeX = x;
+        node.relativeY = y;
+        return node;
     };
     /**
      *  returns element by physical coordinates
@@ -74,12 +86,8 @@ var PlanetProto = function () {
         this.ratio = this.getRatio();
         for (var y = 0; y < this.ySize; y++) {
             for (var x = 0; x < this.xSize; x++) {
-                this.getElementByCell(x, y).width = this.scene.width / this.xSize;
-                this.getElementByCell(x, y).height = this.scene.height / this.ySize;
+                this._initElement(this.getElementByCell(x, y), x,y)
             }
-        }
-        for (var k in this.children) {
-            Util.initChildren(this.children[k], parentNode, scene);
         }
     };
 
