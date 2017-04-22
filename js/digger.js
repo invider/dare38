@@ -1,7 +1,5 @@
 var Digger = function(x, y, planet) {
 
-	var w = 1;
-	var hw = w / 2;
 	var p = Util.point(x, y)
 
 	return {
@@ -14,7 +12,7 @@ var Digger = function(x, y, planet) {
 
 		render : function(ctx) {
 			ctx.beginPath()
-			ctx.rect(p.x - hw, p.y - hw, w, w)
+			ctx.rect(p.x - 0.5, p.y - 0.5, 1, 1)
 			ctx.fillStyle = 'cyan'
 			ctx.fill()
 		},
