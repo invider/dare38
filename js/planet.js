@@ -44,6 +44,15 @@ var PlanetProto = function () {
     this.getElementByCell = function(x, y){
         return this.children[y][x];
     };
+
+    this.relativeToAbsoluteX = function(x){
+        return Math.round(x * this.ratio.x);
+    };
+
+    this.relativeToAbsoluteY = function(y){
+        return Math.round(y * this.ratio.y);
+    };
+
     this.getRatio = function(){
         return {
             x: this.xSize / this.scene.width,
@@ -57,7 +66,7 @@ var PlanetProto = function () {
      * @returns {Entity}
      */
     this.getElement = function(x, y){
-        return this.getElementByCell(Math.round(x * this.ratio.x), Math.round(y * this.ratio.y));
+        return this.getElementByCell(this.relativeToAbsoluteX(x), this.relativeToAbsoluteY(y));
     };
 
     this.init = function (parentNode, scene) {
@@ -75,6 +84,11 @@ var PlanetProto = function () {
     };
 
     this.evolve = function (delta, scene) {
+        for (var y = 0; y < this.ySize; y++) {
+            for (var x = 0; x < this.xSize; x++) {
+                this.getElementByCell(this.relativeToAbsoluteX(x), this.relativeToAbsoluteY(y));
+            }
+        }
         for (var k in this.children) {
             Util.evolveChildren(this.children[k], delta, scene);
         }
