@@ -12,6 +12,7 @@ var scene = {
     name: "Scene",
     width: 120,
     height: 80,
+
     // event flags
     mouseX: 0,
     mouseY: 0,
@@ -107,7 +108,6 @@ function render(delta) {
     ctx.fillStyle = "#FFFF00"
 
     // draw status
-
     if (fpsa >= 1 && delta > 0) {
         fps = Math.round(fpsc/fpsa)
         fpsa = delta
@@ -134,6 +134,7 @@ function render(delta) {
 function loop() {
     var now = Date.now()
     var delta = (now - lastFrame)/1000
+    var fdelta = delta
 
     // show, react and update cycle
     input(delta)
@@ -148,8 +149,7 @@ function loop() {
         }
         delta -= MAX_EVO_TIME
     }
-    
-    render(delta)
+    render(fdelta)
 
     lastFrame = now
 }

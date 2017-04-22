@@ -1,6 +1,5 @@
 /** @type Entity */
 var _$root = {
-    planet: {},
     entity: [],
 
     init: function(parent, scene) {
@@ -8,6 +7,8 @@ var _$root = {
         this.background = _background;
         this.planet = _Planet;
         this.planet.init(this, scene);
+        if (this.planet) scene.statusLine = 'planet defined'
+        else scene.statusLine = 'No Planet!!!'
         scene.attach(Digger(2.2, 1.4, this.planet))
         scene.attach(_wonderer);
     },
