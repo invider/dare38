@@ -29,25 +29,32 @@ var Util = {
     },
     
     fall: function(point, delta) {
-    	point.y += point.v * delta;
-    	point.v += 9.8 * delta;
+    	var dv = 9.8 * delta;
+    	point.y += point.v * delta + 0.5 * dv * delta;
+    	point.v += dv;
     },
     
     boundX: function(point, a, b) {
 		if(point.x < Math.min(a, b)) {
 			point.x = Math.min(a, b);
+			return true
 		} else if(point.x > Math.max(a, b)) {
 			point.x = Math.max(a, b);
+			return true
 		}
+		return false
     },
     
     boundY: function(point, a, b) {
 		if(point.y < Math.min(a, b)) {
 			point.y = Math.min(a, b);
 			point.v = 0
+			return true
 		} else if(point.y > Math.max(a, b)) {
 			point.y = Math.max(a, b);
 			point.v = 0
+			return true
 		}
+		return false
     }
 };
