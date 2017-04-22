@@ -12,26 +12,23 @@ var Util = {
             obj[i].evolve.call(delta, scene);
         }
     },
-    point: function(x0, v0) {
+    point: function(x0, y0, v0) {
     	return {
     		x: x0 || 0,
+    		y: y0 || 0,
     		v: v0 || 0
     	}
     },
     fall: function(point, delta) {
-    	var x0 = point.x || 0;
-    	var v0 = point.v || 0;
-    	point.x = x0 + v0 * delta;
-    	point.v = v0 + 9.8 * delta;
+    	point.y += point.v * delta;
+    	point.v += 9.8 * delta;
     },
-    bound: function(point, a, b) {
-    	var x = point.x || 0;
-    	var v = point.v || 0;
-		if(x < Math.min(a, b)) {
-			point.x = Math.min(a, b);
+    boundY: function(point, a, b) {
+		if(point.y < Math.min(a, b)) {
+			point.y = Math.min(a, b);
 			point.v = 0
-		} else if(x > Math.max(a, b)) {
-			point.x = Math.max(a, b);
+		} else if(point.y > Math.max(a, b)) {
+			point.y = Math.max(a, b);
 			point.v = 0
 		}
     }
