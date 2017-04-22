@@ -12,6 +12,7 @@ var Digger = function(x, y, planet) {
 			}
 			this.x = p.x;
 			this.y = p.y;
+			Util.killOnlyPlayer(scene, this.x, this.y);
 		},
 
 		render : function(ctx) {
