@@ -11,7 +11,7 @@ var _$root = {
         scene.attach(Digger(20, 20));
         scene.attach(_wonderer);
         this.planet.init(this, scene);
-        this.entity.push(Digger(20, 20));
+        this.entity.push(Digger(20, 20, this.planet));
     },
 
     evolve: function(delta, scene) {
