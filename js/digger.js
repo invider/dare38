@@ -3,7 +3,7 @@ var Digger = function(params) {
 	return {
 		evolve : function(delta) {
 			Utils.fall(point, delta);
-			Utils.bound(point, 0, 200);
+			Utils.boundY(point, 0, 200);
 		},
 		render : function(ctx) {
 		}
