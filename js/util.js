@@ -47,12 +47,13 @@ var Util = {
     	return {
     		x: x0 || 0,
     		y: y0 || 0,
-    		v: v0 || 0
+    		v: v0 || 0,
+    		g: 9.8
     	}
     },
     
     fall: function(point, delta) {
-    	var dv = 9.8 * delta;
+    	var dv = point.g * delta;
     	point.y += point.v * delta + 0.5 * dv * delta;
     	point.v += dv;
     },
