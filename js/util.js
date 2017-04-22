@@ -82,7 +82,7 @@ var Util = {
 		return false
     },
     playSound:function(audio){
-        var audio = new Audio("sound/" + audio + ".wav");
-        audio.play();
+        //var audio = new Audio("sound/" + audio + ".wav");
+        //audio.play();
     }
 };

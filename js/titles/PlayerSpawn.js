@@ -7,6 +7,9 @@ var PlayerSpawn = function () {
         ctx.rect(this.x, this.y, this.width, this.height);
         ctx.fill();
     };
+    this.respawn = function(){
+        // TODO: respawn player here
+    }
 };
 
 Util.extend(PlayerSpawn, EmptySpace);

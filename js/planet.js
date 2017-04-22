@@ -47,7 +47,15 @@ var PlanetProto = function () {
      * @returns {Entity}
      */
     this.getElement = function(x, y){
-        return this.children[Math.floor(y)][Math.floor(x)];
+        var xx = Math.floor(x);
+        var yy = Math.floor(y);
+        if (!this.children[yy] || !this.children[yy][xx]){
+            var tmp = this._initElement(new EmptySpace(), this.scene)
+            tmp.x = x;
+            tmp.y = y;
+            return tmp;
+        }
+        return this.children[yy][xx];
     };
     this.setElement = function(x, y, element){
         this.children[Math.floor(y)][Math.floor(x)] = element;
