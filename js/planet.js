@@ -12,6 +12,7 @@ var _titleBuilder = function (type) {
 };
 
 var PlanetProto = function () {
+    var my = this;
     var field = [];
     for (var i = 0; i < arguments.length; i++) {
         var chunk = arguments[i].split("\n")
@@ -54,23 +55,24 @@ var PlanetProto = function () {
         node.height = 1;
         return node;
     };
-
-    this.init = function (parentNode, scene) {
-        this.scene = scene;
+    this.eachNode = function(fn){
         for (var y = 0; y < this.ySize; y++) {
             for (var x = 0; x < this.xSize; x++) {
-                this._initElement(this.getElement(x, y))
+                fn(node, x, y);
             }
         }
     };
 
+    this.init = function (parentNode, scene) {
+        this.scene = scene;
+        this.eachNode(function(node, x, y) { my._initElement(node)});
+    };
+
     this.evolve = function (delta, scene) {
-        for (var y = 0; y < this.ySize; y++) {
-            for (var x = 0; x < this.xSize; x++) {
-                this.getElement(x, y).x = x;
-                this.getElement(x, y).y = y;
-            }
-        }
+        this.eachNode(function(node, x, y) {
+            node.x = x;
+            node.y = y;
+        });
         for (var k in this.children) {
             Util.evolveChildren(this.children[k], delta, scene);
         }
