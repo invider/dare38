@@ -51,6 +51,8 @@ function init() {
     expandCanvas()
 
     // setup scene
+    scene.manifest = _$ResourceManifest,
+    scene.spriteManager = _$SpriteManager,
     scene.root = _$root
     scene.root.init(scene, scene)
 
@@ -65,6 +67,10 @@ function init() {
 
 function load() {
 	// TODO start loading
+    for (var index in scene.manifest.images) {
+        var image = scene.manifest.images[index];
+        scene.spriteManager.addSprite(image.val, image.key);
+    }
 }
 
 
@@ -82,14 +88,23 @@ function evolve(delta) {
 
 var fps = 0, fpsa = 1, fpsc = 0
 function render(delta) {
-
-    // draw root node
-    if (scene.root) scene.root.render(ctx, scene)
-
-    // draw status
     ctx.fillStyle = "#FFFF00"
     ctx.font = '24px alien'
     ctx.textBaseline = 'bottom'
+
+    // draw root node
+    if(scene.spriteManager.counter === scene.manifest.images.length) {
+        scene.root.render(ctx, scene)
+    }
+    else {
+        var loadingStatus = "Loading images... " + scene.spriteManager.counter +
+            "/" + scene.manifest.images.length;
+        ctx.fillText(loadingStatus, ctx.width/2, ctx.height/2);
+    }
+
+    ctx.fillStyle = "#FFFF00"
+
+    // draw status
 
     if (fpsa >= 1 && delta > 0) {
         fps = Math.round(fpsc/fpsa)
