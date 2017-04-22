@@ -15,5 +15,6 @@ var _$root = {
 
     render: function(ctx, scene) {
         this.background.render(ctx, scene)
+        Util.renderChildren(this.entity, ctx, scene);
     }
 };

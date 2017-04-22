@@ -10,7 +10,7 @@ var Digger = function(x, y) {
 		
 		render : function(ctx) {
 			ctx.beginPath()
-			ctx.rect(p.x, p.y, 5, 5)
+			ctx.rect(p.x-5, p.y-5, 10, 10)
 			ctx.fillStyle = 'green'
 			ctx.fill()
 		},

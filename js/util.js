@@ -4,18 +4,19 @@
 var Util = {
     initChildren: function(obj, parent, scene){
         for (var i=0; i < obj.length; i++){
-            obj[i].init.call(ctx, parent, scene);
+            obj[i].init.call(obj[i], ctx, parent, scene);
         }
     },
+    
     renderChildren: function(obj, ctx, scene){
         for (var i=0; i < obj.length; i++){
-            obj[i].render.call(ctx, scene);
+            obj[i].render.call(obj[i], ctx, scene);
         }
     },
     
     evolveChildren: function(obj, delta, scene){
         for (var i=0; i < obj.length; i++){
-            obj[i].evolve.call(delta, scene);
+            obj[i].evolve.call(obj[i], delta, scene);
         }
     },
     
