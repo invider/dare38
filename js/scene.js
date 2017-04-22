@@ -15,6 +15,8 @@ var scene = {
     keys: {},
 }
 
+
+// === INIT ====
 function expandCanvas() {
     var canvas = document.getElementById('canvas')
     var newWidth = window.innerWidth
@@ -44,17 +46,80 @@ function init() {
     }
 }
 
-function expandCanvas() {
-    var canvas = document.getElementById('canvas')
-    var newWidth = window.innerWidth
-    var newHeight = window.innerHeight
-    scene.width = canvas.width = newWidth
-    scene.height = canvas.height = newHeight
-    canvas.style.width = newWidth + 'px'
-    canvas.style.height = newHeight + 'px'
-    render(0)
+function load() {
+	// TODO start loading
 }
 
+
+
+// === GAME LOOP ===
+
+// process input events (controls, random, AI)
+function input(delta) {
+	// TODO process input handlers
+}
+
+function evolve(delta) {
+	// update scene
+}
+
+var fps = 0, fpsa = 1, fpsc = 0
+function render(delta) {
+    // clear
+    ctx.fillStyle = "#220044"
+    ctx.fillRect(0,0,cnv.width,cnv.height)
+
+    // draw everything
+
+    // draw status
+    ctx.fillStyle = "#FFFF00"
+    ctx.font = '24px alien'
+    ctx.textBaseline = 'bottom'
+
+    if (fpsa >= 1 && delta > 0) {
+        fps = Math.round(fpsc/fpsa)
+        fpsa = delta
+        fpsc = 1
+    } else {
+        fpsc += 1
+        fpsa += delta
+    }
+
+    var status = 'fps: ' + fps + 'res ' + scene.resIncluded + '/' + scene.resLoaded
+        +' mouse: ' + scene.mouseX + 'x' + scene.mouseY + ', ' + scene.mouseButton
+        + " Keyboard: "
+    for (var k in scene.keys) {
+        status += "-" + k
+    }
+    status += '-'
+    ctx.fillText(status, 10, 30)
+}
+
+
+function loop() {
+    var now = Date.now()
+    var delta = (now - lastFrame)/1000
+
+    // show, react and update cycle
+    render(delta)
+    input(delta)
+
+    // evolve multiple times in small quants
+    // to compensate possible lag due to rendering delays
+    while(delta > 0) {
+        if (delta > MAX_EVO_TIME) {
+            evolve(MAX_EVO_TIME);
+        } else {
+            evolve(delta);
+        }
+        delta -= MAX_EVO_TIME
+    }
+    lastFrame = now
+}
+
+
+
+// === EVENTS ===
 function handleMouse(e) {
     e = e || window.event
     scene.mouseX = e.pageX
@@ -125,76 +190,6 @@ function handleKeyUp(e) {
     return false;
 }
 
-
-function load() {
-	// TODO start loading
-}
-
-
-// process input events (controls, random, AI)
-function input(delta) {
-	// TODO process input handlers
-}
-
-function evolve(delta) {
-	// update scene
-}
-
-var fps = 0, fpsa = 1, fpsc = 0
-function render(delta) {
-    // clear
-    ctx.fillStyle = "#220044"
-    ctx.fillRect(0,0,cnv.width,cnv.height)
-
-    // draw everything
-
-    // draw status
-    ctx.fillStyle = "#FFFF00"
-    //ctx.font = '20px monospace'
-    //ctx.font = '24px pixelated'
-    ctx.font = '19px commodore'
-    ctx.textBaseline = 'bottom'
-
-    if (fpsa >= 1 && delta > 0) {
-        fps = Math.round(fpsc/fpsa)
-        fpsa = delta
-        fpsc = 1
-    } else {
-        fpsc += 1
-        fpsa += delta
-    }
-
-    var status = 'fps: ' + fps + 'res ' + scene.resIncluded + '/' + scene.resLoaded
-        +' mouse: ' + scene.mouseX + 'x' + scene.mouseY + ', ' + scene.mouseButton
-        + " Keyboard: "
-    for (var k in scene.keys) {
-        status += "-" + k
-    }
-    status += '-'
-    ctx.fillText(status, 10, 30)
-}
-
-
-function loop() {
-    var now = Date.now()
-    var delta = (now - lastFrame)/1000
-
-    // show, react and update cycle
-    render(delta)
-    input(delta)
-
-    // evolve multiple times in small quants
-    // to compensate possible lag due to rendering delays
-    while(delta > 0) {
-        if (delta > MAX_EVO_TIME) {
-            evolve(MAX_EVO_TIME);
-        } else {
-            evolve(delta);
-        }
-        delta -= MAX_EVO_TIME
-    }
-    lastFrame = now
-}
 
 // bind to events
 window.addEventListener('resize', expandCanvas, false)
