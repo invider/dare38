@@ -1,6 +1,7 @@
 /** @type Entity */
 var _$root = {
     entity: [],
+    player: false,
 
     init: function(parent, scene) {
         // Create the World!
@@ -9,7 +10,6 @@ var _$root = {
         this.scene = scene;
         this.planet.init(this, scene);
         this.evilSource = _evilSource
-
         //scene.attach(Digger(15.2, 3, this.planet));
         //scene.attach(Digger(2.2, 1.4, this.planet));
         //scene.attach(_wonderer);
@@ -18,8 +18,17 @@ var _$root = {
         scene.width = this.planet.xSize
         scene.height = this.planet.ySize
     },
+    
+    spawnPlayer: function(){
+        var spawnPoint = this.planet.getSpawnPoint();
+        this.player = Player(spawnPoint.x, spawnPoint.y, this.planet);
+        this.entity.push(this.player);
+    },
 
     evolve: function(delta, scene) {
+        if (!this.player){
+            this.spawnPlayer();
+        }
         this.evilSource.evolve(delta, scene)
         this.planet.evolve(delta, scene);
         Util.evolveChildren(this.entity, delta, scene);
@@ -38,17 +47,6 @@ var _$root = {
         }
     },
     /**
-     * kills all units on coordinates, both root and planet
-     * @param x
-     * @param y
-     * @param r - radius to kill
-     */
-    killAll:function(x, y, r){
-        r = r || 1;
-        rgis.kill(x, y);
-        this.scene.planet.kill(x, y, r);
-    },
-    /**
      * returns nodelist of nodes in given raduis
      * NOTE: this is only active nodes
      * @param x
@@ -56,7 +54,7 @@ var _$root = {
      * @param r - radius to detect
      */
     getNearbyNodes: function(x, y, r){
-        r = r || 1;
+        r = r || 0.5;
         var res = [];
         for (var i=0; i < this.entity.length; i++){
             if (Math.sqrt(Math.pow(x - this.entity[i].x, 2) + Math.pow(y - this.entity[i].y, 2)) <= r){
@@ -67,19 +65,18 @@ var _$root = {
     },
     /**
      * kills only active units on coordinates
-     * @param x
-     * @param y
-     * @param r - radius to kill
+     * @param toKill
      */
-    kill:function(x, y, r){
+    kill:function(toKill){
+        if (!(toKill instanceof Array)){
+            toKill = [toKill];
+        }
         //
         //  TODO: fix and optimize this
         //
-        var toKill = this.getNearbyNodes(x,y,r);
         for (var i=0; i < toKill.length; i++){
             this._killNode(toKill[i]);
         }
-
     },
 
     render: function(ctx, scene) {

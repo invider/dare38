@@ -81,8 +81,15 @@ var Util = {
 		}
 		return false
     },
+    killAllButNotPlayer:function(scene, x, y){
+        var nodes = scene.root.getNearbyNodes(x,y).filter(function(node){
+            return node.type != "Player";
+        });
+        scene.root.kill(nodes);
+    },
     playSound:function(audio){
         var audio = new Audio("sound/" + audio + ".wav");
         audio.play();
     }
+
 };

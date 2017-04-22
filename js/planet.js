@@ -93,7 +93,9 @@ var PlanetProto = function () {
     this.eachNode = function(fn){
         for (var y = 0; y < this.ySize; y++) {
             for (var x = 0; x < this.xSize; x++) {
-                fn(this.children[y][x], x, y);
+                if (fn(this.children[y][x], x, y) === false){
+                    return;
+                }
             }
         }
     };
@@ -143,6 +145,25 @@ var PlanetProto = function () {
         for (var i=0; i < toKill.length; i++){
             this.removeNode(toKill[i]);
         }
+    };
+    /**
+     * returns player spawn point
+     * @returns {{x:number, y:number}}
+     */
+    this.getSpawnPoint = function(){
+        var retVal = false;
+        this.eachNode(function(node, x, y){
+            if (node instanceof PlayerSpawn){
+                retVal = {
+                    x: x,
+                    y: y
+                }
+            }
+        });
+        if (!retVal){
+            throw new Error("Could not find player spawn!!!");
+        }
+        return retVal;
     };
 };
 

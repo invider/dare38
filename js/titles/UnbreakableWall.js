@@ -11,11 +11,12 @@ var UnbreakableWall = function () {
             this.triedToBreak = true;
         }
     };
+
     this.evolve = function () {
-        this.scene.root.kill(this.x + 1, this.y + 1);
-        this.scene.root.kill(this.x - 1, this.y - 1);
-        this.scene.root.kill(this.x + 1, this.y - 1);
-        this.scene.root.kill(this.x - 1, this.y + 1);
+        Util.killAllButNotPlayer(this.scene, this.x + 1, this.y + 1);
+        Util.killAllButNotPlayer(this.scene, this.x - 1, this.y - 1);
+        Util.killAllButNotPlayer(this.scene, this.x + 1, this.y - 1);
+        Util.killAllButNotPlayer(this.scene, this.x - 1, this.y + 1);
     };
     this.render = function (ctx, scene) {
         ctx.beginPath();

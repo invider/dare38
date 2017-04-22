@@ -219,7 +219,7 @@ function handleKeyDown(e) {
 
 function handleKeyUp(e) {
     var code = e.which || e.keyCode
-    if (code == 116){
+    if (code == 116 || code == 123){
         return true;
     }
     delete scene.keys[code]
