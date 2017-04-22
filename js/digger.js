@@ -1,5 +1,5 @@
-var Digger = function(params) {
-	var coord = Utils.point(params.x, params.y)
+var Digger = function(x, y) {
+	var coord = Utils.point(x, y)
 	return {
 		evolve : function(delta) {
 			Utils.fall(point, delta);

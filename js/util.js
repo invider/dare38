@@ -23,6 +23,13 @@ var Util = {
     	point.y += point.v * delta;
     	point.v += 9.8 * delta;
     },
+    boundX: function(point, a, b) {
+		if(point.x < Math.min(a, b)) {
+			point.x = Math.min(a, b);
+		} else if(point.x > Math.max(a, b)) {
+			point.x = Math.max(a, b);
+		}
+    },
     boundY: function(point, a, b) {
 		if(point.y < Math.min(a, b)) {
 			point.y = Math.min(a, b);
