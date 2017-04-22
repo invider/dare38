@@ -17,7 +17,7 @@ var scene = {
     mouseX: 0,
     mouseY: 0,
     mouseButton: '---',
-    statusLine: 'Score: ???',
+    statusLine: 'No Status',
     keys: {},
 
     attach: function(node) {
@@ -124,7 +124,6 @@ function render(delta) {
         status += "-" + k
     }
     status += '-'
-    status += ' W/H:' + scene.width+ 'x' + scene.height+'!'
     ctx.fillText(status, 10, 30)
 
     ctx.fillText(scene.statusLine, 10, 60)
@@ -153,8 +152,6 @@ function loop() {
 
     lastFrame = now
 }
-
-
 
 // === EVENTS ===
 function handleMouse(e) {
