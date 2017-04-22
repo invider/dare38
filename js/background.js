@@ -3,11 +3,13 @@ var _background = {
     init: function(parent, scene) {
 
     },
-    update: function() {},
+
+    evolve: function(delta, scene) {},
+
     render: function(ctx, scene) {
         ctx.beginPath();
-        ctx.rect(0, 0, 150, 100);
-        ctx.fillStyle = "blue";
+        ctx.rect(0, 0, scene.width, scene.height);
+        ctx.fillStyle = "#220044"
         ctx.fill();
     }
 }
