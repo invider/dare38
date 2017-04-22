@@ -41,23 +41,27 @@ var _$root = {
      * kills all units on coordinates, both root and planet
      * @param x
      * @param y
+     * @param r - radius to kill
      */
-    killAll:function(x,y){
+    killAll:function(x, y, r){
+        r = r || 1;
         rgis.kill(x, y);
-        this.scene.planet.kill(x, y);
+        this.scene.planet.kill(x, y, r);
     },
     /**
      * kills only active units on coordinates
      * @param x
      * @param y
+     * @param r - radius to kill
      */
-    kill:function(x, y){
+    kill:function(x, y, r){
+        r = r || 1;
         //
         //  TODO: fix and optimize this
         //
         var toKill = [];
         for (var i=0; i < this.entity.length; i++){
-            if (Math.sqrt(Math.pow(x - this.entity[i].x, 2) + Math.pow(y - this.entity[i].y, 2)) <= 1){
+            if (Math.sqrt(Math.pow(x - this.entity[i].x, 2) + Math.pow(y - this.entity[i].y, 2)) <= r){
                 toKill.push(this.entity[i]);
             }
         }

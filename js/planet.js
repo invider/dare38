@@ -58,6 +58,9 @@ var PlanetProto = function () {
         return this.children[yy][xx];
     };
     this.setElement = function(x, y, element){
+        if (!this.children[yy] || !this.children[yy][xx]){
+            return element;
+        }
         this.children[Math.floor(y)][Math.floor(x)] = element;
         return element;
     };
@@ -112,7 +115,12 @@ var PlanetProto = function () {
         for (var k in this.children) {
             Util.renderChildren(this.children[k], ctx, scene);
         }
-    }
+    };
+    this.kill = function(x,y, r){
+        //
+        //  TODO: kill in radius
+        //
+    };
 };
 
 /**
