@@ -85,7 +85,7 @@ function render(delta) {
         fpsa += delta
     }
 
-    var status = 'fps: ' + fps + 'res ' + scene.resIncluded + '/' + scene.resLoaded
+    var status = 'fps: ' + fps
         +' mouse: ' + scene.mouseX + 'x' + scene.mouseY + ', ' + scene.mouseButton
         + " Keyboard: "
     for (var k in scene.keys) {
