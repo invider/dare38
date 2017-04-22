@@ -8,14 +8,9 @@ var Digger = function(x, y, planet) {
 		evolve : function(delta, scene) {
 			Util.fall(p, delta)
 			var y = Math.ceil(p.y)
-			var x1 = Math.floor(p.x - hw)
-			var x2 = Math.floor(p.x + hw)
-			var elem = planet.getElement(x1, y)
-			if(elem instanceof EmptySpace) {
-				elem = planet.getElement(x2, y)
-			}
-			if(Util.boundY(p, y - 1, y - hw + (elem instanceof EmptySpace ? 1 : 0))) {
-				if(elem.stroke) {
+			var elem = planet.findWallBelow(p.x - hw, p.x + hw, p.y)
+			if(Util.boundY(p, 0, y - hw + (elem ? 0 : 1))) {
+				if(elem && elem.stroke) {
 				    elem.stroke(1);
 				}
 			}

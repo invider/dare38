@@ -56,6 +56,14 @@ var PlanetProto = function () {
         this.children[Math.floor(y)][Math.floor(x)] = element;
         return element;
     };
+    this.findWallBelow = function(x1, x2, y) {
+    	var y = Math.ceil(y);
+		var elem = this.getElement(x1, y)
+		if(elem instanceof EmptySpace) {
+			elem = this.getElement(x2, y)
+		}
+		return elem instanceof EmptySpace ? undefined : elem 
+    };
 
     this.removeNode = function(node){
         this.setElement(node.x, node.y, this._initElement(new EmptySpace(), this.scene))
