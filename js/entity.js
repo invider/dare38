@@ -1,7 +1,9 @@
 /** @typedef {{x:number, y:number, evolve:function, render:function}} Entity */
-var entity = {
-    x: 100,
-    y: 100,
+var _entity = {
+    init: function(parent, scene) {
+        this.x = 100;
+        this.y = 100;
+    },
     evolve: function(delta, scene) {
         this.x += 10*delta;
         this.y += 10*delta;
