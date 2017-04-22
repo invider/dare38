@@ -1,4 +1,4 @@
-
+/** @typedef {{x:number, y:number, evolve:function, render:function}} Entity */
 var entity = {
     x: 100,
     y: 100,
