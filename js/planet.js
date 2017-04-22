@@ -126,6 +126,7 @@ var PlanetProto = function () {
      * @param r - radius to detect
      */
     this.getNearbyNodes = function(x, y, r){
+        r = r || 1;
         var res = [];
         this.eachNode(function(node, xx, yy){
             if (Math.sqrt(Math.pow(x - xx, 2) + Math.pow(y - yy, 2)) <= r){
@@ -135,10 +136,6 @@ var PlanetProto = function () {
         return res;
     };
     this.kill = function(x,y, r){
-        //
-        //  TODO: kill in radius
-        //
-        r = r || 1;
         //
         //  TODO: fix and optimize this
         //

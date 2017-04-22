@@ -56,6 +56,7 @@ var _$root = {
      * @param r - radius to detect
      */
     getNearbyNodes: function(x, y, r){
+        r = r || 1;
         var res = [];
         for (var i=0; i < this.entity.length; i++){
             if (Math.sqrt(Math.pow(x - this.entity[i].x, 2) + Math.pow(y - this.entity[i].y, 2)) <= r){
@@ -71,7 +72,6 @@ var _$root = {
      * @param r - radius to kill
      */
     kill:function(x, y, r){
-        r = r || 1;
         //
         //  TODO: fix and optimize this
         //
