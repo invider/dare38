@@ -81,7 +81,7 @@ var PlanetProto = function () {
     };
 
     this.removeNode = function(node){
-        this.children[node.x][node.x] = this._initElement(new EmptySpace());
+        this.children[node.x][node.x] = this._initElement(new EmptySpace(), this, this.scene);
     };
 
     this._initElement = function(node, parentNode, scene){
@@ -98,7 +98,7 @@ var PlanetProto = function () {
 
     this.init = function (parentNode, scene) {
         this.scene = scene;
-        this.eachNode(function(node, x, y) { my._initElement(node, parentNode, scene)});
+        this.eachNode(function(node, x, y) { my._initElement(node, this, scene)});
     };
 
     this.evolve = function (delta, scene) {
