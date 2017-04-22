@@ -12,7 +12,7 @@ var _$SpriteManager = {
     addSprite: function(img_src, image_name) {
         var self = this;
         var image = new Image();
-        if(!img_src) throw new Error("OLONDKJAHFKJEFKEFH");
+        if(!img_src) throw new Error("Something went wrong while image was loading");
         image.src = img_src;
         image.onload = function() {
             self.counter += 1;
