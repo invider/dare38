@@ -59,8 +59,8 @@ var PlanetProto = function () {
 
     this.getRatio = function(){
         return {
-            x: this.xSize / this.scene.width,
-            y: this.ySize / this.scene.height
+            x: this.scene.width /this.xSize,
+            y: this.scene.height / this.ySize
         }
     };
     this._initElement= function(node, x, y){
@@ -94,7 +94,8 @@ var PlanetProto = function () {
     this.evolve = function (delta, scene) {
         for (var y = 0; y < this.ySize; y++) {
             for (var x = 0; x < this.xSize; x++) {
-                this.getElementByCell(this.relativeToAbsoluteX(x), this.relativeToAbsoluteY(y));
+                this.getElementByCell(x, y).x = this.relativeToAbsoluteX(x);
+                this.getElementByCell(x, y).y = this.relativeToAbsoluteX(y);
             }
         }
         for (var k in this.children) {
