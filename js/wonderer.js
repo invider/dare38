@@ -3,26 +3,27 @@ var _wonderer = {
     x: 0, y: 0,
     dx: 0, dy: 0,
     dt: 0, 
+    SPEED: 100,
 
     init: function(parent, scene) {
-        x = scene.width/2
-        y = scene.height/2
-    }
+        this.x = 400
+        this.y = 200
+    },
 
     evolve: function(delta, scene) {
-        dt -= delta
-        if (dt <= 0) {
-            dt = 1 + Math.random()
-            dx = Math.random()
-            dy = Math.random()
+        this.dt -= delta
+        if (this.dt <= 0) {
+            this.dt = 1 + Math.random()*2
+            this.dx = this.SPEED*Math.random()
+            this.dy = this.SPEED*Math.random()
         }
-        this.x += dx*delta;
-        this.y += dy*delta;
+        this.x += this.dx*delta;
+        this.y += this.dy*delta;
     },
 
     render: function(ctx, scene) {
         ctx.beginPath();
-        ctx.rect(this.x, this.y, 4, 4);
+        ctx.rect(this.x, this.y, 20, 20);
         ctx.fillStyle="red";
         ctx.fill()
     }

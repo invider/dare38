@@ -20,7 +20,7 @@ var scene = {
 
     attach: function(node) {
         this.root.entity.push(node)
-        if (node.init) node.init(root, scene)
+        if (node.init) node.init(this.root, scene)
     }
 }
 scene.root.init(scene, scene)
