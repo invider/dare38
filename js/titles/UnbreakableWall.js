@@ -12,7 +12,6 @@ var UnbreakableWall = function () {
         }
     };
     this.evolve = function () {
-        debugger;
         this.scene.root.kill(this.x + 1, this.y + 1);
         this.scene.root.kill(this.x - 1, this.y - 1);
         this.scene.root.kill(this.x + 1, this.y - 1);
