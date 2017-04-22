@@ -9,7 +9,8 @@ var _$root = {
         this.planet.init(this, scene);
         if (this.planet) scene.statusLine = 'planet defined'
         else scene.statusLine = 'No Planet!!!'
-        scene.attach(Digger(2.2, 1.4, this.planet))
+        scene.attach(Digger(15.2, 3, this.planet));
+        scene.attach(Digger(2.2, 1.4, this.planet));
         scene.attach(_wonderer);
     },
 

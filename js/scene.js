@@ -10,8 +10,8 @@ var lastFrame = Date.now()
 
 var scene = {
     name: "Scene",
-    width: 120,
-    height: 80,
+    width: 40,
+    height: 30,
 
     // event flags
     mouseX: 0,

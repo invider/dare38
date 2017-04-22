@@ -16,7 +16,7 @@ var Digger = function(x, y, planet) {
 			}
 			if(Util.boundY(p, y - 1, y - hw + (elem instanceof EmptySpace ? 1 : 0))) {
 				if(elem.stroke) {
-					elem.stroke(1);
+				    elem.stroke(1);
 				}
 			}
 		},
@@ -24,7 +24,7 @@ var Digger = function(x, y, planet) {
 		render : function(ctx) {
 			ctx.beginPath()
 			ctx.rect(p.x - hw, p.y - hw, w, w)
-			ctx.fillStyle = 'green'
+			ctx.fillStyle = 'cyan'
 			ctx.fill()
 		},
 	}
