@@ -1,13 +1,6 @@
 var Wall = function () {
     PlanetElement.call(this);
     this.hp = 100;
-    this.init = function (parentNode, scene) {
-        this.scene = scene;
-    };
-
-    this.evolve = function (delta, scene) {
-
-    };
 
     this.stroke = function(v){
         this.hp -= v;

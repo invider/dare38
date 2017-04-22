@@ -11,10 +11,7 @@ var _titleBuilder = function (type) {
         case " ":
             return new EmptySpace();
         case "P":
-            //
-            //  TODO: implement this
-            //
-            return new Player()
+            return new PlayerSpawn();
     }
 };
 
@@ -133,6 +130,6 @@ var _Planet = new PlanetProto(
     "X              X                              X           X",
     "X         XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX            X",
     "X           XXXXXXXXXXX                                   X",
-    "X              XXXXXXXXXXXX                               X",
+    "X              XXXXXXXXXXXX   P                           X",
     "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
 );
