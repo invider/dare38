@@ -7,15 +7,19 @@ var _$root = {
         this.background = _background;
         this.planet = _Planet;
         this.planet.init(this, scene);
-        scene.attach(Digger(15.2, 3, this.planet));
-        scene.attach(Digger(2.2, 1.4, this.planet));
-        scene.attach(_wonderer);
+        this.evilSource = _evilSource
 
+        //scene.attach(Digger(15.2, 3, this.planet));
+        //scene.attach(Digger(2.2, 1.4, this.planet));
+        //scene.attach(_wonderer);
+
+        // fix scene size based on the planet
         scene.width = this.planet.xSize
         scene.height = this.planet.ySize
     },
 
     evolve: function(delta, scene) {
+        this.evilSource.evolve(delta, scene)
         this.planet.evolve(delta, scene);
         Util.evolveChildren(this.entity, delta, scene);
     },
