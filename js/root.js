@@ -4,9 +4,12 @@ var _$root = {
     entity: [],
 
     init: function(parent, scene) {
+
+        // Create the World!
         this.background = _background;
         this.planet = _Planet;
-        this.entity.push(Digger(20, 20));
+        scene.attach(Digger(20, 20));
+        scene.attach(_wonderer);
     },
 
     evolve: function(delta, scene) {
