@@ -5,6 +5,7 @@ var _$root = {
 
     init: function(parent, scene) {
         this.background = _background;
+        this.planet = _Planet;
         this.entity.push(Digger(20, 20));
     },
 

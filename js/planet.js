@@ -99,5 +99,3 @@ var _Planet = new PlanetProto(
     "X                                                         X",
     "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 );
-
-scene.attach(_Planet);
