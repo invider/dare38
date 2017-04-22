@@ -22,7 +22,7 @@ var Wall = function () {
     };
 
     this.evolve = function (delta, scene) {
-
+        
     };
 
     this.render = function (ctx, scene) {
