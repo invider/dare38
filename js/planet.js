@@ -17,35 +17,6 @@ var _titleBuilder = function (type) {
             return new Player()
     }
 };
-PlanetUtil = {
-    genRow:function(w){
-        var line = "";
-        for (var i=0; i < w; i++){
-            line += " "
-        }
-        return line;
-    },
-    genRows:function(w, h){
-        var lines = [];
-        for (var i=0; i < h; i++){
-            lines.push(this.genRow(w))
-        }
-        return lines;
-    },
-    centerField: function(field, w, h) {
-        var maxX = 0;
-        for (var y = 0; y < field.length; i++) {
-            maxX = Math.max(maxX, field[y].length);
-        }
-        if (maxX > w) {
-            throw new Error("Error, width is to big, max is:" + w);
-        }
-        if (maxY > h) {
-            throw new Error("Error, height is to big, max is:" + h);
-        }
-        var elementsToAddX = (w - maxX);
-    }
-};
 
 var PlanetProto = function () {
     var my = this;
