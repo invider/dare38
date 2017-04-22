@@ -63,7 +63,7 @@ var PlanetProto = function () {
     this.eachNode = function(fn){
         for (var y = 0; y < this.ySize; y++) {
             for (var x = 0; x < this.xSize; x++) {
-                fn(node, x, y);
+                fn(this.children[y][x], x, y);
             }
         }
     };
