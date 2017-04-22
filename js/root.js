@@ -1,7 +1,13 @@
 
+
 var _$root = {
     x: 100,
     y: 100,
+
+    init: function(parent, scene) {
+
+    },
+
     evolve: function(delta, scene) {
         this.x += 10*delta;
         this.y += 10*delta;

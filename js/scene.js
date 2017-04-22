@@ -9,12 +9,16 @@ var canvas, ctx
 var lastFrame = Date.now()
 
 var scene = {
+    // event flags
     mouseX: 0,
     mouseY: 0,
     mouseButton: '---',
     keys: {},
-    rootNode: _$root,
+
+    // root node
+    root: _$root,
 }
+scene.root.init(scene, scene)
 
 
 // === INIT ====
@@ -61,7 +65,7 @@ function input(delta) {
 
 function evolve(delta) {
 	// update root node
-    scene.rootNode.evolve(delta, scene)
+    scene.root.evolve(delta, scene)
 }
 
 var fps = 0, fpsa = 1, fpsc = 0
@@ -73,7 +77,7 @@ function render(delta) {
 
 
     // draw root node
-    scene.rootNode.render(ctx, scene)
+    scene.root.render(ctx, scene)
 
     // draw status
     ctx.fillStyle = "#FFFF00"
