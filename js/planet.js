@@ -84,9 +84,8 @@ var PlanetProto = function () {
         this.children[node.x][node.x] = this._initElement(new EmptySpace());
     };
 
-    this._initElement = function(node){
-        node.width = 1;
-        node.height = 1;
+    this._initElement = function(node, parentNode, scene){
+        node.init(parentNode, scene);
         return node;
     };
     this.eachNode = function(fn){
@@ -99,7 +98,7 @@ var PlanetProto = function () {
 
     this.init = function (parentNode, scene) {
         this.scene = scene;
-        this.eachNode(function(node, x, y) { my._initElement(node)});
+        this.eachNode(function(node, x, y) { my._initElement(node, parentNode, scene)});
     };
 
     this.evolve = function (delta, scene) {

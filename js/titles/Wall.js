@@ -19,8 +19,8 @@
 var Wall = function () {
     this.x = 0;
     this.y = 0;
-    this.width = 0;
-    this.height = 0;
+    this.width = 1;
+    this.height = 1;
     this.hp = 100;
     this.init = function (parentNode, scene) {
         this.scene = scene;
