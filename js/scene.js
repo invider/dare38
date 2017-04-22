@@ -207,7 +207,9 @@ function handleContextMenu() {
 
 function handleKeyDown(e) {
     var code = e.which || e.keyCode
-
+    if (code == 116){
+        return true;
+    }
     scene.keys[code] = 1
 
     e.preventDefault()
@@ -217,6 +219,9 @@ function handleKeyDown(e) {
 
 function handleKeyUp(e) {
     var code = e.which || e.keyCode
+    if (code == 116){
+        return true;
+    }
     delete scene.keys[code]
 
     e.preventDefault()
