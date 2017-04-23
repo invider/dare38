@@ -83,8 +83,8 @@ var PlanetProto = function () {
 
     this.findWallAbove = function(point) {
     	var w = point.w || 1;
-    	var x1 = point.x - 0.5 * w;
-    	var x2 = point.x + 0.5 * w;
+    	var x1 = point.x - 0.49 * w;
+    	var x2 = point.x + 0.49 * w;
     	var y = Math.floor(point.y) - 1;
 		var elem = this.getElement(x1, y)
 		if(elem instanceof EmptySpace) {
@@ -95,8 +95,8 @@ var PlanetProto = function () {
     
     this.findWallBelow = function(point) {
     	var w = point.w || 1;
-    	var x1 = point.x - 0.5 * w;
-    	var x2 = point.x + 0.5 * w;
+    	var x1 = point.x - 0.49 * w;
+    	var x2 = point.x + 0.49 * w;
     	var y = Math.ceil(point.y);
 		var elem = this.getElement(x1, y)
 		if(elem instanceof EmptySpace) {
@@ -107,8 +107,8 @@ var PlanetProto = function () {
     
     this.findWallLeft = function(point) {
     	var h = point.h || 1;
-    	var y1 = point.y - 0.5 * h;
-    	var y2 = point.y + 0.5 * h;
+    	var y1 = point.y - 0.49 * h;
+    	var y2 = point.y + 0.49 * h;
     	var x = Math.floor(point.x) - 1;
 		var elem = this.getElement(x, y1)
 		if(elem instanceof EmptySpace) {
@@ -119,8 +119,8 @@ var PlanetProto = function () {
     
     this.findWallRight = function(point) {
     	var h = point.h || 1;
-    	var y1 = point.y - 0.5 * h;
-    	var y2 = point.y + 0.5 * h;
+    	var y1 = point.y - 0.49 * h;
+    	var y2 = point.y + 0.49 * h;
     	var x = Math.ceil(point.x);
 		var elem = this.getElement(x, y1)
 		if(elem instanceof EmptySpace) {
