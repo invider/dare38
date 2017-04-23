@@ -1,10 +1,14 @@
 var Digger = function(x, y, planet) {
-	ActiveElement.apply(this, arguments);
+	//ActiveElement.apply(this, arguments);
+    ActiveElement.call(this, x, y, planet, [ planet.scene.res.img['dig-man'], planet.scene.res.img['jet-man'] ], 1000);
+
 	this.type = "Digger";
 };
 Util.extend(Digger, ActiveElement);
 
 Digger.prototype.evolve = function(delta, scene) {
+    ActiveElement.prototype.evolve.call(this, delta, scene);
+
 	var killWall = function(wall){
 		wall.stroke(delta * 100);
 	};
@@ -13,8 +17,10 @@ Digger.prototype.evolve = function(delta, scene) {
 		var p = scene.root.planet.getSpawnPoint();
 		var dx = p.x - location.x;
 		var dy = p.y - location.y;
-		if(Math.abs(dx) > Math.abs(dy)) {
-			scene.physics.accelerateToMaxHorzSpeed(location, 2 * Math.sign(dx), 2);
+		var s = Math.sign(dx);
+		var sideWall = scene.root.planet.getElement(location.x + s, location.y);
+		if((Math.abs(dx) > Math.abs(dy)) && !(sideWall instanceof UnbreakableWall) || wall instanceof UnbreakableWall) {
+			scene.physics.accelerateToMaxHorzSpeed(location, 2 * s, 2);
 		} else {
 			location.horzAcceleration = 0;
 			killWall(wall);
@@ -32,5 +38,6 @@ Digger.prototype.evolve = function(delta, scene) {
 };
 
 Digger.prototype.render = function(ctx, scene) {
-    ctx.drawImage(scene.res.img['dig-man'],this.x,this.y, 1, 1);
+    // ctx.drawImage(scene.res.img['dig-man'],this.x,this.y, 1, 1);
+    ActiveElement.prototype.render.call(this, ctx, scene);
 };

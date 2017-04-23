@@ -6,6 +6,8 @@ var Player = function(x, y, scene) {
 
 Util.extend(Player, ActiveElement);
 Player.prototype.evolve = function(delta, scene) {
+    ActiveElement.prototype.evolve.call(this, delta, scene);
+
 	if (scene.keys[39]){
 		this.horzAcceleration = 17;
 	} else if (scene.keys[37]){
@@ -26,12 +28,16 @@ Player.prototype.evolve = function(delta, scene) {
 		delete scene.keys[84];
 		scene.attach(new Canon(this.x, this.y, scene));
 	}
+ 	if (scene.keys[67]){
+        	scene.root.planet.attach(new Bomb(1000, this.x, this.y));
+    	}	
 	scene.physics.clearEvents();
 	scene.physics.evolve(this, delta);
 };
 
 Player.prototype.render = function(ctx, scene) {
-    ctx.drawImage(scene.res.img['jet-man'],this.x,this.y, 1, 1);
+    //ctx.drawImage(scene.res.img['jet-man'],this.x,this.y, 1, 1);
+    ActiveElement.prototype.render.call(this, ctx, scene);
 };
 
 Player.prototype.kill = function(){
