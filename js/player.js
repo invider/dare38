@@ -16,8 +16,11 @@ var Player = function(x, y, planet) {
 			} else {
 				p.horzAcceleration = 0;
 			}
+			if (scene.keys[32]){
+		                scene.attach(new Bomb(1000,Util.point(this.x-0.5, this.y-0.5)));
+		        }
 			scene.physics.clearEvents();
-			scene.physics.evolve(p, delta);
+			scene.physics.evolve(p, delta)
 		},
 
 		render : function(ctx) {
