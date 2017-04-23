@@ -1,5 +1,6 @@
 var Digger = function(x, y, planet) {
 	ActiveElement.apply(this, arguments);
+	this.type = "Digger";
 };
 Util.extend(Digger, ActiveElement);
 

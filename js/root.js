@@ -41,6 +41,7 @@ var _$root = {
                 counter --;
             }
             counter ++;
+            node.kill();
         }
     },
     /**
@@ -86,10 +87,8 @@ var _$root = {
         var verticalEdge =  scene.screenHeight - (scene.height * scaleFactor)
         var horizontalEdge = scene.screenWidth - (scene.width * scaleFactor)
         ctx.translate(horizontalEdge/2,verticalEdge/2)
-        ctx.scale(scaleFactor, scaleFactor)
-
+        ctx.scale(scaleFactor, scaleFactor);
         this.planet.render(ctx, scene);
-        debugger;
         Util.renderChildren(this.entity, ctx, scene);
 
         // transform back to origins

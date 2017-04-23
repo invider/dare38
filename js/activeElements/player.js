@@ -1,6 +1,7 @@
 
 var Player = function(x, y, scene) {
 	ActiveElement.apply(this, arguments);
+	this.type = "Player";
 };
 
 Util.extend(Player, ActiveElement);
