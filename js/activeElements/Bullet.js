@@ -1,5 +1,7 @@
 var Bullet = function(x, y, scene) {
-	ActiveElement.apply(this, arguments);
+    ActiveElement.call(this, x, y, scene, [ scene.res.img['shot-2'] ], 100);
+    this.scaleX = 0.3;
+    this.scaleY = 0.3;
 	this.airFrictionFactor = 0;
 	this.acceleration = scene.physics.gravity;
 	this.power = 50;
@@ -26,5 +28,5 @@ Bullet.prototype.evolve = function(delta, scene) {
 };
 
 Bullet.prototype.render = function(ctx, scene) {
-    ctx.drawImage(scene.res.img['shot-2'],this.x, this.y, 0.3, 0.3);
+    ActiveElement.prototype.render.call(this, ctx, scene);
 };

@@ -1,5 +1,5 @@
 var Canon = function(x, y, scene) {
-	ActiveElement.apply(this, arguments);
+    ActiveElement.call(this, x, y, scene, [ scene.res.img['dig-man'] ], 100);
 	this.type = "Canon";
 	/** @type {ActiveElement|boolean} */
 	this.enemy = false;
@@ -40,5 +40,5 @@ Canon.prototype.evolve = function(delta, scene) {
 };
 
 Canon.prototype.render = function(ctx, scene) {
-    ctx.drawImage(scene.res.img['dig-man'],this.x,this.y, 1, 1);
+    ActiveElement.prototype.render.call(this, ctx, scene);
 };
