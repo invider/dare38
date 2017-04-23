@@ -39,7 +39,7 @@ Digger.prototype.evolve = function(delta, scene) {
 		var cannons = scene.root.getNearbyNodes(location.x, location.y, 20).filter(function(node) {
 			return node instanceof Canon;
 		});
-		cannons.push(scene.root.planet.getSpawnPoint())
+		cannons.push(scene.root.planet.getSpawnPoint());
 		cannons = cannons.sort(function(a, b) {
 			var a = Util.getLength(location.x, location.y, a.x, a.y);
 			var b = Util.getLength(location.x, location.y, b.x, b.y);
@@ -52,7 +52,7 @@ Digger.prototype.evolve = function(delta, scene) {
 		var p = closestTarget();
 		var dist = Util.getLength(location.x, location.y, p.x, p.y)
 		if(dist < 0.5 && (p instanceof Canon || p instanceof PlayerSpawn)) {
-			killCanon(p);
+			killObject(p);
 		} else {
 			var dx = p.x - location.x;
 			var dy = p.y - location.y;
