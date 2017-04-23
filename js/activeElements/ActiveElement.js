@@ -15,7 +15,7 @@ var ActiveElement = function(x, y, scene, imgs, animationDuration){
     this.horzAcceleration = 0;
     this.scene = scene;
     this.type = "ActiveElement";
-
+    this.hp = 100;
     this.imgs = imgs;
     this.currentImg = imgs[0];
     this.index = 0;
@@ -28,7 +28,15 @@ ActiveElement.prototype.init = function(){
 };
 
 ActiveElement.prototype.kill = function(){
-    console.log(this + ": killed!");
+    //console.log(this + ": killed!");
+};
+
+ActiveElement.prototype.hit = function(power){
+    this.hp -= power;
+    if (this.hp <= 0){
+        console.log("killed by hit:" + this);
+        this.scene.root.kill(this);
+    }
 };
 
 ActiveElement.prototype.evolve = function(delta, scene){
