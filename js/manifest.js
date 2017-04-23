@@ -8,6 +8,13 @@ var _$resManifest = {
 	{ name:"shot-1", src:"img/shot-1.png"},
 	{ name:"shot-2", src:"img/shot-2.png"},
 	{ name:"particle", src:"img/particle.png"},
+	{ name:"particle-red", src:"img/particle-red.png"},
+	{ name:"particle-green", src:"img/particle-green.png"},
+	{ name:"particle-blue", src:"img/particle-blue.png"},
+	{ name:"particle-cyan", src:"img/particle-cyan.png"},
+	{ name:"particle-yellow", src:"img/particle-yellow.png"},
+	{ name:"particle-white", src:"img/particle-white.png"},
+	{ name:"particle-black", src:"img/particle-black.png"},
 	// tiles
 	{ name:"dirt-grass-mono", src: "img/tile/dirt-grass-mono.png"},
 	{ name:"grass-2", src:"img/tile/grass-2.png"},

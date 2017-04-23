@@ -1,8 +1,9 @@
 var Explosion = function(x, y, lifespan, force,
-        size, vsize, speed, vspeed, startAngle, spread, minLifespan, vLifespan) {
+        particleImg, size, vsize, speed, vspeed, startAngle, spread, minLifespan, vLifespan) {
     this.lifespan = lifespan
     this.x = x
     this.y = y
+    this.img = particleImg
     this.size = size
     this.vsize = vsize
     this.speed = speed
@@ -22,8 +23,9 @@ var Explosion = function(x, y, lifespan, force,
         return Math.random() * n
     }
 
-    this.Particle = function(x, y, speed, angle, lifespan) {
+    this.Particle = function(img, x, y, speed, angle, lifespan) {
         this.alive = true
+        this.img = img
         this.r = 1
         this.gr = -this.r
         this.x = x
@@ -54,15 +56,14 @@ var Explosion = function(x, y, lifespan, force,
                 ctx.globalAlpha = 1
             }
             */
-            ctx.globalAlpha = 0.7
-            ctx.fillColor = "#FF0000"
-            ctx.strokeColor = "#FF0000"
-            ctx.drawImage(scene.res.img['particle'], this.x, this.y, this.r, this.r);
+            ctx.globalAlpha = 0.5
+            ctx.drawImage(this.img, this.x, this.y, this.r, this.r);
         }
     }
 
     this.createParticle = function() {
         var p = new this.Particle(
+                this.img,
                 this.x,
                 this.y,
                 this.speed + this.rnd(this.vspeed),                // speed

@@ -5,6 +5,15 @@ var Player = function(x, y, scene) {
 	ActiveElement.call(this, x, y, scene, [ scene.res.img['jet-man'] ], 100);
 	this.bombSpawnRate = 0.0;
 	this.type = "Player";
+    
+    this.engine1 = new Explosion(x, y+0.4, -1, 200,
+        scene.res.img['particle-yellow'], 0.3, 0, 0.8, 0.2,
+        Math.PI/2-Math.PI/16, Math.PI/8, 1, 0.5)
+    this.engine2 = new Explosion(x+0.8, y+0.4, -1, 200,
+        scene.res.img['particle-yellow'], 0.3, 0, 0.8, 0.2,
+        Math.PI/2-Math.PI/16, Math.PI/8, 1, 0.5)
+    scene.attach(this.engine1)
+    scene.attach(this.engine2)
 };
 
 Util.extend(Player, ActiveElement);
@@ -48,6 +57,11 @@ Player.prototype.evolve = function(delta, scene) {
 
 	scene.physics.clearEvents();
 	scene.physics.evolve(this, delta);
+
+    this.engine1.x = this.x
+    this.engine1.y = this.y+0.4
+    this.engine2.x = this.x+0.8
+    this.engine2.y = this.y+0.4
 };
 
 Player.prototype.render = function(ctx, scene) {
@@ -60,5 +74,7 @@ Player.prototype.kill = function(){
 	setTimeout(function(){
 		my.scene.root.spawnPlayer();
 	}, 1000);
-
+    // turn off the engines!
+    scene.root._killNode(this.engine1)
+    scene.root._killNode(this.engine2)
 };
