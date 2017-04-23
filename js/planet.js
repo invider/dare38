@@ -74,8 +74,10 @@ var PlanetProto = function () {
         this.setElement(node.x, node.y, this._initElement(new EmptySpace(), this.scene))
     };
 
-    this._initElement = function(node, scene){
+    this._initElement = function(node, scene, x, y){
         node.init(this, scene);
+        node.x = x;
+        node.y = y;
         return node;
     };
     this.eachNode = function(fn){
@@ -89,19 +91,16 @@ var PlanetProto = function () {
     };
 
     this.spawnWall = function(x, y){
+        debugger;
         if (this.getElement(x, y) instanceof EmptySpace){
-            this.setElement(x, y, new Wall());
+            this.setElement(x, y,my._initElement(new Wall(), this.scene, x, y));
         }
     };
 
     this.init = function (parentNode, scene) {
         this.scene = scene;
         this.generate()
-        this.eachNode(function(node, x, y) { my._initElement(node, this.scene)});
-        this.eachNode(function(node, x, y) {
-            node.x = x;
-            node.y = y;
-        });
+        this.eachNode(function(node, x, y) { my._initElement(node, this.scene, x, y)});
     };
 
     this.evolve = function (delta, scene) {
