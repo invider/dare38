@@ -12,5 +12,5 @@ Bullet.prototype.evolve = function(delta, scene) {
 };
 
 Bullet.prototype.render = function(ctx, scene) {
-    ctx.drawImage(scene.res.img['shot-2'],this.x, this.y, 0.3, 0.3);
+    ctx.drawImage(scene.res.img['shot-1'],this.x, this.y, 0.3, 0.3);
 };
