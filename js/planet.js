@@ -68,19 +68,66 @@ var PlanetProto = function () {
     };
     this.gravitate = function(point, delta) {
 		Util.fall(point, delta);
+		var w = point.w || 1;
+		var h = point.h || 1;
+		var x = Math.ceil(point.x);
 		var y = Math.ceil(point.y);
-		var elem = this.findWallBelow(point.x - 0.5, point.x + 0.5, y);
-		return Util.boundY(point, y - 1, y - 0.5 + (elem ? 0 : 1)) ? elem : undefined;
+		var up = this.findWallAbove(point);
+		var down = this.findWallBelow(point);
+		var left = this.findWallLeft(point);
+		var right = this.findWallRight(point);
+		var vertical = Util.boundY(point, y + 0.5 * h - (up ? 1 : 2), y - 0.5 * h + (down ? 0 : 1));
+		var horizontal = Util.boundX(point, x + 0.5 * w - (left ? 1 : 2), x - 0.5 * w + (right ? 0 : 1));
+		return vertical && (down || up) || horizontal && (left || right);
     };
 
-    this.findWallBelow = function(x1, x2, y) {
-    	var y = Math.ceil(y);
+    this.findWallAbove = function(point) {
+    	var w = point.w || 1;
+    	var x1 = point.x - 0.5 * w;
+    	var x2 = point.x + 0.5 * w;
+    	var y = Math.floor(point.y) - 1;
 		var elem = this.getElement(x1, y)
 		if(elem instanceof EmptySpace) {
 			elem = this.getElement(x2, y)
 		}
 		return elem instanceof EmptySpace ? undefined : elem 
     };
+    
+    this.findWallBelow = function(point) {
+    	var w = point.w || 1;
+    	var x1 = point.x - 0.5 * w;
+    	var x2 = point.x + 0.5 * w;
+    	var y = Math.ceil(point.y);
+		var elem = this.getElement(x1, y)
+		if(elem instanceof EmptySpace) {
+			elem = this.getElement(x2, y)
+		}
+		return elem instanceof EmptySpace ? undefined : elem 
+    };
+    
+    this.findWallLeft = function(point) {
+    	var h = point.h || 1;
+    	var y1 = point.y - 0.5 * h;
+    	var y2 = point.y + 0.5 * h;
+    	var x = Math.floor(point.x) - 1;
+		var elem = this.getElement(x, y1)
+		if(elem instanceof EmptySpace) {
+			elem = this.getElement(x, y2)
+		}
+		return elem instanceof EmptySpace ? undefined : elem 
+    };
+    
+    this.findWallRight = function(point) {
+    	var h = point.h || 1;
+    	var y1 = point.y - 0.5 * h;
+    	var y2 = point.y + 0.5 * h;
+    	var x = Math.ceil(point.x);
+		var elem = this.getElement(x, y1)
+		if(elem instanceof EmptySpace) {
+			elem = this.getElement(x, y2)
+		}
+		return elem instanceof EmptySpace ? undefined : elem 
+    };    
 
     this.removeNode = function(node){
         this.setElement(node.x, node.y, this._initElement(new EmptySpace(), this.scene))

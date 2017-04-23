@@ -45,6 +45,8 @@ var Util = {
     
     point: function(x, y) {
     	return {
+    		w: 1,
+    		h: 1,
     		x: x || 0,
     		y: y || 0,
     		velocity: 0,
