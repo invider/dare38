@@ -9,8 +9,7 @@ var DIRECTIONS = {
 };
 
 var Collisions = {
-    THRESHOLD: 0.49,
-    w: 1,
+    THRESHOLD: 0.98,
     findElementsInDirection: function (scene, x, y, dir, length) {
         length = length || 1;
         var res = [];
@@ -33,23 +32,31 @@ var Collisions = {
         }
         return res;
     },
-    findCollidedElementInDirection: function(scene, x, y, dir){
-        var el1, el2;
+    findCollidedElementInDirection: function(scene, x, y, size, dir){
+        var el1, el2, w = this.THRESHOLD * size;
+        var x1 = x + w;
+        var x2 = x + size - w;
+        var y1 = y + w;
+        var y2 = y + size - w;
         switch (dir){
             case DIRECTIONS.DOWN:
+                el1 = this.findElementsInDirection(scene, Math.floor(x1), Math.floor(y+size)-1, dir);
+                el2 = this.findElementsInDirection(scene, Math.floor(x2), Math.floor(y+size)-1, dir);
+                break;
+                
             case DIRECTIONS.UP:
-                var x1 = Math.ceil(x);
-                var x2 = Math.floor(x);
-                el1 = this.findElementsInDirection(scene, x1, y, dir);
-                el2 = this.findElementsInDirection(scene, x2, y, dir);
+                el1 = this.findElementsInDirection(scene, Math.floor(x1), Math.ceil(y), dir);
+                el2 = this.findElementsInDirection(scene, Math.floor(x2), Math.ceil(y), dir);
                 break;
 
             case DIRECTIONS.LEFT:
+                el1 = this.findElementsInDirection(scene, Math.ceil(x), Math.floor(y1), dir);
+                el2 = this.findElementsInDirection(scene, Math.ceil(x), Math.floor(y2), dir);
+                break;
+                
             case DIRECTIONS.RIGHT:
-                var y1 = Math.ceil(y);
-                var y2 = Math.ceil(y);
-                el1 = this.findElementsInDirection(scene, x, y1, dir);
-                el2 = this.findElementsInDirection(scene, x, y2, dir);
+                el1 = this.findElementsInDirection(scene, Math.floor(x+size)-1, Math.floor(y1), dir);
+                el2 = this.findElementsInDirection(scene, Math.floor(x+size)-1, Math.floor(y2), dir);
                 break;
 
         }

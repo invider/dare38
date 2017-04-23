@@ -36,7 +36,7 @@ Physics.prototype.checkConstraints = function(element, delta){
         } else {
             var dir = DIRECTIONS.LEFT;
         }
-        var horz = Collisions.findCollidedElementInDirection(this.scene, element.x, element.y, dir);
+        var horz = Collisions.findCollidedElementInDirection(this.scene, element.x, element.y, element.size, dir);
         if (horz){
             element.horzVelocity = 0;
             element.horzAcceleration = 0;
@@ -55,7 +55,7 @@ Physics.prototype.checkConstraints = function(element, delta){
         } else {
             var dir = DIRECTIONS.UP;
         }
-        var vert = Collisions.findCollidedElementInDirection(this.scene, element.x, element.y, dir);
+        var vert = Collisions.findCollidedElementInDirection(this.scene, element.x, element.y, element.size, dir);
         if (vert){
             element.velocity = 0;
             element.acceleration = 0;

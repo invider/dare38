@@ -8,6 +8,7 @@ var ActiveElement = function(x, y, scene, imgs, animationDuration){
     this.id = __uniqId ++;
     this.x = x;
     this.y = y;
+    this.size = 1;
     this.scaleX = 1.0;
     this.scaleY = 1.0;
     this.airFrictionFactor = 1;
