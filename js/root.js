@@ -37,6 +37,7 @@ var _$root = {
         this.planet.evolve(delta, scene);
         Util.evolveChildren(this.entity, delta, scene);
         scene.statusLine = this.scene.statistic.toString();
+        scene.checkCompletion();
     },
     _killNode: function(node){
         //

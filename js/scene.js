@@ -30,15 +30,23 @@ var scene = {
             turrets: 10,
             bombs: 3,
             lifes: 5,
+            level: 0,
             diggersToSpawn: 30,
             spawnedDiggers:0,
             diggersAlive:0,
             toString:function(){
-                return "Turrets: " + this.turrets + " Bombs:" + this.bombs + " Lifes:" + this.lifes + " Diggers:" + this.spawnedDiggers + " Left:" + (this.diggersToSpawn - this.spawnedDiggers) + " Alive:" + this.diggersAlive
+                return "Level:" + this.level + " Turrets: " + this.turrets + " Bombs:" + this.bombs + " Lifes:" + this.lifes + " Diggers:" + this.spawnedDiggers + " Left:" + (this.diggersToSpawn - this.spawnedDiggers) + " Alive:" + this.diggersAlive
             }
         };
+    },
+    levelComplete: function(){
+        console.log("Complete!!!!");
+    },
+    checkCompletion:function(){
+        if (this.statistic.diggersToSpawn == this.statistic.spawnedDiggers && this.diggersAlive == 0){
+            this.levelComplete();
+        }
     }
-
 };
 scene.initStatistic();
 // === INIT ====

@@ -87,4 +87,5 @@ Digger.prototype.render = function(ctx, scene) {
 
 Digger.prototype.kill = function(){
 	this.scene.statistic.diggersAlive --;
+	this.scene.checkCompletion();
 };
