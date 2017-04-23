@@ -44,16 +44,17 @@ var Util = {
     },
 
     killAllButNotPlayer:function(scene, x, y){
-        var nodes = scene.root.getNearbyNodes(x,y).filter(function(node){
+        this.killAllFilter(scene, x, y, function(node){
             return node.type != "Player";
         });
-        scene.root.kill(nodes);
     },
     killOnlyPlayer:function(scene, x, y){
-        var nodes = scene.root.getNearbyNodes(x,y).filter(function(node){
+        this.killAllFilter(scene, x, y, function(node){
             return node.type == "Player";
         });
-        
+    },
+    killAllFilter:function(scene, x, y, filter){
+        var nodes = scene.root.getNearbyNodes(x, y).filter(filter);
         scene.root.kill(nodes);
     },
     playSound:function(audio){
