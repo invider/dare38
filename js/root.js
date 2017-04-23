@@ -18,7 +18,7 @@ var _$root = {
     
     spawnPlayer: function(){
         var spawnPoint = this.planet.getSpawnPoint();
-        this.player = Player(spawnPoint.x, spawnPoint.y, this.planet);
+        this.player = new Player(spawnPoint.x, spawnPoint.y, this.planet);
         this.entity.push(this.player);
     },
 
@@ -89,6 +89,7 @@ var _$root = {
         ctx.scale(scaleFactor, scaleFactor)
 
         this.planet.render(ctx, scene);
+        debugger;
         Util.renderChildren(this.entity, ctx, scene);
 
         // transform back to origins

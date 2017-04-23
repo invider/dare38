@@ -42,19 +42,6 @@ var Util = {
             obj[i].evolve.call(obj[i], delta, scene);
         }
     },
-    
-    point: function(x, y) {
-    	return {
-    		w: 1,
-    		h: 1,
-    		x: x || 0,
-    		y: y || 0,
-    		velocity: 0,
-            horzVelocity: 0,
-    		acceleration: 0,
-            horzAcceleration: 0
-    	}
-    },
 
     killAllButNotPlayer:function(scene, x, y){
         var nodes = scene.root.getNearbyNodes(x,y).filter(function(node){
