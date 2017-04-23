@@ -46,7 +46,7 @@ ActiveElement.prototype.evolve = function(delta, scene){
 };
 
 ActiveElement.prototype.render = function(ctx){
-    ctx.drawImage(this.currentImg, this.x, this.y, 1, 1);
+    this.currentImg && ctx.drawImage(this.currentImg, this.x, this.y, 1, 1);
 };
 
 ActiveElement.prototype.toString = function(){
