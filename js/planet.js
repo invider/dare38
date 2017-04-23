@@ -59,10 +59,12 @@ var PlanetProto = function () {
         return this.children[yy][xx];
     };
     this.setElement = function(x, y, element){
+        x = Math.round(x);
+        y = Math.round(y);
         if (!this.children[y] || !this.children[y][x]){
             return element;
         }
-        this.children[Math.floor(y)][Math.floor(x)] = element;
+        this.children[y][x] = element;
         return element;
     };
     
@@ -81,6 +83,12 @@ var PlanetProto = function () {
                     return false;
                 }
             }
+        }
+    };
+
+    this.spawnWall = function(x, y){
+        if (this.getElement(x, y) instanceof EmptySpace){
+            this.setElement(x, y, new Wall());
         }
     };
 

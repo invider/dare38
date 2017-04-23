@@ -18,6 +18,9 @@ Player.prototype.evolve = function(delta, scene) {
 	} else {
 		this.acceleration = 0;
 	}
+	if (scene.keys[32]){
+		scene.root.planet.spawnWall(this.x, this.y);
+	}
 	scene.physics.clearEvents();
 	scene.physics.evolve(this, delta);
 };
