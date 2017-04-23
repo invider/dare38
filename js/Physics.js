@@ -1,6 +1,12 @@
 /**
  * Created by shaddy on 23.04.17.
  */
+var AIR_FRICTION = 0.5;
+
+var airFrictionAcceleration = function(velocity) {
+  return AIR_FRICTION * velocity;
+}
+	
 var Physics = function() {
 
 };
@@ -65,14 +71,17 @@ Physics.prototype.checkConstraints = function(element, delta){
 };
 
 Physics.prototype.evolve = function(element, delta){
-	var AIR_FRICTION = 0.5;
 	var vx0 = element.horzVelocity 
 	var vy0 = element.velocity 
-    element.horzVelocity += (element.horzAcceleration - AIR_FRICTION * vx0) * delta;
-    element.velocity += (this.gravity - element.acceleration - AIR_FRICTION * vy0) * delta;
+    element.horzVelocity += (element.horzAcceleration - airFrictionAcceleration(vx0)) * delta;
+    element.velocity += (this.gravity - element.acceleration - airFrictionAcceleration(vy0)) * delta;
     this.checkConstraints(element, delta);
     element.y += 0.5 * (vy0 + element.velocity) * delta;
     element.x += 0.5 * (vx0 + element.horzVelocity) * delta;
 };
 
 
+Physics.prototype.accelerateToMaxHorzSpeed = function(element, acceleration, maxV) {
+    var v = Math.abs(element.horzVelocity);
+	element.horzAcceleration = v >= maxV ? airFrictionAcceleration(element.horzVelocity) : acceleration; 
+};
