@@ -133,12 +133,13 @@ var PlanetProto = function () {
         return res;
     };
     this.kill = function(x,y, r){
-        //
-        //  TODO: fix and optimize this
-        //
-        var toKill = this.getNearbyNodes(x, y, r);
-        for (var i=0; i < toKill.length; i++){
+        if (x instanceof PlanetElement){
             this.removeNode(toKill[i]);
+        } else {
+            var toKill = this.getNearbyNodes(x, y, r);
+            for (var i=0; i < toKill.length; i++){
+                this.removeNode(toKill[i]);
+            }
         }
     };
     /**

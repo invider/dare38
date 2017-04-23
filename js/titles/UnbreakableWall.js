@@ -13,12 +13,10 @@ var UnbreakableWall = function () {
     };
 
     this.evolve = function (delta, scene) {
-    	if(this.y + 1 >= scene.height) {
-    		Util.killAllButNotPlayer(this.scene, this.x + 1, this.y + 1);
-    		Util.killAllButNotPlayer(this.scene, this.x - 1, this.y - 1);
-    		Util.killAllButNotPlayer(this.scene, this.x + 1, this.y - 1);
-    		Util.killAllButNotPlayer(this.scene, this.x - 1, this.y + 1);
-    	}
+        // Util.killAllButNotPlayer(this.scene, this.x + 1, this.y + 1);
+        // Util.killAllButNotPlayer(this.scene, this.x - 1, this.y - 1);
+        // Util.killAllButNotPlayer(this.scene, this.x + 1, this.y - 1);
+        // Util.killAllButNotPlayer(this.scene, this.x - 1, this.y + 1);
     };
     this.render = function (ctx, scene) {
         ctx.drawImage(scene.res.img['stone-3'],this.x,this.y, this.width, this.height);
