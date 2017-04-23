@@ -84,3 +84,7 @@ Digger.prototype.render = function(ctx, scene) {
     // ctx.drawImage(scene.res.img['dig-man'],this.x,this.y, 1, 1);
     ActiveElement.prototype.render.call(this, ctx, scene);
 };
+
+Digger.prototype.kill = function(){
+	this.scene.statistic.diggersAlive --;
+};

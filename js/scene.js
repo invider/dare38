@@ -30,8 +30,11 @@ var scene = {
             turrets: 10,
             bombs: 3,
             lifes: 5,
+            diggersToSpawn: 30,
+            spawnedDiggers:0,
+            diggersAlive:0,
             toString:function(){
-                return "Turrets: " + this.turrets + " Bombs:" + this.bombs + " Lifes:" + this.lifes
+                return "Turrets: " + this.turrets + " Bombs:" + this.bombs + " Lifes:" + this.lifes + " Diggers:" + this.spawnedDiggers + " Left:" + (this.diggersToSpawn - this.spawnedDiggers) + " Alive:" + this.diggersAlive
             }
         };
     }
