@@ -74,7 +74,6 @@ function init() {
 }
 
 function load() {
-    console.log('loading...')
     scene.manifest.img.forEach( function(img) {
         scene.res.loadImg(img.name, img.src)
     })
