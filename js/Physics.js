@@ -25,7 +25,7 @@ Physics.prototype.onHorzWall = function(fn){
 Physics.prototype.checkConstraints = function(point, delta){
     point.horzVelocity += point.horzAcceleration * delta;
     if (point.horzVelocity != 0){
-        if (point.velocity > 0){
+        if (point.horzVelocity > 0){
             var dir = DIRECTIONS.RIGHT;
         } else {
             var dir = DIRECTIONS.LEFT;
@@ -33,6 +33,7 @@ Physics.prototype.checkConstraints = function(point, delta){
         var horz = Collisions.findCollidedElementInDirection(this.scene, point.x, point.y, dir);
         if (horz){
             point.horzVelocity = 0;
+            point.horzAcceleration = 0;
             if (dir == DIRECTIONS.RIGHT){
                 point.x = horz.x - 1;
             } else {
@@ -52,6 +53,7 @@ Physics.prototype.checkConstraints = function(point, delta){
         var vert = Collisions.findCollidedElementInDirection(this.scene, point.x, point.y, dir);
         if (vert){
             point.velocity = 0;
+            point.acceleration = 0;
             if (dir == DIRECTIONS.DOWN){
                 point.y = vert.y - 1;
             } else {

@@ -16,9 +16,6 @@ var Player = function(x, y, planet) {
 			} else {
 				p.horzAcceleration = 0;
 			}
-			if (p.horzAcceleration){
-				debugger;
-			}
 			scene.physics.clearEvents();
 			scene.physics.evolve(p, delta);
 		},
