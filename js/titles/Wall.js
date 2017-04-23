@@ -1,5 +1,6 @@
-var Wall = function () {
+var Wall = function (type) {
     PlanetElement.call(this);
+    this.type = type
     this.hp = 100;
 
     this.stroke = function(v){
@@ -14,10 +15,7 @@ var Wall = function () {
     };
 
     this.render = function (ctx, scene) {
-        ctx.beginPath();
-        ctx.fillStyle = "green";
-        ctx.rect(this.x, this.y, this.width, this.height);
-        ctx.fill();
+        ctx.drawImage(scene.res.img['stone-2'],this.x,this.y, this.width, this.height);
     };
 };
 

@@ -3,8 +3,6 @@
  */
 var _titleBuilder = function (type) {
     switch (type) {
-        case "X":
-            return new Wall();
         case "U":
             return new UnbreakableWall();
         case " ":
@@ -13,6 +11,8 @@ var _titleBuilder = function (type) {
             return new PlayerSpawn();
         case "B":
             return new BaseNode();
+        default:
+            return new Wall(type);
     }
 };
 
@@ -28,17 +28,19 @@ var PlanetProto = function () {
         field = field.concat(chunk);
     }
 
-    this.x = 0;
-    this.y = 0;
-    this.xSize = field[0].length;
-    this.ySize = field.length;
-    this.children = [];
-    for (var y = 0; y < this.ySize; y++) {
-        var row = [];
-        var txtRow = field[y];
-        this.children.push(row);
-        for (var x = 0; x < this.xSize; x++) {
-            row.push(_titleBuilder(txtRow.charAt(x)));
+    this.generate = function(scene) {
+        this.x = 0;
+        this.y = 0;
+        this.xSize = field[0].length;
+        this.ySize = field.length;
+        this.children = [];
+        for (var y = 0; y < this.ySize; y++) {
+            var row = [];
+            var txtRow = field[y];
+            this.children.push(row);
+            for (var x = 0; x < this.xSize; x++) {
+                row.push(_titleBuilder(txtRow.charAt(x)));
+            }
         }
     }
     /**
@@ -86,6 +88,7 @@ var PlanetProto = function () {
 
     this.init = function (parentNode, scene) {
         this.scene = scene;
+        this.generate()
         this.eachNode(function(node, x, y) { my._initElement(node, this.scene)});
         this.eachNode(function(node, x, y) {
             node.x = x;
