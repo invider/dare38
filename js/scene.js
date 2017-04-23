@@ -42,6 +42,9 @@ var scene = {
     levelComplete: function(){
         console.log("Complete!!!!");
     },
+    gameOver: function(){
+        console.log("Oh noooooooooo, game over!!!!!!!!!!");
+    },
     checkCompletion:function(){
         if (this.statistic.diggersToSpawn == this.statistic.spawnedDiggers && this.diggersAlive == 0){
             this.levelComplete();

@@ -25,7 +25,7 @@ var _$root = {
             this.player = new Player(spawnPoint.x, spawnPoint.y, this.scene);
             this.entity.push(this.player);
         } else {
-            this.gameOver();
+            this.scene.gameOver();
         }
     },
 
@@ -94,11 +94,8 @@ var _$root = {
             this._killNode(toKill[i]);
         }
     },
-    gameOver:function(){
-        console.log("GAME OVER!!!!!!!!!!");
-    },
     portalKilled: function(){
-        this.gameOver();
+        this.scene.gameOver();
     },
     render: function(ctx, scene) {
         this.background.render(ctx, scene)
