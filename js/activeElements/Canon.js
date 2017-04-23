@@ -4,6 +4,8 @@ var Canon = function(x, y, scene) {
 	/** @type {ActiveElement|boolean} */
 	this.enemy = false;
 	this.r = 20;
+	this.lastShot = new Date().getTime();
+	this.shotInterval = 1000;
 };
 Util.extend(Canon, ActiveElement);
 Canon.prototype.spawnBullet = function(target){
@@ -15,18 +17,22 @@ Canon.prototype.spawnBullet = function(target){
 
 Canon.prototype.evolve = function(delta, scene) {
 	var my = this;
-	var nodes = scene.root.getNearbyNodes(this.x, this.y, this.r)
-		.filter(function(node){
-			return node instanceof Digger;
-		})
-		.sort(function(a, b){
-			var a = Util.getLength(my.x, my.y, a.x, a.y);
-			var b = Util.getLength(my.x, my.y, b.x, b.y);
-			return a - b;
-		});
-	if (nodes.length){
-		this.spawnBullet(nodes[0]);
+	if (new Date().getTime() - this.lastShot > this.shotInterval){
+		var nodes = scene.root.getNearbyNodes(this.x, this.y, this.r)
+			.filter(function(node){
+				return node instanceof Digger;
+			})
+			.sort(function(a, b){
+				var a = Util.getLength(my.x, my.y, a.x, a.y);
+				var b = Util.getLength(my.x, my.y, b.x, b.y);
+				return a - b;
+			});
+		if (nodes.length){
+			this.spawnBullet(nodes[0]);
+			this.lastShot = new Date().getTime();
+		}
 	}
+
 	scene.physics.clearEvents();
 	scene.physics.evolve(this, delta);
 };
