@@ -4,6 +4,7 @@ var Digger = function(x, y, scene) {
 	this.type = "Digger";
 	this.lastShot = new Date().getTime();
 	this.shotInterval = 1000;
+	this.hitPower = 50;
 };
 Util.extend(Digger, ActiveElement);
 
@@ -34,7 +35,7 @@ Digger.prototype.evolve = function(delta, scene) {
 			var time = new Date().getTime(); 
 			if (time - location.lastShot > location.shotInterval){
 		      location.lastShot = time;
-			  p.hit(50); 
+			  p.hit(location.hitPower); 
 			}
 		} else {
 			var s = Math.sign(dx);
