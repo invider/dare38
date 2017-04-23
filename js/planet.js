@@ -127,7 +127,7 @@ var PlanetProto = function () {
         var res = [];
         this.eachNode(function(node, xx, yy){
             if (Util.getLength(x, y, xx, yy) <= r){
-                res.push(this.entity[i]);
+                res.push(node);
             }
         });
         return res;
