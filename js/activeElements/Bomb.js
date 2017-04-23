@@ -32,6 +32,8 @@ Bomb.prototype.render = function(ctx, scene) {
 Bomb.prototype.explode = function() {
     console.log("EXPLODE");
     scene.root.planet.kill(this.x, this.y, 2);
-}
+    scene.root.killNearbyNodes(this.x, this.y, 2)
+    scene.root.planet.kill(this);
+};
 
 Util.extend(Bomb, PlanetElement);

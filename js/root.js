@@ -46,6 +46,15 @@ var _$root = {
             counter ++;
         }
     },
+    killNearbyNodes: function(x, y, r, filter){
+        var my = this;
+        filter = filter || function(){ return true; };
+        this.getNearbyNodes(x,y,r)
+            .filter(filter)
+            .forEach(function(node){
+                my.kill(node)
+            });
+    },
     /**
      * returns nodelist of nodes in given raduis
      * NOTE: this is only active nodes
