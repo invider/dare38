@@ -12,6 +12,7 @@ var scene = {
     name: "Scene",
     width: 100,
     height: 100,
+    pause: true,
 
     // event flags
     mouseX: 0,
@@ -40,8 +41,8 @@ function expandCanvas() {
 }
 
 function init() {
-    scene.manifest = _$ResourceManifest,
-    scene.spriteManager = _$SpriteManager,
+    scene.manifest = _$resManifest,
+    scene.res= _$resManager,
 	load()
 
     // setup canvas
@@ -69,11 +70,13 @@ function init() {
 }
 
 function load() {
-	// TODO start loading
-    for (var index in scene.manifest.images) {
-        var image = scene.manifest.images[index];
-        scene.spriteManager.addSprite(image.val, image.key);
-    }
+    console.log('loading...')
+    scene.manifest.img.forEach( function(img) {
+        scene.res.loadImg(img.name, img.src)
+    })
+    scene.manifest.sfx.forEach( function(sfx) {
+        scene.res.loadSfx(sfx.name, sfx.src)
+    })
 }
 
 
@@ -85,27 +88,27 @@ function input(delta) {
 }
 
 function evolve(delta) {
-	// update root node
+    if (scene.pause) return
     scene.root.evolve(delta, scene)
 }
 
 var fps = 0, fpsa = 1, fpsc = 0
 function render(delta) {
-    ctx.fillStyle = "#FFFF00"
-    ctx.font = '24px alien'
-    ctx.textBaseline = 'bottom'
+    if (!scene.root) return
 
-    // draw root node
-    if(scene.spriteManager.counter === scene.manifest.images.length) {
-        scene.root.render(ctx, scene)
-    }
-    else {
-        var loadingStatus = "Loading images... " + scene.spriteManager.counter +
-            "/" + scene.manifest.images.length;
-        ctx.fillText(loadingStatus, ctx.width/2, ctx.height/2);
+    // render load screen
+    if (scene.res.loaded < scene.res.expected) {
+        scene.root.background.render(ctx, scene)
+        var loadingStatus = "Loading images... " + scene.res.loaded +
+            "/" + scene.res.expected
+        ctx.fillStyle = "#FFFF00"
+        ctx.font = '24px alien'
+        ctx.textBaseline = 'bottom'
+        ctx.fillText('LOAD', ctx.width/2, ctx.height/2);
+        return
     }
 
-    ctx.fillStyle = "#FFFF00"
+    scene.root.render(ctx, scene)
 
     // draw status
     if (fpsa >= 1 && delta > 0) {
@@ -124,8 +127,11 @@ function render(delta) {
         status += "-" + k
     }
     status += '-'
-    ctx.fillText(status, 10, 30)
 
+    ctx.font = '24px alien'
+    ctx.textBaseline = 'bottom'
+    ctx.fillStyle = "#FFFF00"
+    ctx.fillText(status, 10, 30)
     ctx.fillText(scene.statusLine, 10, 60)
 }
 

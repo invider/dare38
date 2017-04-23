@@ -1,8 +1,12 @@
 /**
  * Created by karnil on 22.04.17.
  */
-var _$ResourceManifest = {
-  images: [ { key:"image1", val:"http://hotline.ua/img/tx/140/1400888562.jpg"},
-            { key:"image2", val:"http://hotline.ua/img/tx/137/1372571742.jpg"},
-            { key:"image3", val:"http://hotline.ua/img/tx/136/1361739562.jpg"} ]
+var _$resManifest = {
+  img: [
+    { name:"jet-man-1", src:"img/jet-man.png"},
+    { name:"dig-man-1", src:"img/dig-man.png"},
+  ],
+  sfx: [
+    { name:"expl-1", src:"sfx/explosion-1.png" }
+  ],
 };

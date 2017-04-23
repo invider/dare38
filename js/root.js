@@ -10,9 +10,6 @@ var _$root = {
         this.scene = scene;
         this.planet.init(this, scene);
         this.evilSource = _evilSource
-        //scene.attach(Digger(15.2, 3, this.planet));
-        //scene.attach(Digger(2.2, 1.4, this.planet));
-        //scene.attach(_wonderer);
 
         // fix scene size based on the planet
         scene.width = this.planet.xSize
