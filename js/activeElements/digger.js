@@ -34,7 +34,6 @@ Digger.prototype.evolve = function(delta, scene) {
 			var time = new Date().getTime(); 
 			if (time - location.lastShot > location.shotInterval){
 		      location.lastShot = time;
-			  console.log('HIT')
 			  p.hit(50); 
 			}
 		} else {
