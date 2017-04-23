@@ -1,10 +1,14 @@
 var Digger = function(x, y, planet) {
-	ActiveElement.apply(this, arguments);
+	//ActiveElement.apply(this, arguments);
+    ActiveElement.call(this, x, y, planet, [ planet.scene.res.img['dig-man'], planet.scene.res.img['jet-man'] ], 1000);
+
 	this.type = "Digger";
 };
 Util.extend(Digger, ActiveElement);
 
 Digger.prototype.evolve = function(delta, scene) {
+    ActiveElement.prototype.evolve.call(this, delta, scene);
+
 	var killWall = function(wall){
 		wall.stroke(delta * 100);
 	};
@@ -32,5 +36,6 @@ Digger.prototype.evolve = function(delta, scene) {
 };
 
 Digger.prototype.render = function(ctx, scene) {
-    ctx.drawImage(scene.res.img['dig-man'],this.x,this.y, 1, 1);
+    // ctx.drawImage(scene.res.img['dig-man'],this.x,this.y, 1, 1);
+    ActiveElement.prototype.render.call(this, ctx, scene);
 };
