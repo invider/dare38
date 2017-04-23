@@ -1,5 +1,6 @@
 var Explosion = function(x, y, lifespan, force,
-        particleImg, size, vsize, speed, vspeed, startAngle, spread, minLifespan, vLifespan) {
+        particleImg, size, vsize, speed, vspeed,
+        startAngle, spread, minLifespan, vLifespan) {
     this.lifespan = lifespan
     this.x = x
     this.y = y
