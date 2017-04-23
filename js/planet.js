@@ -134,7 +134,7 @@ var PlanetProto = function () {
     };
     this.kill = function(x,y, r){
         if (x instanceof PlanetElement){
-            this.removeNode(toKill[i]);
+            this.removeNode(x);
         } else {
             var toKill = this.getNearbyNodes(x, y, r);
             for (var i=0; i < toKill.length; i++){
