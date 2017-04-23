@@ -10,13 +10,32 @@ Util.extend(Digger, ActiveElement);
 
 Digger.prototype.evolve = function(delta, scene) {
     ActiveElement.prototype.evolve.call(this, delta, scene);
+    
 	var location = this;
-
+	var hitTimeout = function() {
+		var time = new Date().getTime(); 
+		if (time - location.lastShot > location.shotInterval){
+			location.lastShot = time;
+			return true;
+		}
+		return false;
+	}
+	
 	var killWall = function(wall){
-		wall.hit(delta * 100);
+		if (hitTimeout()) {
+			wall.hit(location.hitPower);
+		}
 	};
 	
-	var dropped = function(wall) {
+	var killCanon = function(canon) {
+		location.horzAcceleration = 0;
+		location.horzVelocity = 0;
+		if (hitTimeout()) {
+		  canon.hit(location.hitPower); 
+		}
+	};
+	
+	var closestTarget = function() {
 		var cannons = scene.root.getNearbyNodes(location.x, location.y, 20).filter(function(node) {
 			return node instanceof Canon;
 		});
@@ -26,18 +45,16 @@ Digger.prototype.evolve = function(delta, scene) {
 			var b = Util.getLength(location.x, location.y, b.x, b.y);
 			return a - b;
 		});
-		var p = cannons[0];
-		var dx = p.x - location.x;
-		var dy = p.y - location.y;
+		return cannons[0];
+	};
+	
+	var dropped = function(wall) {
+		var p = closestTarget();
 		if(Util.getLength(location.x, location.y, p.x, p.y) < 0.5 && p instanceof Canon) {
-			location.horzAcceleration = 0;
-			location.horzVelocity = 0;
-			var time = new Date().getTime(); 
-			if (time - location.lastShot > location.shotInterval){
-		      location.lastShot = time;
-			  p.hit(location.hitPower); 
-			}
+			killCanon(p);
 		} else {
+			var dx = p.x - location.x;
+			var dy = p.y - location.y;
 			var s = Math.sign(dx);
 			var headWall = scene.root.planet.getElement(location.x + s, location.y);
 			var backWall = scene.root.planet.getElement(location.x - s, location.y);
