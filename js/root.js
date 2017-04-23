@@ -19,7 +19,7 @@ var _$root = {
             }
         };
 
-        scene.attach(new Explosion(10, 5, 0.3, 2500, 2, 0, 0, Math.PI*2, 1, 0.5))
+        scene.attach(new Explosion(10, 5, 0.3, 2500, 0.5, 0, 2, 0, 0, Math.PI*2, 1, 0.5))
 
         // fix scene size based on the planet
         scene.width = this.planet.xSize

@@ -1,8 +1,10 @@
 var Explosion = function(x, y, lifespan, force,
-        speed, vspeed, startAngle, spread, minLifespan, vLifespan) {
+        size, vsize, speed, vspeed, startAngle, spread, minLifespan, vLifespan) {
     this.lifespan = lifespan
     this.x = x
     this.y = y
+    this.size = size
+    this.vsize = vsize
     this.speed = speed
     this.vspeed = vspeed
     this.startAngle = startAngle
@@ -67,7 +69,7 @@ var Explosion = function(x, y, lifespan, force,
                 this.startAngle + this.rnd(this.spread),
                 this.minLifespan + this.rnd(this.vLifespan)
                 )
-        p.r = 0.2+this.rnd(0.4)
+        p.r = this.size+this.rnd(this.vsize)
         return p
     }
 
