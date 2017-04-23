@@ -23,7 +23,7 @@ Physics.prototype.onHorzWall = function(fn){
 };
 
 Physics.prototype.checkConstraints = function(element, delta){
-    element.horzVelocity += element.horzAcceleration * delta;
+
     if (element.horzVelocity != 0){
         if (element.horzVelocity > 0){
             var dir = DIRECTIONS.RIGHT;
@@ -43,7 +43,6 @@ Physics.prototype.checkConstraints = function(element, delta){
         }
     }
 
-    element.velocity += (this.gravity - element.acceleration) * delta;
     if (element.velocity != 0){
         if (element.velocity > 0){
             var dir = DIRECTIONS.DOWN;
@@ -66,6 +65,8 @@ Physics.prototype.checkConstraints = function(element, delta){
 };
 
 Physics.prototype.evolve = function(element, delta){
+    element.horzVelocity += element.horzAcceleration * delta;
+    element.velocity += (this.gravity - element.acceleration) * delta;
     this.checkConstraints(element, delta);
     element.y += element.velocity * delta;
     element.x += element.horzVelocity * delta;
