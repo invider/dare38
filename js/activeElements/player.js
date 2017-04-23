@@ -13,6 +13,11 @@ Player.prototype.evolve = function(delta, scene) {
 	} else {
 		this.horzAcceleration = 0;
 	}
+	if (scene.keys[38]){
+		this.acceleration = 20;
+	} else {
+		this.acceleration = 0;
+	}
 	scene.physics.clearEvents();
 	scene.physics.evolve(this, delta);
 };
