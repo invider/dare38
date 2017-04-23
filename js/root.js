@@ -10,6 +10,14 @@ var _$root = {
         this.scene = scene;
         this.planet.init(this, scene);
         this.evilSource = _evilSource;
+        this.statistic = {
+            turrets: 10,
+            bombs: 3,
+            lifes: 5,
+            toString:function(){
+                return "Turrets: " + this.turrets + " Bombs:" + this.bombs + " Lifes:" + this.lifes
+            }
+        };
 
         scene.attach(new Explosion(10, 5, 0.3, 2500, 2, 0, 0, Math.PI*2, 1, 0.5))
 
@@ -19,9 +27,14 @@ var _$root = {
     },
     
     spawnPlayer: function(){
-        var spawnPoint = this.planet.getSpawnPoint();
-        this.player = new Player(spawnPoint.x, spawnPoint.y, this.scene);
-        this.entity.push(this.player);
+        if (this.statistic.lifes > 0){
+            this.statistic.lifes --;
+            var spawnPoint = this.planet.getSpawnPoint();
+            this.player = new Player(spawnPoint.x, spawnPoint.y, this.scene);
+            this.entity.push(this.player);
+        } else {
+            this.gameOver();
+        }
     },
 
     evolve: function(delta, scene) {
@@ -31,6 +44,7 @@ var _$root = {
         this.evilSource.evolve(delta, scene)
         this.planet.evolve(delta, scene);
         Util.evolveChildren(this.entity, delta, scene);
+        scene.statusLine = this.statistic.toString();
     },
     _killNode: function(node){
         //
@@ -87,8 +101,11 @@ var _$root = {
             this._killNode(toKill[i]);
         }
     },
-    portalKilled: function(){
+    gameOver:function(){
         console.log("GAME OVER!!!!!!!!!!");
+    },
+    portalKilled: function(){
+        this.gameOver();
     },
     render: function(ctx, scene) {
         this.background.render(ctx, scene)

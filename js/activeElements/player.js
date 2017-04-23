@@ -33,11 +33,17 @@ Player.prototype.evolve = function(delta, scene) {
 	}
 	if (scene.keys[84]){
 		delete scene.keys[84];
-		scene.attach(new Canon(this.x, this.y, scene));
+		if (scene.root.statistic.turrets > 0){
+			scene.root.statistic.turrets --;
+			scene.attach(new Canon(this.x, this.y, scene));
+		}
 	}
  	if (scene.keys[67] && this.bombSpawnRate <= 0){
-		this.bombSpawnRate = _spawnRate;
-		scene.attach(new Bomb(1000, this.x, this.y, scene));
+		if (scene.root.statistic.bombs > 0) {
+			scene.root.statistic.bombs--;
+			this.bombSpawnRate = _spawnRate;
+			scene.attach(new Bomb(1000, this.x, this.y, scene));
+		}
     }
 
 	scene.physics.clearEvents();

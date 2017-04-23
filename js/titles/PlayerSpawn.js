@@ -5,9 +5,7 @@ var PlayerSpawn = function () {
     this.render = function (ctx, scene) {
         ctx.drawImage(scene.res.img['soil-wired'],this.x, this.y, this.width, this.height);
     };
-    this.respawn = function(){
-        // TODO: respawn player here
-    }
+    
     this.hit = function(force){
         this.hp -= force;
         if (this.hp <=0 ){
