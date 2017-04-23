@@ -144,16 +144,13 @@ var PlanetProto = function () {
     };
     /**
      * returns player spawn point
-     * @returns {{x:number, y:number}}
+     * @returns {PlayerSpawn}
      */
     this.getSpawnPoint = function(){
         var retVal = false;
         this.eachNode(function(node, x, y){
             if (node instanceof PlayerSpawn){
-                retVal = {
-                    x: x,
-                    y: y
-                }
+                retVal = node
             }
         });
         if (!retVal){
