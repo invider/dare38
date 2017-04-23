@@ -16,11 +16,14 @@ var Wall = function (type) {
 
     this.render = function (ctx, scene) {
         switch(this.type) {
-        case 'X':
+        case'X':
             ctx.drawImage(scene.res.img['stone-2'],this.x,this.y, this.width, this.height);
             break;
         case 'G':
             ctx.drawImage(scene.res.img['grass-mono'],this.x,this.y, this.width, this.height);
+            break;
+        default:
+            ctx.drawImage(scene.res.img['stone-2'],this.x,this.y, this.width, this.height);
             break;
         }
     };
