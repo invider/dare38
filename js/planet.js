@@ -90,11 +90,11 @@ var PlanetProto = function () {
         }
     };
 
-    this.spawnWall = function(x, y){
+    this.spawnWall = function(x, y, type){
         x = Util.absToRounded(x);
         y = Util.absToRounded(y);
         if (this.getElement(x, y) instanceof EmptySpace){
-            this.setElement(x, y,my._initElement(new Wall(), this.scene, x, y));
+            this.setElement(x, y,my._initElement(new Wall(type), this.scene, x, y));
         }
     };
 

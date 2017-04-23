@@ -20,7 +20,7 @@ Player.prototype.evolve = function(delta, scene) {
 	}
 	if (scene.keys[32]){
 		delete scene.keys[32];
-		scene.root.planet.spawnWall(this.x, this.y + 1);
+		scene.root.planet.spawnWall(this.x, this.y + 1, Math.random() > 0.5 ? "W": "G");
 	}
 	scene.physics.clearEvents();
 	scene.physics.evolve(this, delta);
