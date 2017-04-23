@@ -30,35 +30,40 @@ Physics.prototype.onHorzWall = function(fn){
 
 Physics.prototype.checkConstraints = function(element, delta){
 
+	var hdir = undefined;
+	var horz = undefined;
     if (element.horzVelocity != 0){
-    	var dir = element.horzVelocity > 0 ? DIRECTIONS.RIGHT : DIRECTIONS.LEFT; 
-        var horz = Collisions.findCollidedElementInDirection(this.scene, element.x, element.y, element.size, dir);
-        if (horz){
-            element.horzVelocity = 0;
-            element.horzAcceleration = 0;
-            if (dir == DIRECTIONS.RIGHT){
-                element.x = horz.x - 1;
-            } else {
-                element.x = horz.x + 1;
-            }
-            this.horzWallFn && this.horzWallFn(horz);
-        }
+    	hdir = element.horzVelocity > 0 ? DIRECTIONS.RIGHT : DIRECTIONS.LEFT; 
+        horz = Collisions.findCollidedElementInDirection(this.scene, element.x, element.y, element.size, hdir);
     }
 
+	var vdir = undefined;
+	var vert = undefined;
     if (element.velocity != 0){
-    	var dir = element.velocity > 0 ? DIRECTIONS.DOWN : DIRECTIONS.UP; 
-        var vert = Collisions.findCollidedElementInDirection(this.scene, element.x, element.y, element.size, dir);
-        if (vert){
-            element.velocity = 0;
-            element.acceleration = 0;
-            if (dir == DIRECTIONS.DOWN){
-                element.y = vert.y - 1;
-            } else {
-                element.y = vert.y + 1;
-            }
+    	vdir = element.velocity > 0 ? DIRECTIONS.DOWN : DIRECTIONS.UP; 
+        vert = Collisions.findCollidedElementInDirection(this.scene, element.x, element.y, element.size, vdir);
+    }
 
-            this.wallFn && this.wallFn(vert);
+    if (horz){
+        element.horzVelocity = 0;
+        element.horzAcceleration = 0;
+        if (hdir == DIRECTIONS.RIGHT){
+            element.x = horz.x - 1;
+        } else {
+            element.x = horz.x + 1;
         }
+        this.horzWallFn && this.horzWallFn(horz);
+    }
+
+    if (vert){
+        element.velocity = 0;
+        element.acceleration = 0;
+        if (vdir == DIRECTIONS.DOWN){
+            element.y = vert.y - 1;
+        } else {
+            element.y = vert.y + 1;
+        }
+        this.wallFn && this.wallFn(vert);
     }
 };
 
