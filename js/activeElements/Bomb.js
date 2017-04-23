@@ -15,6 +15,8 @@ Bomb.prototype.evolve = function(delta, scene) {
     if(this.counter <= 0) {
         this.explode();
     }
+    scene.physics.clearEvents();
+    scene.physics.evolve(this, delta);
 };
 
 Bomb.prototype.render = function(ctx, scene) {

@@ -11,6 +11,8 @@ var _$root = {
         this.planet.init(this, scene);
         this.evilSource = _evilSource;
 
+        scene.attach(new Explosion(10, 5, 5, 60))
+
         // fix scene size based on the planet
         scene.width = this.planet.xSize
         scene.height = this.planet.ySize
@@ -39,7 +41,7 @@ var _$root = {
             if (this.entity[counter] == node){
                 this.entity.splice(counter, 1);
                 counter --;
-                node.kill();
+                if (node.kill) node.kill();
             }
             counter ++;
         }

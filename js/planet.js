@@ -100,7 +100,7 @@ var PlanetProto = function () {
 
     this.init = function (parentNode, scene) {
         this.scene = scene;
-        this.generate()
+        this.generate();
         this.eachNode(function(node, x, y) { my._initElement(node, this.scene, x, y)});
     };
 
@@ -127,18 +127,19 @@ var PlanetProto = function () {
         var res = [];
         this.eachNode(function(node, xx, yy){
             if (Util.getLength(x, y, xx, yy) <= r){
-                res.push(this.entity[i]);
+                res.push(node);
             }
         });
         return res;
     };
     this.kill = function(x,y, r){
-        //
-        //  TODO: fix and optimize this
-        //
-        var toKill = this.getNearbyNodes(x, y, r);
-        for (var i=0; i < toKill.length; i++){
+        if (x instanceof PlanetElement){
             this.removeNode(toKill[i]);
+        } else {
+            var toKill = this.getNearbyNodes(x, y, r);
+            for (var i=0; i < toKill.length; i++){
+                this.removeNode(toKill[i]);
+            }
         }
     };
     /**

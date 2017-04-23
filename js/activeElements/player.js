@@ -1,12 +1,19 @@
 
+var _spawnRate = 2.0;
+
 var Player = function(x, y, scene) {
 	ActiveElement.call(this, x, y, scene, [ scene.res.img['jet-man'] ], 100);
+	this.bombSpawnRate = 0.0;
 	this.type = "Player";
 };
 
 Util.extend(Player, ActiveElement);
 Player.prototype.evolve = function(delta, scene) {
     ActiveElement.prototype.evolve.call(this, delta, scene);
+
+    if(this.bombSpawnRate > 0) {
+    	this.bombSpawnRate -= delta;
+	}
 
 	if (scene.keys[39]){
 		this.horzAcceleration = 17;
@@ -28,9 +35,11 @@ Player.prototype.evolve = function(delta, scene) {
 		delete scene.keys[84];
 		scene.attach(new Canon(this.x, this.y, scene));
 	}
- 	if (scene.keys[67]){
-        	scene.root.planet.attach(new Bomb(1000, this.x, this.y));
-    	}	
+ 	if (scene.keys[67] && this.bombSpawnRate <= 0){
+		this.bombSpawnRate = _spawnRate;
+		scene.attach(new Bomb(1000, this.x, this.y, scene));
+    }
+
 	scene.physics.clearEvents();
 	scene.physics.evolve(this, delta);
 };

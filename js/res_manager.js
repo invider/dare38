@@ -21,9 +21,7 @@ var _$resManager = {
     },
 
     onLoad: function() {
-        setTimeout( function() {
-            _$resManager.done()
-        }, Math.random() * 2000)
+        _$resManager.done()
     },
 
     /**
@@ -36,13 +34,13 @@ var _$resManager = {
         image.src = src
         image.onload = this.onLoad
         this.img[name] = image;
-        console.log('loading ' + name + " @" + src)
+        //console.log('loading ' + name + " @" + src)
     },
 
     loadSfx: function(name, src) {
 		var audio = new Audio(src)
 		audio.preload = true
         this.sfx[name] = audio;
-        console.log('loading ' + name + " @" + src)
+        //console.log('loading ' + name + " @" + src)
     }
 };

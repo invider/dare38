@@ -8,6 +8,8 @@ var ActiveElement = function(x, y, scene, imgs, animationDuration){
     this.id = __uniqId ++;
     this.x = x;
     this.y = y;
+    this.scaleX = 1.0;
+    this.scaleY = 1.0;
     this.airFrictionFactor = 1;
     this.velocity = 0;
     this.horzVelocity = 0;
@@ -54,7 +56,7 @@ ActiveElement.prototype.evolve = function(delta, scene){
 };
 
 ActiveElement.prototype.render = function(ctx){
-    this.currentImg && ctx.drawImage(this.currentImg, this.x, this.y, 1, 1);
+    this.currentImg && ctx.drawImage(this.currentImg, this.x, this.y, this.scaleX, this.scaleY);
 };
 
 ActiveElement.prototype.toString = function(){

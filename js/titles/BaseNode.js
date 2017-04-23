@@ -4,7 +4,7 @@ var BaseNode = function () {
     this.hp = this.baseHp;
     this.colorP = 255;
 
-    this.stroke = function(v){
+    this.hit = function(v){
         this.hp -= v;
         this.colorP = Math.floor(255 * (this.hp / this.baseHp));
         if (this.hp >= 0){
