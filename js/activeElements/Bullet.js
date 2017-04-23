@@ -1,0 +1,14 @@
+var Bullet = function(x, y, planet) {
+	ActiveElement.apply(this, arguments);
+	this.type = "Bullet";
+};
+Util.extend(Bullet, ActiveElement);
+
+Bullet.prototype.evolve = function(delta, scene) {
+	scene.physics.clearEvents();
+	scene.physics.evolve(this, delta);
+};
+
+Bullet.prototype.render = function(ctx, scene) {
+    ctx.drawImage(scene.res.img['dig-man'],this.x, this.y, 1, 1);
+};

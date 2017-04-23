@@ -62,6 +62,9 @@ var Util = {
     },
     absToRounded: function(x){
         return Math.round(x);
+    },
+    getAngle: function(x, y, x1, y1){
+        
     }
 
 };
