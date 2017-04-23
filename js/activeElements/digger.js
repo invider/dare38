@@ -17,8 +17,8 @@ Digger.prototype.evolve = function(delta, scene) {
 			scene.physics.accelerateToMaxHorzSpeed(location, 2 * Math.sign(dx), 2);
 		} else {
 			location.horzAcceleration = 0;
+			killWall(wall);
 		}
-		killWall(wall);
 	}
 	scene.physics.clearEvents();
 	scene.physics.onWall(dropped);
