@@ -1,6 +1,6 @@
 
 var Player = function(x, y, scene) {
-	ActiveElement.apply(this, arguments);
+	ActiveElement.call(this, x, y, scene, [ scene.res.img['jet-man'] ], 100);
 	this.type = "Player";
 };
 
