@@ -16,10 +16,7 @@ var BaseNode = function () {
         return false;
     };
     this.render = function (ctx, scene) {
-        ctx.beginPath();
-        ctx.fillStyle = "rgb(0, 0, " + this.colorP + ")";
-        ctx.rect(this.x, this.y, this.width, this.height);
-        ctx.fill();
+        ctx.drawImage(scene.res.img['stone-3.cybermold'],this.x,this.y, this.width, this.height);
     };
 
 };

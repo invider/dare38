@@ -1,5 +1,6 @@
-var Wall = function () {
+var Wall = function (type) {
     PlanetElement.call(this);
+    this.type = type
     this.hp = 100;
 
     this.stroke = function(v){
@@ -14,10 +15,14 @@ var Wall = function () {
     };
 
     this.render = function (ctx, scene) {
-        ctx.beginPath();
-        ctx.fillStyle = "green";
-        ctx.rect(this.x, this.y, this.width, this.height);
-        ctx.fill();
+        switch(this.type) {
+        case 'X':
+            ctx.drawImage(scene.res.img['stone-2'],this.x,this.y, this.width, this.height);
+            break;
+        case 'G':
+            ctx.drawImage(scene.res.img['grass-mono'],this.x,this.y, this.width, this.height);
+            break;
+        }
     };
 };
 

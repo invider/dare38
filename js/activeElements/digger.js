@@ -19,9 +19,6 @@ Digger.prototype.evolve = function(delta, scene) {
 	Util.killOnlyPlayer(scene, this.x, this.y);
 };
 
-Digger.prototype.render = function(ctx) {
-	ctx.beginPath();
-	ctx.rect(this.x, this.y, 1, 1);
-	ctx.fillStyle = 'cyan';
-	ctx.fill();
+Digger.prototype.render = function(ctx, scene) {
+    ctx.drawImage(scene.res.img['dig-man'],this.x,this.y, 1, 1);
 };

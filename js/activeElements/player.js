@@ -25,11 +25,8 @@ Player.prototype.evolve = function(delta, scene) {
 	scene.physics.evolve(this, delta);
 };
 
-Player.prototype.render = function(ctx) {
-	ctx.beginPath();
-	ctx.rect(this.x, this.y, 1, 1);
-	ctx.fillStyle = '#e60073';
-	ctx.fill();
+Player.prototype.render = function(ctx, scene) {
+    ctx.drawImage(scene.res.img['jet-man'],this.x,this.y, 1, 1);
 };
 
 Player.prototype.kill = function(){
