@@ -100,7 +100,7 @@ var PlanetProto = function () {
 
     this.init = function (parentNode, scene) {
         this.scene = scene;
-        this.generate()
+        this.generate();
         this.eachNode(function(node, x, y) { my._initElement(node, this.scene, x, y)});
     };
 

@@ -9,7 +9,7 @@ Digger.prototype.evolve = function(delta, scene) {
     ActiveElement.prototype.evolve.call(this, delta, scene);
 
 	var killWall = function(wall){
-		wall.stroke(delta * 100);
+		wall.hit(delta * 100);
 	};
 	
 	var location = this;

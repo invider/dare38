@@ -7,7 +7,7 @@ var Wall = function (type) {
     case 'G': this.hp = 50; break;
     }
 
-    this.stroke = function(v){
+    this.hit = function(v){
         this.hp -= v;
         if (this.hp >= 0){
             return true;

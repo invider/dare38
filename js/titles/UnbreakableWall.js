@@ -4,7 +4,7 @@
 var UnbreakableWall = function () {
     Wall.call(this);
     this.triedToBreak = false;
-    this.stroke = function () {
+    this.hit = function () {
         //console.log("Not so fast!!!");
         if (!this.triedToBreak) {
             Util.playSound("CannotBreak");
