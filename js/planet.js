@@ -66,9 +66,14 @@ var PlanetProto = function () {
         this.children[Math.floor(y)][Math.floor(x)] = element;
         return element;
     };
+    
     this.gravitate = function(point, delta) {
 		Util.fall(point, delta);
-		var w = point.w || 1;
+		return this.bumpToWall(point);
+    };
+    
+    this.bumpToWall = function(point) {
+    	var w = point.w || 1;
 		var h = point.h || 1;
 		var x = Math.ceil(point.x);
 		var y = Math.ceil(point.y);
@@ -79,7 +84,7 @@ var PlanetProto = function () {
 		var vertical = Util.boundY(point, y + 0.5 * h - (up ? 1 : 2), y - 0.5 * h + (down ? 0 : 1));
 		var horizontal = Util.boundX(point, x + 0.5 * w - (left ? 1 : 2), x - 0.5 * w + (right ? 0 : 1));
 		return vertical && (down || up) || horizontal && (left || right);
-    };
+    }
 
     this.findWallAbove = function(point) {
     	var w = point.w || 1;
