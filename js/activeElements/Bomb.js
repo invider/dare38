@@ -21,17 +21,13 @@ Bomb.prototype.evolve = function(delta, scene) {
 
 Bomb.prototype.render = function(ctx, scene) {
     ActiveElement.prototype.render.call(this, ctx, scene);
-    // ctx.drawImage(scene.res.img['ice-mono'],this.x,this.y, 1, 1);
-    //
-    // ctx.beginPath();
-    // ctx.fillStyle = "gray";
-    // ctx.rect(this.x, this.y, this.width, this.height);
-    // ctx.fill();
 };
 
 Bomb.prototype.explode = function() {
-    console.log("EXPLODE");
     scene.root.planet.kill(this.x, this.y, 2);
-}
+    scene.root.killNearbyNodes(this.x, this.y, 2)
+    scene.root.planet.kill(this);
+    scene.attach(new Explosion(this.x, this.y, 0.3, 500, 2, 10, 0, Math.PI*2, 1, 0.5));
+};
 
 Util.extend(Bomb, PlanetElement);

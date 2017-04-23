@@ -9,7 +9,7 @@ var DIRECTIONS = {
 };
 
 var Collisions = {
-    THRESHOLD: 0.98,
+    THRESHOLD: 0.9,
     findElementsInDirection: function (scene, x, y, dir, length) {
         length = length || 1;
         var res = [];
