@@ -21,7 +21,7 @@ var _$root = {
         this.player = new Player(spawnPoint.x, spawnPoint.y, this.scene);
         this.entity.push(this.player);
     },
-    
+
     evolve: function(delta, scene) {
         if (!this.player){
             this.spawnPlayer();
@@ -76,7 +76,9 @@ var _$root = {
             this._killNode(toKill[i]);
         }
     },
-
+    portalKilled: function(){
+        console.log("GAME OVER!!!!!!!!!!");
+    },
     render: function(ctx, scene) {
         this.background.render(ctx, scene)
 

@@ -25,9 +25,8 @@ var scene = {
         this.root.entity.push(node)
         if (node.init) node.init(this.root, scene)
     }
-}
-
-
+};
+    
 // === INIT ====
 function expandCanvas() {
     var canvas = document.getElementById('canvas')
@@ -217,7 +216,7 @@ function handleContextMenu() {
 
 function handleKeyDown(e) {
     var code = e.which || e.keyCode
-    if (code == 116){
+    if (code == 116 || code == 123){
         return true;
     }
     scene.keys[code] = 1
