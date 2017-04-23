@@ -10,14 +10,6 @@ var _$root = {
         this.scene = scene;
         this.planet.init(this, scene);
         this.evilSource = _evilSource;
-        this.statistic = {
-            turrets: 10,
-            bombs: 3,
-            lifes: 5,
-            toString:function(){
-                return "Turrets: " + this.turrets + " Bombs:" + this.bombs + " Lifes:" + this.lifes
-            }
-        };
 
         scene.attach(new Explosion(10, 5, 0.3, 2500, 0.5, 0, 2, 0, 0, Math.PI*2, 1, 0.5))
 
@@ -27,8 +19,8 @@ var _$root = {
     },
     
     spawnPlayer: function(){
-        if (this.statistic.lifes > 0){
-            this.statistic.lifes --;
+        if (this.scene.statistic.lifes > 0){
+            this.scene.statistic.lifes --;
             var spawnPoint = this.planet.getSpawnPoint();
             this.player = new Player(spawnPoint.x, spawnPoint.y, this.scene);
             this.entity.push(this.player);
@@ -44,7 +36,7 @@ var _$root = {
         this.evilSource.evolve(delta, scene)
         this.planet.evolve(delta, scene);
         Util.evolveChildren(this.entity, delta, scene);
-        scene.statusLine = this.statistic.toString();
+        scene.statusLine = this.scene.statistic.toString();
     },
     _killNode: function(node){
         //

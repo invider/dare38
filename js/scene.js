@@ -26,7 +26,17 @@ var scene = {
         if (node.init) node.init(this.root, scene)
     }
 };
-    
+initStatistic(scene);
+function initStatistic(scene){
+    scene.statistic = {
+        turrets: 10,
+        bombs: 3,
+        lifes: 5,
+        toString:function(){
+            return "Turrets: " + this.turrets + " Bombs:" + this.bombs + " Lifes:" + this.lifes
+        }
+    };
+}
 // === INIT ====
 function expandCanvas() {
     var canvas = document.getElementById('canvas')
@@ -43,7 +53,9 @@ function init() {
     scene.manifest = _$resManifest
     scene.res = _$resManager
     scene.res.init(scene)
-	load()
+
+
+    load()
 
     scene.physics = new Physics();
     scene.physics.init(scene);
