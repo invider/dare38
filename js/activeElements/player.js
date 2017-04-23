@@ -7,9 +7,9 @@ var Player = function(x, y, scene) {
 Util.extend(Player, ActiveElement);
 Player.prototype.evolve = function(delta, scene) {
 	if (scene.keys[39]){
-		this.horzAcceleration = 3;
+		this.horzAcceleration = 17;
 	} else if (scene.keys[37]){
-		this.horzAcceleration = - 3;
+		this.horzAcceleration = - 17;
 	} else {
 		this.horzAcceleration = 0;
 	}
