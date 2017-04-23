@@ -91,7 +91,8 @@ var PlanetProto = function () {
     };
 
     this.spawnWall = function(x, y){
-        debugger;
+        x = Util.absToRounded(x);
+        y = Util.absToRounded(y);
         if (this.getElement(x, y) instanceof EmptySpace){
             this.setElement(x, y,my._initElement(new Wall(), this.scene, x, y));
         }
