@@ -42,6 +42,8 @@ function expandCanvas() {
 function init() {
     scene.manifest = _$ResourceManifest,
     scene.spriteManager = _$SpriteManager,
+    scene.physics = new Physics();
+    scene.physics.init(scene);
 	load()
 
     // setup canvas

@@ -4,15 +4,19 @@ var Digger = function(x, y, planet) {
 	return {
 		x:x,
 		y:y,
+		hit: 100,
 		type:"Digger",
 		evolve : function(delta, scene) {
-			Util.fall(p, delta);
-			var wall = planet.bumpToWall(p)
-			if (wall && wall.stroke) {
-				wall.stroke(1);
-			}
 			this.x = p.x;
 			this.y = p.y;
+			var killWall = function(wall){
+				wall.stroke(delta * 100);
+			};
+			scene.physics.clearEvents();
+			scene.physics.onWall(killWall);
+			scene.physics.onHorzWall(killWall);
+			scene.physics.evolve(p, delta);
+
 			//
 			//	FIXME: this is not working yet
 			//
@@ -21,7 +25,7 @@ var Digger = function(x, y, planet) {
 
 		render : function(ctx) {
 			ctx.beginPath()
-			ctx.rect(p.x - 0.5, p.y - 0.5, 1, 1)
+			ctx.rect(p.x, p.y, 1, 1)
 			ctx.fillStyle = 'cyan'
 			ctx.fill()
 		}

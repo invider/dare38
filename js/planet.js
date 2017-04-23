@@ -1,7 +1,6 @@
 /**
  * Created by shaddy on 22.04.17.
  */
-
 var _titleBuilder = function (type) {
     switch (type) {
         case "X":
@@ -49,12 +48,12 @@ var PlanetProto = function () {
      * @returns {Entity}
      */
     this.getElement = function(x, y){
-        var xx = Math.floor(x);
-        var yy = Math.floor(y);
+        var xx = Math.round(x);
+        var yy = Math.round(y);
         if (!this.children[yy] || !this.children[yy][xx]){
             var tmp = this._initElement(new EmptySpace(), this.scene)
-            tmp.x = x;
-            tmp.y = y;
+            tmp.x = xx;
+            tmp.y = yy;
             return tmp;
         }
         return this.children[yy][xx];
@@ -67,68 +66,6 @@ var PlanetProto = function () {
         return element;
     };
     
-    this.bumpToWall = function(point) {
-    	var w = point.w || 1;
-		var h = point.h || 1;
-		var x = Math.ceil(point.x);
-		var y = Math.ceil(point.y);
-		var up = this.findWallAbove(point);
-		var down = this.findWallBelow(point);
-		var left = this.findWallLeft(point);
-		var right = this.findWallRight(point);
-		var vertical = Util.boundY(point, y + 0.5 * h - (up ? 1 : 2), y - 0.5 * h + (down ? 0 : 1));
-		var horizontal = Util.boundX(point, x + 0.5 * w - (left ? 1 : 2), x - 0.5 * w + (right ? 0 : 1));
-		return vertical && (down || up) || horizontal && (left || right);
-    }
-
-    this.findWallAbove = function(point) {
-    	var w = point.w || 1;
-    	var x1 = point.x - 0.49 * w;
-    	var x2 = point.x + 0.49 * w;
-    	var y = Math.floor(point.y) - 1;
-		var elem = this.getElement(x1, y)
-		if(elem instanceof EmptySpace) {
-			elem = this.getElement(x2, y)
-		}
-		return elem instanceof EmptySpace ? undefined : elem 
-    };
-    
-    this.findWallBelow = function(point) {
-    	var w = point.w || 1;
-    	var x1 = point.x - 0.49 * w;
-    	var x2 = point.x + 0.49 * w;
-    	var y = Math.ceil(point.y);
-		var elem = this.getElement(x1, y)
-		if(elem instanceof EmptySpace) {
-			elem = this.getElement(x2, y)
-		}
-		return elem instanceof EmptySpace ? undefined : elem 
-    };
-    
-    this.findWallLeft = function(point) {
-    	var h = point.h || 1;
-    	var y1 = point.y - 0.49 * h;
-    	var y2 = point.y + 0.49 * h;
-    	var x = Math.floor(point.x) - 1;
-		var elem = this.getElement(x, y1)
-		if(elem instanceof EmptySpace) {
-			elem = this.getElement(x, y2)
-		}
-		return elem instanceof EmptySpace ? undefined : elem 
-    };
-    
-    this.findWallRight = function(point) {
-    	var h = point.h || 1;
-    	var y1 = point.y - 0.49 * h;
-    	var y2 = point.y + 0.49 * h;
-    	var x = Math.ceil(point.x);
-		var elem = this.getElement(x, y1)
-		if(elem instanceof EmptySpace) {
-			elem = this.getElement(x, y2)
-		}
-		return elem instanceof EmptySpace ? undefined : elem 
-    };    
-
     this.removeNode = function(node){
         this.setElement(node.x, node.y, this._initElement(new EmptySpace(), this.scene))
     };
@@ -141,7 +78,7 @@ var PlanetProto = function () {
         for (var y = 0; y < this.ySize; y++) {
             for (var x = 0; x < this.xSize; x++) {
                 if (fn(this.children[y][x], x, y) === false){
-                    return;
+                    return false;
                 }
             }
         }
@@ -150,13 +87,13 @@ var PlanetProto = function () {
     this.init = function (parentNode, scene) {
         this.scene = scene;
         this.eachNode(function(node, x, y) { my._initElement(node, this.scene)});
-    };
-
-    this.evolve = function (delta, scene) {
         this.eachNode(function(node, x, y) {
             node.x = x;
             node.y = y;
         });
+    };
+
+    this.evolve = function (delta, scene) {
         for (var k in this.children) {
             Util.evolveChildren(this.children[k], delta, scene);
         }
