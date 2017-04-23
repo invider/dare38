@@ -1,7 +1,9 @@
 /**
  * Created by shaddy on 23.04.17.
  */
+var __uniqId = 0;
 var ActiveElement = function(x, y, scene){
+    this.id = __uniqId ++;
     this.x = x;
     this.y = y;
     this.velocity = 0;
@@ -29,6 +31,6 @@ ActiveElement.prototype.render = function(ctx){
 };
 
 ActiveElement.prototype.toString = function(){
-    return "[" + this.type + " x:" + this.x + " y:" + this.y + "]";
+    return "[" + this.id + ": "+ this.type + " x:" + this.x + " y:" + this.y + "]";
 }
 

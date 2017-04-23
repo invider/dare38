@@ -39,9 +39,9 @@ var _$root = {
             if (this.entity[counter] == node){
                 this.entity.splice(counter, 1);
                 counter --;
+                node.kill();
             }
             counter ++;
-            node.kill();
         }
     },
     /**
