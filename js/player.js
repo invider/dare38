@@ -7,24 +7,22 @@ var Player = function(x, y, planet) {
 		y:y,
 		type:"Player",
 		evolve : function(delta, scene) {
-			if (scene.keys[39]){
-				p.x += delta;
-			}
-			if (scene.keys[37]){
-				p.x -= delta;
-			}
-			Util.fall(p, delta);
-			var elem = planet.bumpToWall(p);
-			// if (elem && elem.stroke) {
-			// 	elem.stroke(1);
-			// }
 			this.x = p.x;
 			this.y = p.y;
+			if (scene.keys[39]){
+				p.horzAcceleration = 3;
+			} else if (scene.keys[37]){
+				p.horzAcceleration = - 3;
+			} else {
+				p.horzAcceleration = 0;
+			}
+			scene.physics.clearEvents();
+			scene.physics.evolve(p, delta);
 		},
 
 		render : function(ctx) {
 			ctx.beginPath()
-			ctx.rect(p.x - 0.5, p.y - 0.5, 1, 1)
+			ctx.rect(p.x, p.y, 1, 1)
 			ctx.fillStyle = '#e60073'
 			ctx.fill()
 		}

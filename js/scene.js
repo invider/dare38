@@ -42,9 +42,12 @@ function expandCanvas() {
 
 function init() {
     scene.manifest = _$resManifest
-    scene.res= _$resManager
+    scene.res = _$resManager
     scene.res.init(scene)
 	load()
+
+    scene.physics = new Physics();
+    scene.physics.init(scene);
 
     // setup canvas
     canvas= document.getElementById("canvas")
@@ -99,7 +102,6 @@ function render(delta) {
 
     // render load screen
     if (scene.res.loaded < scene.res.expected) {
-        console.log('loading...')
         scene.root.background.render(ctx, scene)
         var progress = Math.round((scene.res.loaded / scene.res.expected) * 100)
         var loadingStatus = "Loading Resources: " + progress + "%"

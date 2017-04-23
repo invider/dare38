@@ -23,7 +23,7 @@ var _$resManager = {
     onLoad: function() {
         setTimeout( function() {
             _$resManager.done()
-        }, Math.random() * 4000)
+        }, Math.random() * 2000)
     },
 
     /**

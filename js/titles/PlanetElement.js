@@ -9,7 +9,9 @@ var PlanetElement = function(){
     this.init = function (parentNode, scene) {
         this.scene = scene;
     };
+    this.stroke = function (force){
 
+    };
     this.evolve=function(delta, scene) {
     };
 

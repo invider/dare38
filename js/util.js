@@ -50,39 +50,12 @@ var Util = {
     		x: x || 0,
     		y: y || 0,
     		velocity: 0,
-    		acceleration: 0
+            horzVelocity: 0,
+    		acceleration: 0,
+            horzAcceleration: 0
     	}
     },
-    
-    fall: function(point, delta) {
-    	var v0 = point.velocity
-    	point.velocity += (9.8 - point.acceleration) * delta
-    	point.y += 0.5 * (v0 + point.velocity) * delta
-    },
-    
-    boundX: function(point, a, b) {
-		if(point.x < Math.min(a, b)) {
-			point.x = Math.min(a, b);
-			return true
-		} else if(point.x > Math.max(a, b)) {
-			point.x = Math.max(a, b);
-			return true
-		}
-		return false
-    },
-    
-    boundY: function(point, a, b) {
-		if(point.y < Math.min(a, b)) {
-			point.y = Math.min(a, b);
-			point.velocity = 0
-			return true
-		} else if(point.y > Math.max(a, b)) {
-			point.y = Math.max(a, b);
-			point.velocity = 0
-			return true
-		}
-		return false
-    },
+
     killAllButNotPlayer:function(scene, x, y){
         var nodes = scene.root.getNearbyNodes(x,y).filter(function(node){
             return node.type != "Player";
@@ -97,8 +70,11 @@ var Util = {
         scene.root.kill(nodes);
     },
     playSound:function(audio){
-        var audio = new Audio("sound/" + audio + ".wav");
-        audio.play();
+        //var audio = new Audio("sound/" + audio + ".wav");
+        //audio.play();
+    },
+    absToRounded: function(x){
+        return Math.round(x);
     }
 
 };
