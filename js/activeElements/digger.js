@@ -1,5 +1,4 @@
 var Digger = function(x, y, planet) {
-	//ActiveElement.apply(this, arguments);
     ActiveElement.call(this, x, y, planet, [ planet.scene.res.img['dig-man'], planet.scene.res.img['jet-man'] ], 1000);
 
 	this.type = "Digger";
