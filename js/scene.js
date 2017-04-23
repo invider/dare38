@@ -24,19 +24,20 @@ var scene = {
     attach: function(node) {
         this.root.entity.push(node)
         if (node.init) node.init(this.root, scene)
+    },
+    initStatistic: function (){
+        this.statistic = {
+            turrets: 10,
+            bombs: 3,
+            lifes: 5,
+            toString:function(){
+                return "Turrets: " + this.turrets + " Bombs:" + this.bombs + " Lifes:" + this.lifes
+            }
+        };
     }
+
 };
-initStatistic(scene);
-function initStatistic(scene){
-    scene.statistic = {
-        turrets: 10,
-        bombs: 3,
-        lifes: 5,
-        toString:function(){
-            return "Turrets: " + this.turrets + " Bombs:" + this.bombs + " Lifes:" + this.lifes
-        }
-    };
-}
+scene.initStatistic();
 // === INIT ====
 function expandCanvas() {
     var canvas = document.getElementById('canvas')
