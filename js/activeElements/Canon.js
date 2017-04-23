@@ -4,14 +4,16 @@ var Canon = function(x, y, scene) {
 	/** @type {ActiveElement|boolean} */
 	this.enemy = false;
 	this.r = 20;
+	this.bulletSpeed = 10;
 	this.lastShot = new Date().getTime();
 	this.shotInterval = 1000;
 };
 Util.extend(Canon, ActiveElement);
 Canon.prototype.spawnBullet = function(target){
 	var bullet = new Bullet(this.x, this.y, this.scene);
-	bullet.horzVelocity = Util.getXVector(this.x, this.y, target.x, target.y);
-	bullet.velocity = Util.getXVector(this.y, this.y, target.y, target.y);
+	var len = Util.getLength(this.x, this.y, target.x, target.y)
+	bullet.horzVelocity = this.bulletSpeed * (Util.getXVector(this.x, this.y, target.x, target.y) / len);
+	bullet.velocity = this.bulletSpeed * (Util.getXVector(this.y, this.y, target.y, target.y) / len);
 	this.scene.attach(bullet);
 };
 
