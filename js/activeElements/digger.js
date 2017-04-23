@@ -1,5 +1,5 @@
-var Digger = function(x, y, planet) {
-    ActiveElement.call(this, x, y, planet, [ planet.scene.res.img['dig-man'], planet.scene.res.img['jet-man'] ], 1000);
+var Digger = function(x, y, scene) {
+    ActiveElement.call(this, x, y, scene, [ scene.res.img['dig-man'], scene.res.img['jet-man'] ], 1000);
 
 	this.type = "Digger";
 };
