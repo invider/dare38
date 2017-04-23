@@ -62,6 +62,23 @@ var Util = {
     },
     absToRounded: function(x){
         return Math.round(x);
+    },
+    getXVector: function(x, y, x1, y1){
+        return x1 - x;
+    },
+    getYVector: function(x, y, x1, y1){
+        return y1 - y;
+    },
+    /**
+     * returns line length
+     * @param x
+     * @param y
+     * @param xx
+     * @param yy
+     * @returns {number}
+     */
+    getLength: function(x, y, xx, yy){
+        return Math.sqrt(Math.pow(x - xx, 2) + Math.pow(y - yy, 2));
     }
 
 };

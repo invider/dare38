@@ -9,7 +9,7 @@ var _$root = {
         this.planet = _Planet;
         this.scene = scene;
         this.planet.init(this, scene);
-        this.evilSource = _evilSource
+        this.evilSource = _evilSource;
 
         // fix scene size based on the planet
         scene.width = this.planet.xSize
@@ -21,7 +21,7 @@ var _$root = {
         this.player = new Player(spawnPoint.x, spawnPoint.y, this.scene);
         this.entity.push(this.player);
     },
-
+    
     evolve: function(delta, scene) {
         if (!this.player){
             this.spawnPlayer();
