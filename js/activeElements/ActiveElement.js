@@ -8,6 +8,7 @@ var ActiveElement = function(x, y, scene, imgs, animationDuration){
     this.id = __uniqId ++;
     this.x = x;
     this.y = y;
+    this.airFrictionFactor = 1;
     this.velocity = 0;
     this.horzVelocity = 0;
     this.acceleration = 0;
@@ -50,5 +51,5 @@ ActiveElement.prototype.render = function(ctx){
 
 ActiveElement.prototype.toString = function(){
     return "[" + this.id + ": "+ this.type + " x:" + this.x + " y:" + this.y + "]";
-}
+};
 
