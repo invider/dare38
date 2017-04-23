@@ -3,6 +3,8 @@
  */
 var __uniqId = 0;
 var ActiveElement = function(x, y, scene, imgs, animationDuration){
+    imgs = imgs || [];
+    animationDuration = animationDuration || 0;
     this.id = __uniqId ++;
     this.x = x;
     this.y = y;
