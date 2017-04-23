@@ -18,7 +18,7 @@ var _$root = {
     
     spawnPlayer: function(){
         var spawnPoint = this.planet.getSpawnPoint();
-        this.player = new Player(spawnPoint.x, spawnPoint.y, this.planet);
+        this.player = new Player(spawnPoint.x, spawnPoint.y, this.scene);
         this.entity.push(this.player);
     },
 

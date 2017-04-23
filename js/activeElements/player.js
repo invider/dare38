@@ -23,3 +23,11 @@ Player.prototype.render = function(ctx) {
 	ctx.fillStyle = '#e60073';
 	ctx.fill();
 };
+
+Player.prototype.kill = function(){
+	var my = this;
+	setTimeout(function(){
+		my.scene.root.spawnPlayer();
+	}, 1000);
+
+};
