@@ -4,7 +4,7 @@ var Bullet = function(x, y, scene) {
     this.scaleY = 0.3;
 	this.airFrictionFactor = 0;
 	this.acceleration = scene.physics.gravity;
-	this.power = 50;
+	this.power = 35;
 	this.type = "Bullet";
 };
 Util.extend(Bullet, ActiveElement);
