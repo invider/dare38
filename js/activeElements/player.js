@@ -19,7 +19,8 @@ Player.prototype.evolve = function(delta, scene) {
 		this.acceleration = 0;
 	}
 	if (scene.keys[32]){
-		scene.root.planet.spawnWall(this.x, this.y);
+		delete scene.keys[32];
+		scene.root.planet.spawnWall(this.x, this.y + 1);
 	}
 	scene.physics.clearEvents();
 	scene.physics.evolve(this, delta);
