@@ -126,7 +126,7 @@ var PlanetProto = function () {
         r = r || 1;
         var res = [];
         this.eachNode(function(node, xx, yy){
-            if (Math.sqrt(Math.pow(x - xx, 2) + Math.pow(y - yy, 2)) <= r){
+            if (Util.getLength(x, y, xx, yy) <= r){
                 res.push(this.entity[i]);
             }
         });
@@ -182,7 +182,7 @@ var _Planet = new PlanetProto(
     "X       GGGGGGGGGG    X                           X       X",
     "X        GGGGGGG                      X                   X",
     "X          GGG               XXXX                         X",
-    "X              X           BB                 X           X",
+    "X              X           BB     UUU         X           X",
     "X         XXXXXXXXXXXXXXXXBBBBXXXXXXXXXXXXXXXX            X",
     "X           XXXXXXXXXXX  BBBBBBB                          X",
     "X              XXXXXXXXXXBB   P                           X",

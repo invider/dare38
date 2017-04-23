@@ -1,7 +1,6 @@
 
 var Player = function(x, y, scene) {
-	//ActiveElement.apply(this, arguments);
-	ActiveElement.call(this, x, y, scene, [ scene.res.img['jet-man'] ], 100);
+	ActiveElement.apply(this, arguments);
 	this.type = "Player";
 };
 
@@ -25,9 +24,13 @@ Player.prototype.evolve = function(delta, scene) {
 		delete scene.keys[32];
 		scene.root.planet.spawnWall(this.x, this.y + 1, Math.random() > 0.5 ? "W": "G");
 	}
-    if (scene.keys[67]){
-        scene.root.planet.attach(new Bomb(1000, this.x, this.y));
-    }
+	if (scene.keys[84]){
+		delete scene.keys[84];
+		scene.attach(new Canon(this.x, this.y, scene));
+	}
+ 	if (scene.keys[67]){
+        	scene.root.planet.attach(new Bomb(1000, this.x, this.y));
+    	}	
 	scene.physics.clearEvents();
 	scene.physics.evolve(this, delta);
 };

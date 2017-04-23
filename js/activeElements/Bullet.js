@@ -1,4 +1,4 @@
-var Bullet = function(x, y, planet) {
+var Bullet = function(x, y, scene) {
 	ActiveElement.apply(this, arguments);
 	this.type = "Bullet";
 };

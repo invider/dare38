@@ -3,6 +3,8 @@
  */
 var __uniqId = 0;
 var ActiveElement = function(x, y, scene, imgs, animationDuration){
+    imgs = imgs || [];
+    animationDuration = animationDuration || 0;
     this.id = __uniqId ++;
     this.x = x;
     this.y = y;
@@ -43,7 +45,7 @@ ActiveElement.prototype.evolve = function(delta, scene){
 };
 
 ActiveElement.prototype.render = function(ctx){
-    ctx.drawImage(this.currentImg, this.x, this.y, 1, 1);
+    this.currentImg && ctx.drawImage(this.currentImg, this.x, this.y, 1, 1);
 };
 
 ActiveElement.prototype.toString = function(){
