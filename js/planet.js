@@ -67,11 +67,6 @@ var PlanetProto = function () {
         return element;
     };
     
-    this.gravitate = function(point, delta) {
-		Util.fall(point, delta);
-		return this.bumpToWall(point);
-    };
-    
     this.bumpToWall = function(point) {
     	var w = point.w || 1;
 		var h = point.h || 1;

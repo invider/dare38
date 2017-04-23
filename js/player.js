@@ -13,7 +13,8 @@ var Player = function(x, y, planet) {
 			if (scene.keys[37]){
 				p.x -= delta;
 			}
-			var elem = planet.gravitate(p, delta)
+			Util.fall(p, delta);
+			var elem = planet.bumpToWall(p);
 			// if (elem && elem.stroke) {
 			// 	elem.stroke(1);
 			// }

@@ -6,9 +6,10 @@ var Digger = function(x, y, planet) {
 		y:y,
 		type:"Digger",
 		evolve : function(delta, scene) {
-			var elem = planet.gravitate(p, delta)
-			if (elem && elem.stroke) {
-				elem.stroke(1);
+			Util.fall(p, delta);
+			var wall = planet.bumpToWall(p)
+			if (wall && wall.stroke) {
+				wall.stroke(1);
 			}
 			this.x = p.x;
 			this.y = p.y;
