@@ -73,8 +73,8 @@ Physics.prototype.checkConstraints = function(element, delta){
 Physics.prototype.evolve = function(element, delta){
 	var vx0 = element.horzVelocity 
 	var vy0 = element.velocity 
-    element.horzVelocity += (element.horzAcceleration - airFrictionAcceleration(vx0)) * delta;
-    element.velocity += (this.gravity - element.acceleration - airFrictionAcceleration(vy0)) * delta;
+    element.horzVelocity += (element.horzAcceleration - airFrictionAcceleration(vx0) * element.airFrictionFactor) * delta;
+    element.velocity += (this.gravity - element.acceleration - airFrictionAcceleration(vy0) * element.airFrictionFactor) * delta;
     this.checkConstraints(element, delta);
     element.y += 0.5 * (vy0 + element.velocity) * delta;
     element.x += 0.5 * (vx0 + element.horzVelocity) * delta;
