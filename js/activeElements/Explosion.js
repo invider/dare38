@@ -53,6 +53,8 @@ var Explosion = function(x, y, lifespan, force,
             }
             */
             ctx.globalAlpha = 0.7
+            ctx.fillColor = "#FF0000"
+            ctx.strokeColor = "#FF0000"
             ctx.drawImage(scene.res.img['particle'], this.x, this.y, this.r, this.r);
         }
     }
