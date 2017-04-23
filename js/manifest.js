@@ -5,6 +5,8 @@ var _$resManifest = {
   img: [
 	{ name:"jet-man", src:"img/jet-man.png"},
 	{ name:"dig-man", src:"img/dig-man.png"},
+	{ name:"shot-1", src:"img/shot-1.png"},
+	{ name:"shot-2", src:"img/shot-2.png"},
 	// tiles
 	{ name:"dirt-grass-mono", src: "img/tile/dirt-grass-mono.png"},
 	{ name:"grass-2", src:"img/tile/grass-2.png"},
