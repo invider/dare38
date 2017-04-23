@@ -45,6 +45,8 @@ var Util = {
     
     point: function(x, y) {
     	return {
+    		w: 1,
+    		h: 1,
     		x: x || 0,
     		y: y || 0,
     		velocity: 0,
@@ -81,8 +83,22 @@ var Util = {
 		}
 		return false
     },
+    killAllButNotPlayer:function(scene, x, y){
+        var nodes = scene.root.getNearbyNodes(x,y).filter(function(node){
+            return node.type != "Player";
+        });
+        scene.root.kill(nodes);
+    },
+    killOnlyPlayer:function(scene, x, y){
+        var nodes = scene.root.getNearbyNodes(x,y).filter(function(node){
+            return node.type == "Player";
+        });
+        
+        scene.root.kill(nodes);
+    },
     playSound:function(audio){
         var audio = new Audio("sound/" + audio + ".wav");
         audio.play();
     }
+
 };

@@ -4,10 +4,13 @@ var Wall = function () {
 
     this.stroke = function(v){
         this.hp -= v;
+        if (this.hp >= 0){
+            return true;
+        }
         console.log("Ooooh, you have broke the wall, so what you are going to do in neibouring cell?");
         this.scene.root.planet.removeNode(this);
         Util.playSound("WallBroken");
-        return this.hp >= 0;
+        return false;
     };
 
     this.render = function (ctx, scene) {

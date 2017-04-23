@@ -4,15 +4,20 @@
 var UnbreakableWall = function () {
     Wall.call(this);
     this.triedToBreak = false;
-    this.stroke = function(){
-        console.log("Not so fast!!!");
-        if (!this.triedToBreak){
+    this.stroke = function () {
+        //console.log("Not so fast!!!");
+        if (!this.triedToBreak) {
             Util.playSound("CannotBreak");
             this.triedToBreak = true;
         }
-
     };
 
+    this.evolve = function () {
+        Util.killAllButNotPlayer(this.scene, this.x + 1, this.y + 1);
+        Util.killAllButNotPlayer(this.scene, this.x - 1, this.y - 1);
+        Util.killAllButNotPlayer(this.scene, this.x + 1, this.y - 1);
+        Util.killAllButNotPlayer(this.scene, this.x - 1, this.y + 1);
+    };
     this.render = function (ctx, scene) {
         ctx.beginPath();
         ctx.fillStyle = "red";
