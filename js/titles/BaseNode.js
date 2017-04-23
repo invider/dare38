@@ -1,6 +1,6 @@
 var BaseNode = function () {
     Wall.call(this);
-    this.baseHp = 10000;
+    this.baseHp = 400;
     this.hp = this.baseHp;
     this.colorP = 255;
 

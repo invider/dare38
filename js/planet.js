@@ -134,7 +134,7 @@ var PlanetProto = function () {
     };
     this.kill = function(x,y, r){
         if (x instanceof PlanetElement){
-            this.removeNode(toKill[i]);
+            this.removeNode(x);
         } else {
             var toKill = this.getNearbyNodes(x, y, r);
             for (var i=0; i < toKill.length; i++){
@@ -144,16 +144,13 @@ var PlanetProto = function () {
     };
     /**
      * returns player spawn point
-     * @returns {{x:number, y:number}}
+     * @returns {PlayerSpawn}
      */
     this.getSpawnPoint = function(){
         var retVal = false;
         this.eachNode(function(node, x, y){
             if (node instanceof PlayerSpawn){
-                retVal = {
-                    x: x,
-                    y: y
-                }
+                retVal = node
             }
         });
         if (!retVal){

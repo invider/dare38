@@ -3,8 +3,8 @@ var Digger = function(x, y, scene) {
 
 	this.type = "Digger";
 	this.lastShot = new Date().getTime();
-	this.shotInterval = 1000;
-	this.hitPower = 50;
+	this.shotInterval = 700;
+	this.hitPower = 60;
 };
 Util.extend(Digger, ActiveElement);
 
@@ -27,11 +27,11 @@ Digger.prototype.evolve = function(delta, scene) {
 		}
 	};
 	
-	var killCanon = function(canon) {
+	var killObject = function(obj) {
 		location.horzAcceleration = 0;
 		location.horzVelocity = 0;
 		if (hitTimeout()) {
-		  canon.hit(location.hitPower); 
+			obj.hit(location.hitPower); 
 		}
 	};
 	
@@ -50,8 +50,9 @@ Digger.prototype.evolve = function(delta, scene) {
 	
 	var dropped = function(wall) {
 		var p = closestTarget();
-		if(Util.getLength(location.x, location.y, p.x, p.y) < 0.5 && p instanceof Canon) {
-			killCanon(p);
+		var dist = Util.getLength(location.x, location.y, p.x, p.y)
+		if(dist < 0.5 && (p instanceof Canon || p instanceof PlayerSpawn)) {
+			killObject(p);
 		} else {
 			var dx = p.x - location.x;
 			var dy = p.y - location.y;
