@@ -41,8 +41,9 @@ function expandCanvas() {
 }
 
 function init() {
-    scene.manifest = _$resManifest,
-    scene.res= _$resManager,
+    scene.manifest = _$resManifest
+    scene.res= _$resManager
+    scene.res.init(scene)
 	load()
 
     // setup canvas
@@ -98,13 +99,15 @@ function render(delta) {
 
     // render load screen
     if (scene.res.loaded < scene.res.expected) {
+        console.log('loading...')
         scene.root.background.render(ctx, scene)
-        var loadingStatus = "Loading images... " + scene.res.loaded +
-            "/" + scene.res.expected
+        var progress = Math.round((scene.res.loaded / scene.res.expected) * 100)
+        var loadingStatus = "Loading Resources: " + progress + "%"
         ctx.fillStyle = "#FFFF00"
         ctx.font = '24px alien'
         ctx.textBaseline = 'bottom'
-        ctx.fillText('LOAD', ctx.width/2, ctx.height/2);
+        var thw = ctx.measureText(loadingStatus).width / 2
+        ctx.fillText(loadingStatus, scene.screenWidth/2 - thw, scene.screenHeight/2);
         return
     }
 
