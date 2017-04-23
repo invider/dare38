@@ -38,16 +38,18 @@ var Collisions = {
         switch (dir){
             case DIRECTIONS.DOWN:
             case DIRECTIONS.UP:
-                x = Math.ceil(x);
-                el1 = this.findElementsInDirection(scene, x - this.THRESHOLD * this.w, y, dir);
-                el2 = this.findElementsInDirection(scene, x + this.THRESHOLD * this.w, y, dir);
+                var x1 = Math.ceil(x);
+                var x2 = Math.floor(x);
+                el1 = this.findElementsInDirection(scene, x1, y, dir);
+                el2 = this.findElementsInDirection(scene, x2, y, dir);
                 break;
 
             case DIRECTIONS.LEFT:
             case DIRECTIONS.RIGHT:
-                y = Math.ceil(y);
-                el1 = this.findElementsInDirection(scene, x, y - this.THRESHOLD * this.w, dir);
-                el2 = this.findElementsInDirection(scene, x, y + this.THRESHOLD * this.w, dir);
+                var y1 = Math.ceil(y);
+                var y2 = Math.ceil(y);
+                el1 = this.findElementsInDirection(scene, x, y1, dir);
+                el2 = this.findElementsInDirection(scene, x, y2, dir);
                 break;
 
         }

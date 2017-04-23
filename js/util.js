@@ -55,13 +55,6 @@ var Util = {
             horzAcceleration: 0
     	}
     },
-    
-    // fall: function(point, delta) {
-    // 	var v0 = point.velocity;
-    // 	point.velocity += (9.8 - point.acceleration) * delta;
-    // 	point.y += 0.5 * (v0 + point.velocity) * delta;
-    //     point.x += point.horzVelocity * delta;
-    // },
 
     killAllButNotPlayer:function(scene, x, y){
         var nodes = scene.root.getNearbyNodes(x,y).filter(function(node){
