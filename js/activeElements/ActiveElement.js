@@ -29,7 +29,6 @@ ActiveElement.prototype.kill = function(){
 };
 
 ActiveElement.prototype.evolve = function(delta, scene){
-    console.log("TICK " + this.acum + " " + this.frameTick + " " + this.index + " " + this.currentImg);
     if(this.imgs.length > 1 && this.acum >= this.frameTick) {
         if(this.index === (this.imgs.length - 1))
             this.index = 0;

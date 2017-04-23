@@ -1,6 +1,6 @@
 var _evilSource = {
 
-    frequency: 1,
+    frequency: 0.2, // spawns per second average
 
     evolve: function(delta, scene) {
         if (Math.random() < this.frequency * delta) {
