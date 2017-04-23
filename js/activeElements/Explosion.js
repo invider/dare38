@@ -1,7 +1,14 @@
-var Explosion = function(x, y, lifespan, force) {
+var Explosion = function(x, y, lifespan, force,
+        speed, vspeed, startAngle, spread, minLifespan, vLifespan) {
     this.lifespan = lifespan
     this.x = x
     this.y = y
+    this.speed = speed
+    this.vspeed = vspeed
+    this.startAngle = startAngle
+    this.spread = spread
+    this.minLifespan = minLifespan
+    this.vLifespan = vLifespan
 
     this.alive = true
     this.potential = 0
@@ -25,7 +32,7 @@ var Explosion = function(x, y, lifespan, force) {
         this.dy = Math.sin(angle) * speed
         this.lifespan = lifespan
         this.maxspan = lifespan
-        this.fadespan = this.lifespan/4
+        this.fadespan = this.lifespan*2
 
         this.mutate = function(delta) {
             this.lifespan -= delta
@@ -38,23 +45,25 @@ var Explosion = function(x, y, lifespan, force) {
 
         this.render = function(ctx) {
             // draw particle
+            /*
             if (this.lifespan < this.fadespan) {
                 ctx.globalAlpha = this.lifespan/this.fadespan
             } else {
                 ctx.globalAlpha = 1
             }
-            ctx.drawImage(scene.res.img['shot-2'], this.x, this.y, this.r, this.r);
+            */
+            ctx.globalAlpha = 0.7
+            ctx.drawImage(scene.res.img['particle'], this.x, this.y, this.r, this.r);
         }
     }
 
     this.createParticle = function() {
         var p = new this.Particle(
-                this.x + 2 - this.rnd(2),
-                this.y-this.rnd(2),
-                1 + this.rnd(4),                // speed
-                //Math.PI + this.rnd(Math.PI),  // up
-                this.rnd(Math.PI * 2),          // all directions
-                2+this.rnd(4),                  // lifespan
+                this.x,
+                this.y,
+                this.speed + this.rnd(this.vspeed),                // speed
+                this.startAngle + this.rnd(this.spread),
+                this.minLifespan + this.rnd(this.vLifespan)
                 )
         p.r = 0.2+this.rnd(0.4)
         return p
