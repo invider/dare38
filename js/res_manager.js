@@ -40,6 +40,9 @@ var _$resManager = {
     },
 
     loadSfx: function(name, src) {
+		var audio = new Audio(src)
+		audio.preload = true
+        this.sfx[name] = audio;
         console.log('loading ' + name + " @" + src)
     }
 };
