@@ -1,7 +1,11 @@
 var Wall = function (type) {
     PlanetElement.call(this);
     this.type = type
-    this.hp = 100;
+    
+    switch(type) {
+    case 'X': this.hp = 250; break;
+    case 'G': this.hp = 50; break;
+    }
 
     this.stroke = function(v){
         this.hp -= v;
