@@ -156,7 +156,8 @@ var PlanetProto = function () {
             }
         });
         if (!retVal){
-            throw new Error("Could not find player spawn!!!");
+            // probably game over
+            //throw new Error("Could not find player spawn!!!");
         }
         return retVal;
     };
