@@ -79,6 +79,10 @@ var _$root = {
             delete scene.keys[27];
             scene.gameRestart();
         }
+        if (scene.keys[46]){
+            delete scene.keys[46];
+            scene.levelComplete();
+        }
         if (!this.player){
             this.spawnPlayer();
         }
