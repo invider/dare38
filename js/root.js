@@ -11,10 +11,8 @@ var _$root = {
         this.scene = scene;
         this.planet.init(this, scene);
         this.evilSource = _evilSource;
-
-        scene.attach(new Explosion(10, 5, 0.3, 2500,
-                    scene.res.img['particle-cyan'], 0.3, 1, 2, 0,
-                    Math.PI*2, 1, 0.5, 0))
+        this.effect = new LayerNode()
+        this.title = new LayerNode()
 
         // fix scene size based on the planet
         scene.width = this.planet.xSize
@@ -24,31 +22,31 @@ var _$root = {
     explode: function(type, src) {
         switch(type) {
         case 'wall':
-            this.scene.attach(new Explosion(src.x+0.5, src.y+0.5, 0.1, 1500,
+            this.effect.attach(new Explosion(src.x+0.5, src.y+0.5, 0.1, 1500,
                     scene.res.img['particle-white'], 0.4, 0.4, 0.7, 0.5,
                     0, Math.PI*2,
                     0.5, 0.5))
             break;
         case 'bomb':
-            this.scene.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1000,
+            this.effect.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1000,
                   this.scene.res.img['particle-white'], 2, 1, 0.5, 0,
                   0, Math.PI*2,
                   0.5, 2))
             break;
         case 'player':
-            this.scene.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1500,
+            this.effect.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1500,
                   this.scene.res.img['particle-red'], 2, 1, 1, 0.5,
                   0, Math.PI*2,
                   0.5, 0.5))
             break;
         case 'digger':
-            this.scene.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1500,
+            this.effect.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1500,
                   this.scene.res.img['particle-cyan'], 2, 1, 1, 0.5,
                   0, Math.PI*2,
                   0.5, 0.5))
             break;
         case 'gun':
-            this.scene.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1500,
+            this.effect.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1500,
                   this.scene.res.img['particle-blue'], 2, 1, 1, 0.5,
                   0, Math.PI*2,
                   0.5, 0.5))
@@ -74,9 +72,13 @@ var _$root = {
         this.evilSource.evolve(delta, scene)
         this.planet.evolve(delta, scene);
         Util.evolveChildren(this.entity, delta, scene);
+        this.effect.evolve(delta, scene)
+        this.title.evolve(delta, scene)
+
         scene.statusLine = this.scene.statistic.toString();
         scene.checkCompletion();
     },
+
     _killNode: function(node){
         //
         //  TODO: optimize this
@@ -149,7 +151,13 @@ var _$root = {
         this.planet.render(ctx, scene);
         Util.renderChildren(this.entity, ctx, scene);
 
+        // draw effects
+        this.effect.render(ctx, scene)
+
         // transform back to origins
         ctx.setTransform(1, 0, 0, 1, 0, 0)
+
+        // draw titles
+        this.title.render(ctx, scene)
     }
 };
