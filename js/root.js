@@ -94,13 +94,15 @@ var _$root = {
     },
     
     spawnPlayer: function(){
-        if (this.scene.statistic.lifes > 0 && !this.scene.gameoverFlag){
-            this.scene.statistic.lifes --;
-            var spawnPoint = this.planet.getSpawnPoint();
-            this.player = new Player(spawnPoint.x, spawnPoint.y, this.scene);
-            this.entity.push(this.player);
-        } else {
-            this.scene.gameOver();
+        if (!this.player) {
+            if (this.scene.statistic.lifes > 0 && !this.scene.gameoverFlag) {
+                this.scene.statistic.lifes--;
+                var spawnPoint = this.planet.getSpawnPoint();
+                this.player = new Player(spawnPoint.x, spawnPoint.y, this.scene);
+                this.entity.push(this.player);
+            } else {
+                this.scene.gameOver();
+            }
         }
     },
 
