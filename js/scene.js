@@ -85,7 +85,6 @@ function init() {
     scene.res = _$resManager
     scene.res.init(scene)
 
-
     load()
 
     scene.physics = new Physics();
