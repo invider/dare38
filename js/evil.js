@@ -5,8 +5,8 @@ var _evilSource = {
     evolve: function(delta, scene) {
 
         if (
-            scene.statistic.diggersToSpawn > (scene.statistic.spawnedDiggers / (scene.statistic.level * scene.statistic.levelRatio + 1)) &&
-            (scene.keys[76] || Math.random() < this.frequency * delta && !scene.gameoverFlag)
+            scene.statistic.diggersToSpawn > scene.statistic.spawnedDiggers &&
+            (scene.keys[76] || Math.random() / (scene.level * scene.levelRatio + 1) < this.frequency * delta && !scene.gameoverFlag)
         ) {
             delete scene.keys[76];
             scene.statistic.spawnedDiggers ++;

@@ -12,6 +12,8 @@ var scene = {
     name: "Scene",
     width: 100,
     height: 100,
+    level:0,
+    levelRatio:0.2 ,
     pause: true,
     gameoverFlag: false,
     playTime: 0,
@@ -45,10 +47,9 @@ var scene = {
             diggersAlive:0,
             startTime:0,
             time: 0,
-            levelRatio:0.2 ,
             toString:function(){
                 var t = scene.playTime
-                return "Level:" + this.level + 
+                return "Level:" + this.scene.level +
                 " Turrets: " + this.turrets + 
                 " Bombs:" + this.bombs + 
                 " walls:" + this.walls + 
@@ -64,14 +65,14 @@ var scene = {
                 " PlayTime:" + Math.floor(t / 3600) + ":" + Math.floor((t % 3600) / 60) + ":" + Math.floor(t % 60)
             }
         };
-        this.statistic.diggersToSpawn = 30 * (this.statistic.level * this.statistic.levelRatio + 1);
+        this.statistic.diggersToSpawn = 30 * (this.level * this.levelRatio + 1);
         this.statistic.startTime = new Date().getTime();
         setInterval(function(){
             statistic.time = new Date().getTime();
         }, 100);
     },
     levelComplete: function(){
-        this.statistic.level ++;
+        this.level ++;
         this.gameReInit();
         console.log("Oh yeaaaaah, next level");
     },
@@ -86,7 +87,7 @@ var scene = {
     },
     gameRestart: function(){
         this.gameoverFlag = false;
-        this.statistic.level = 0;
+        this.level = 0;
         this.gameReInit();
     },
     checkCompletion:function(){
