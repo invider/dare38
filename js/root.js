@@ -34,11 +34,17 @@ var _$root = {
                   0, Math.PI*2,
                   0.5, 2))
             break;
+        case 'player':
+            this.scene.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1500,
+                  this.scene.res.img['particle-red'], 2, 1, 1, 0.5,
+                  0, Math.PI*2,
+                  0.5, 0.5))
+            break;
         default:
             this.scene.attach(new Explosion(src.x, src.y, 0.2, 1000,
-                  this.scene.res.img['particle-red'], 2, 2, 0.5, 0,
+                  this.scene.res.img['particle-red'], 2, 2, 2, 0.5,
                   0, Math.PI*2,
-                  0.5, 2))
+                  0.5, 0))
             break;
         }
     },

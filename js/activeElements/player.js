@@ -77,4 +77,6 @@ Player.prototype.kill = function(){
     // turn off the engines!
     scene.root._killNode(this.engine1)
     scene.root._killNode(this.engine2)
+    // blow!!!
+    scene.root.explode('player', this)
 };
