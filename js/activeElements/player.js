@@ -1,6 +1,6 @@
 
 var _bombSpawnRate = 2.0;
-var _jetpackOverheatTime = 1.0;
+var _jetpackOverheatTime = 2;
 var _decreasOverheatVal = 0.02;
 var _decreasIfOverheatedVal = 0.01;
 
@@ -78,7 +78,7 @@ Player.prototype.evolve = function(delta, scene) {
 	if (scene.keys[scene.root.env.SPACE] && scene.statistic.walls > 0){
 		delete scene.keys[scene.root.env.SPACE];
 		scene.statistic.walls --;
-		scene.root.planet.spawnWall(this.x, this.y + 1, Math.random() > 0.5 ? "W": "G");
+		scene.root.planet.spawnWall(this.x, this.y + 1, "0");
 	}
 
 	if (scene.keys[scene.root.env.DEL]){

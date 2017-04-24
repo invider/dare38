@@ -1,6 +1,6 @@
 var BaseNode = function () {
     Wall.call(this);
-    this.baseHp = 400;
+    this.baseHp = 600;
     this.hp = this.baseHp;
     this.colorP = 255;
 
@@ -10,8 +10,8 @@ var BaseNode = function () {
         if (this.hp >= 0){
             return true;
         }
-        console.log("Base destroyed!!!!");
         this.scene.root.planet.removeNode(this);
+        this.scene.root.explode('wall', this);
         Util.playSound("BaseHit");
         return false;
     };

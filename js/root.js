@@ -27,6 +27,7 @@ var _$root = {
         }
         this.title.attach(this.gameOverTag)
 
+        /*
         // next level floating message
         var nextLevelMsg = new FloatingText(0, 0,
                 "Next Level!", "#FF8000", "32px alien", "center")
@@ -35,6 +36,7 @@ var _$root = {
         nextLevelMsg.dx = 20
         nextLevelMsg.dy = -20
         this.title.attach(nextLevelMsg)
+        */
 
         // stat
         this.fuelTag = new FloatingText(10, 10, "F", "#FFFF00", "24px alien")
@@ -45,6 +47,8 @@ var _$root = {
         this.title.attach(this.wallTag)
         this.turretTag = new FloatingText(10, 100, "T", "#FFFF00", "24px alien")
         this.title.attach(this.turretTag)
+        this.heatTag = new FloatingText(10, 130, "T", "#FFFF00", "24px alien")
+        this.title.attach(this.heatTag)
 
         this.levelTag = new FloatingText(-10, 10, "L", "#FFFF00", "24px alien", "right")
         this.title.attach(this.levelTag)
@@ -134,7 +138,7 @@ var _$root = {
         this.bombTag.label = "Bombs: " + scene.statistic.bombs
         this.wallTag.label = "Blocks: " + scene.statistic.walls
         this.turretTag.label = "Turrets: " + scene.statistic.turrets
-        this.turretTag.label = "Overheat: " +  (scene.root.player ? Math.floor(scene.root.player.stats.overheat*100) : 0)
+        this.heatTag.label = "Heat: " +  (scene.root.player ? Math.floor(scene.root.player.stats.overheat*100) : 0) + "°"
 
         this.levelTag.label = "Level: " + scene.statistic.level
         this.waveTag.label = "Wave: " + (scene.statistic.diggersToSpawn

@@ -36,7 +36,7 @@ var Wall = function (type) {
             ctx.drawImage(scene.res.img['stone-2'],this.x,this.y, this.width, this.height);
             break;
         case'0':
-            ctx.drawImage(scene.res.img['stone-3.mold'],this.x,this.y, this.width, this.height);
+            ctx.drawImage(scene.res.img['stone-3'],this.x,this.y, this.width, this.height);
             break;
         case 'g':
             ctx.drawImage(scene.res.img['grass'],this.x,this.y, this.width, this.height);
