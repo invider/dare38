@@ -78,7 +78,6 @@ var scene = {
     },
     gameOver: function(){
         this.gameoverFlag = true;
-        console.log("Oh noooooooooo, GAME OVER!!!!!!!!!!");
     },
     gameReInit: function(){
         this.root.entity = [];

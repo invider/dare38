@@ -128,7 +128,9 @@ var _$root = {
         scene.checkCompletion();
 
         // update stat
-        this.fuelTag.label = "Fuel: " + Math.floor(scene.root.player.stats.fuel)
+        if (scene.root.player) {
+            this.fuelTag.label = "Fuel: " + Math.floor(scene.root.player.stats.fuel)
+        }
         this.bombTag.label = "Bombs: " + scene.statistic.bombs
         this.wallTag.label = "Blocks: " + scene.statistic.walls
         this.turretTag.label = "Turrets: " + scene.statistic.turrets
