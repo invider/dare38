@@ -6,10 +6,10 @@ var Player = function(x, y, scene) {
 	this.bombSpawnRate = 0.0;
 	this.type = "Player";
     
-    this.engine1 = new Explosion(x, y+0.8, -1, 200,
+    this.engine1 = new Explosion(x+1, y+0.8, -1, 200,
         scene.res.img['particle-yellow'], 0.3, 0, 0.8, 0.2,
         Math.PI/2-Math.PI/16, Math.PI/8, 1, 0.5)
-    this.engine2 = new Explosion(x+0.8, y+0.8, -1, 200,
+    this.engine2 = new Explosion(x+0.9, y+0.8, -1, 200,
         scene.res.img['particle-yellow'], 0.3, 0, 0.8, 0.2,
         Math.PI/2-Math.PI/16, Math.PI/8, 1, 0.5)
     scene.attach(this.engine1)
@@ -58,9 +58,9 @@ Player.prototype.evolve = function(delta, scene) {
 	scene.physics.clearEvents();
 	scene.physics.evolve(this, delta);
 
-    this.engine1.x = this.x
+    this.engine1.x = this.x+0.1
     this.engine1.y = this.y+0.8
-    this.engine2.x = this.x+0.8
+    this.engine2.x = this.x+0.9
     this.engine2.y = this.y+0.8
 };
 
