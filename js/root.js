@@ -134,7 +134,7 @@ var _$root = {
         this.bombTag.label = "Bombs: " + scene.statistic.bombs
         this.wallTag.label = "Blocks: " + scene.statistic.walls
         this.turretTag.label = "Turrets: " + scene.statistic.turrets
-        this.turretTag.label = "Overheat: " +  Math.floor(scene.root.player.stats.overheat*100)
+        this.turretTag.label = "Overheat: " +  (scene.root.player ? Math.floor(scene.root.player.stats.overheat*100) : 0)
 
         this.levelTag.label = "Level: " + scene.statistic.level
         this.waveTag.label = "Wave: " + (scene.statistic.diggersToSpawn
