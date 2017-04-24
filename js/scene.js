@@ -20,6 +20,7 @@ var scene = {
     mouseButton: '---',
     statusLine: 'No Status',
     keys: {},
+    gameoverFlag: false,
 
     attach: function(node) {
         this.root.entity.push(node)
@@ -57,6 +58,7 @@ var scene = {
         console.log("Complete!!!!");
     },
     gameOver: function(){
+        this.gameoverFlag = true;
         console.log("Oh noooooooooo, game over!!!!!!!!!!");
     },
     checkCompletion:function(){
