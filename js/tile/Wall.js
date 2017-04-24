@@ -3,21 +3,21 @@ var Wall = function (type) {
     this.type = type
     
     switch(type) {
-    case 'X': this.hp = 250; break;
-    case '0': this.hp = 400; break;
-    case 'g': this.hp = 75; break;
-    case 'G': this.hp = 75; break;
-    case 'D': this.hp = 80; break;
-    case 'I': this.hp = 150; break;
-    case 'S': this.hp = 50; break;
-    case 'A': this.hp = 50; break;
-    case 'W': this.hp = 50; break;
-    case 'Q': this.hp = 50; break;
-    case 's': this.hp = 75; break;
-    case 'a': this.hp = 75; break;
-    case 'd': this.hp = 75; break;
-    case 'z': this.hp = 75; break;
-    case 'x': this.hp = 75; break;
+    case 'X': this.hp = 400; break;
+    case '0': this.hp = 500; break;
+    case 'g': this.hp = 100; break;
+    case 'G': this.hp = 100; break;
+    case 'D': this.hp = 100; break;
+    case 'I': this.hp = 250; break;
+    case 'S': this.hp = 100; break;
+    case 'A': this.hp = 100; break;
+    case 'W': this.hp = 100; break;
+    case 'Q': this.hp = 300; break;
+    case 's': this.hp = 100; break;
+    case 'a': this.hp = 100; break;
+    case 'd': this.hp = 100; break;
+    case 'z': this.hp = 100; break;
+    case 'x': this.hp = 100; break;
     }
 
     this.hit = function(v){
