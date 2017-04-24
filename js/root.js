@@ -134,6 +134,7 @@ var _$root = {
         this.bombTag.label = "Bombs: " + scene.statistic.bombs
         this.wallTag.label = "Blocks: " + scene.statistic.walls
         this.turretTag.label = "Turrets: " + scene.statistic.turrets
+        this.turretTag.label = "Overheat: " + scene.statistic.overheat
 
         this.levelTag.label = "Level: " + scene.statistic.level
         this.waveTag.label = "Wave: " + (scene.statistic.diggersToSpawn

@@ -47,6 +47,7 @@ var scene = {
             startTime:0,
             playTime: 0,
             time: 0,
+            overheat: 0.0,
             toString:function(){
                 var t = this.playTime
                 return "Level:" + this.scene.level +
@@ -55,11 +56,12 @@ var scene = {
                 " walls:" + this.walls + 
                 " Diggers:" + this.spawnedDiggers + 
                 " Left:" + (this.diggersToSpawn - this.spawnedDiggers) + 
-                " Alive:" + this.diggersAlive + 
+                " Alive:" + this.diggersAlive +
                 (
                     !this.scene.root.player ? "" : 
                         ( 
-                            " Fuel:" + Math.floor(this.scene.root.player.stats.fuel)
+                            " Fuel:" + Math.floor(this.scene.root.player.stats.fuel) +
+                            " Overheat: " + Math.floor(this.scene.root.player.stats.overheat)
                         )
                 ) +
                 " PlayTime:" + Math.floor(t / 3600) + ":" + Math.floor((t % 3600) / 60) + ":" + Math.floor(t % 60)

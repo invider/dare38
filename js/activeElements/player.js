@@ -1,13 +1,20 @@
 
-var _spawnRate = 2.0;
+var _bombSpawnRate = 2.0;
+var _jetpackOverheatTime = 1.0;
+var _decreasOverheatVal = 0.2;
+var _decreasIfOverheatedVal = 0.1;
+
 
 var Player = function(x, y, scene) {
 	ActiveElement.call(this, x, y, scene, [ scene.res.img['jet-man'] ], 100);
 	this.bombSpawnRate = 0.0;
+
 	this.type = "Player";
      this.stats = {
 		fuel:100,
-		maxFuel:100
+		maxFuel:100,
+        overheat:0.0,
+    	isOverheated:false
 	}
     this.engine1 = new Explosion(x, y+0.8, -1, 200,
         scene.res.img['particle-yellow'], 0.3, 0, 0.8, 0.2,
@@ -42,13 +49,31 @@ Player.prototype.evolve = function(delta, scene) {
 		this.horzAcceleration = 0;
 	}
 
-	if ((scene.keys[scene.root.env.UP] || scene.keys[scene.root.env._UP]) && this.stats.fuel > 0){
+	if ((scene.keys[scene.root.env.UP] || scene.keys[scene.root.env._UP]) && this.stats.fuel > 0 && !this.isOverheated){
+    	this.stats.overheat += delta * 10;
 		this.stats.fuel -= delta * 10;
 		if (this.stats.fuel < 0){
 			this.stats.fuel = 0;
 		}
+
+		console.log(this.stats.overheat + ' ' + _jetpackOverheatTime);
+
 		this.acceleration = 20;
+		if (this.stats.overheat > _jetpackOverheatTime){
+			this.stats.isOverheated = true;
+		}
 	} else {
+
+    	if (this.stats.isOverheated){
+    		this.stats.overheat -= _decreasIfOverheatedVal;
+		} else {
+            this.stats.overheat -= _decreasOverheatVal;
+		}
+        if (this.stats.overheat < 0){
+            this.stats.overheat = 0;
+            this.stats.isOverheated = false;
+        }
+
 		this.acceleration = 0;
 	}
 
@@ -81,7 +106,7 @@ Player.prototype.evolve = function(delta, scene) {
                 && this.bombSpawnRate <= 0){
 		if (scene.statistic.bombs > 0) {
 			scene.statistic.bombs--;
-			this.bombSpawnRate = _spawnRate;
+			this.bombSpawnRate = _bombSpawnRate;
 			scene.attach(new Bomb(1000, this.x, this.y, scene));
 		}
     }
