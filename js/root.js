@@ -14,6 +14,7 @@ var _$root = {
         this.effect = new LayerNode()
         this.title = new LayerNode()
 
+
         // fix scene size based on the planet
         scene.width = this.planet.xSize
         scene.height = this.planet.ySize

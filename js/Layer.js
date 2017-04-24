@@ -1,4 +1,6 @@
 var LayerNode = function() {
+    this.visible = true
+    this.paused = false
     this.nodes = []
 }
 
@@ -13,12 +15,14 @@ LayerNode.prototype.attach = function(node) {
 }
 
 LayerNode.prototype.evolve = function(delta, scene) {
+    if (this.paused) return;
     this.nodes.forEach( function(node) {
         node.evolve(delta, scene)
     })
 }
 
 LayerNode.prototype.render = function(ctx, scene) {
+    if (!this.visible) return;
     this.nodes.forEach( function(node) {
         node.render(ctx, scene)
     })
