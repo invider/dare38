@@ -6,8 +6,8 @@ var FloatingText = function(x, y, label, color, font, ancor) {
     this.color = color? color : "#FFFFFF"
     this.font = font? font : '24px alien'
     this.ancor = ancor? ancor: 'absolute'
-    this.sdx = 4
-    this.sdy = 4
+    this.sdx = 2
+    this.sdy = 2
     this.shaddow = true
     this.shaddowColor = "#000000"
 

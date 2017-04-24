@@ -187,7 +187,6 @@ var PlanetProto = function () {
  */
 var _Planet = new PlanetProto(
     "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    "XUGgsadISAWEQBDzx0 twbf                     X",
     "XWWWWWWWWWWW            WWWWWWWWWWWWWWWWWWWWX",
     "XIIIIIIIW                  QQQQQQQQQQQQQQQQQX",
     "XIIIIIWQ                      QQQQIIIIIIIIIIX",
@@ -203,9 +202,9 @@ var _Planet = new PlanetProto(
     "XDDAASSSAADDgg0     0     0       0         X",
     "X GGGAAAGGGGGGUUUUUUU     0       0         X",
     "X  dGGGGGGGGad            UUUUUUUUU         X",
-    "X   dGGGGGGGd         tb                0000X",
-    "X    daaadss   w      BB      t 0           X",
-    "X     ddds   0 BB    BBBB    BB 0           X",
+    "X   dGGGGGGGd          B                 0000X",
+    "X    daaadss    B     BB     B  0           X",
+    "X     ddds   0 BB wt BBB bw BB000           X",
     "X     sss    0BBBBBBBBBBBBBBBBBB0    000000 X",
     "X      s     BBBBBBBBBBBBBBBBBBBB           X",
     "X                     P                     X", 

@@ -3,7 +3,7 @@
  */
 
 var Bomb = function(ms, x, y, scene) {
-    ActiveElement.call(this, x, y, scene, [ scene.res.img['ice-mono'] ], 100);
+    ActiveElement.call(this, x, y, scene, [ scene.res.img['shot-2'] ], 100);
     this.counter = ms / 1000.0;
     this.type = "Bomb";
     this.power = 100000000;

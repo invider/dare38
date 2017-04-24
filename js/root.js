@@ -39,26 +39,26 @@ var _$root = {
         */
 
         // stat
-        this.fuelTag = new FloatingText(10, 10, "F", "#FFFF00", "24px alien")
+        this.fuelTag = new FloatingText(10, 10, "F", "#FF8000", "24px alien")
         this.title.attach(this.fuelTag)
-        this.bombTag = new FloatingText(10, 40, "B", "#FFFF00", "24px alien")
+        this.bombTag = new FloatingText(10, 40, "B", "#FF8000", "24px alien")
         this.title.attach(this.bombTag)
-        this.wallTag = new FloatingText(10, 70, "W", "#FFFF00", "24px alien")
+        this.wallTag = new FloatingText(10, 70, "W", "#FF8000", "24px alien")
         this.title.attach(this.wallTag)
-        this.turretTag = new FloatingText(10, 100, "T", "#FFFF00", "24px alien")
+        this.turretTag = new FloatingText(10, 100, "T", "#FF8000", "24px alien")
         this.title.attach(this.turretTag)
-        this.heatTag = new FloatingText(10, 130, "T", "#FFFF00", "24px alien")
+        this.heatTag = new FloatingText(10, 130, "T", "#FF8000", "24px alien")
         this.title.attach(this.heatTag)
 
         this.levelTag = new FloatingText(-10, 10, "L", "#FFFF00", "24px alien", "right")
         this.title.attach(this.levelTag)
-        this.waveTag = new FloatingText(-10, 40, "W", "#FFFF00", "24px alien", "right")
+        this.waveTag = new FloatingText(-10, 40, "W", "#FF0090", "24px alien", "right")
         this.title.attach(this.waveTag)
 
-        this.playtimeTag = new FloatingText(10, -10, "P", "#FFFF00", "24px alien", "bottom")
+        this.playtimeTag = new FloatingText(10, -10, "P", "#FF8000", "24px alien", "bottom")
         this.title.attach(this.playtimeTag)
 
-        this.fpsTag = new FloatingText(-10, -10, "FPS", "#801020", "24px alien", "edge")
+        this.fpsTag = new FloatingText(-10, -10, "FPS", "#C04020", "24px alien", "edge")
         this.title.attach(this.fpsTag)
     },
 
