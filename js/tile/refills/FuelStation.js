@@ -12,4 +12,4 @@ Util.extend(FuelStation, RefillStation);
 
 FuelStation.prototype.refill = function(scene){
     scene.root.player.stats.fuel = scene.root.player.stats.maxFuel
-}
+};
