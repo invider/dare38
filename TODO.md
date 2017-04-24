@@ -6,14 +6,14 @@ TODO
 - [ ] respawn sprite
 - [ ] gun sprite
 - [ ] bomb sprite
-- [ ] restart level
 - [ ] flying stars on background
-- [ ] more explosions
 - [ ] load and play background music
 - [ ] mine entity
-- [ ] explosion/particles layer
 - [ ] draw tile sprites
 - [ ] and Z index
+- [x] more explosions
+- [x] explosion/particles layer
+- [x] restart level
 - [x] bomb resource point
 - [x] wall resource point
 - [x] show play time
