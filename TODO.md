@@ -1,16 +1,11 @@
 
 TODO
 ====
-- [ ] game over message
-- [x] game restart on ESC
 - [ ] fix jetpack missing bug (explosion should not be killed)
 - [ ] jetpack overheat
-- [x] bomb resource point
-- [x] wall resource point
 - [ ] respawn sprite
 - [ ] gun sprite
 - [ ] bomb sprite
-- [x] show play time
 - [ ] restart level
 - [ ] flying stars on background
 - [ ] more explosions
@@ -19,6 +14,11 @@ TODO
 - [ ] explosion/particles layer
 - [ ] draw tile sprites
 - [ ] and Z index
+- [x] bomb resource point
+- [x] wall resource point
+- [x] show play time
+- [x] game over message
+- [x] game restart on ESC
 - [x] jetpack fuel station
 - [x] WASD keys to control
 - [x] jetpack fuel
