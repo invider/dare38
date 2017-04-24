@@ -2,8 +2,6 @@
 TODO
 ====
 - [ ] jetpack overheat
-- [ ] jetpack fuel
-- [ ] jetpack fuel station
 - [ ] bomb resource point
 - [ ] wall resource point
 - [ ] respawn sprite
@@ -12,7 +10,6 @@ TODO
 - [ ] show play time
 - [ ] game over message
 - [ ] restart level
-- [ ] WASD keys to control
 - [ ] flying stars on background
 - [ ] more explosions
 - [ ] load and play background music
@@ -20,8 +17,11 @@ TODO
 - [ ] explosion/particles layer
 - [ ] draw tile sprites
 - [ ] and Z index
-- [+] sfx loading
-- [+] particles source entity
-- [+] explosion entity
-- [+] hero entity
-- [+] bomb entity
+- [x] jetpack fuel station
+- [x] WASD keys to control
+- [x] jetpack fuel
+- [x] sfx loading
+- [x] particles source entity
+- [x] explosion entity
+- [x] hero entity
+- [x] bomb entity
