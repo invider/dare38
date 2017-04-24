@@ -14,6 +14,21 @@ LayerNode.prototype.attach = function(node) {
     if (node.init) node.init(this, this.scene)
 }
 
+LayerNode.prototype._killNode = function(node) {
+    //
+    //  TODO: optimize this
+    //
+    var counter = 0;
+    while (counter < this.nodes.length){
+        if (this.nodes[counter] == node){
+            this.nodes.splice(counter, 1);
+            counter --;
+            if (node.kill) node.kill();
+        }
+        counter ++;
+    }
+}
+
 LayerNode.prototype.evolve = function(delta, scene) {
     if (this.paused) return;
     this.nodes.forEach( function(node) {

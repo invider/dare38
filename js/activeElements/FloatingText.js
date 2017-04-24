@@ -10,16 +10,34 @@ var FloatingText = function(x, y, label, color, font, ancor) {
     this.sdy = 4
     this.shaddow = true
     this.shaddowColor = "#000000"
+
+    // dynamic values
+    this.lifespan = -1
+    this.fadespan = -1
 }
 
 FloatingText.prototype.init = function(parent, scene) {
+    this.parent = parent
+    this.scene = scene
 }
 
 FloatingText.prototype.evolve = function(delta, scene) {
+    if (this.lifespan > 0) {
+        this.lifespan -= delta
+        if (this.lifespan <= 0) {
+            this.parent._killNode(this)
+        }
+    }
+    if (this.dx) this.x += this.dx*delta
+    if (this.dy) this.y += this.dy*delta
 }
 
 FloatingText.prototype.render = function(ctx, scene) {
     ctx.font = this.font
+
+    if (this.lifespan > 0 && this.fadespan > 0 && this.lifespan < this.fadespan) {
+        ctx.globalAlpha = this.lifespan / this.fadespan
+    }
 
     switch(this.ancor) {
     case 'absolute':
@@ -50,5 +68,6 @@ FloatingText.prototype.render = function(ctx, scene) {
     default:
             ctx.fillText(this.label, 0, 0);
     }
+    ctx.globalAlpha = 1
 }
 
