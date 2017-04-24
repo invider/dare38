@@ -13,6 +13,9 @@ var scene = {
     width: 100,
     height: 100,
     pause: true,
+    gameoverFlag: false,
+    playTime: 0,
+
 
     // event flags
     mouseX: 0,
@@ -20,7 +23,6 @@ var scene = {
     mouseButton: '---',
     statusLine: 'No Status',
     keys: {},
-    gameoverFlag: false,
 
     attach: function(node) {
         this.root.entity.push(node)
@@ -35,7 +37,7 @@ var scene = {
             maxWalls: 10,
             bombs: 3,
             maxBombs: 3,
-            lifes: 5,
+            lifes: 50000000,
             level: 0,
             scene: scene,
             diggersToSpawn: 30,
@@ -44,11 +46,10 @@ var scene = {
             startTime:0,
             time: 0,
             toString:function(){
-                var t = (this.time - this.startTime) / 1000;
+                var t = scene.playTime
                 return "Level:" + this.level + 
                 " Turrets: " + this.turrets + 
                 " Bombs:" + this.bombs + 
-                " Lifes:" + this.lifes + 
                 " walls:" + this.walls + 
                 " Diggers:" + this.spawnedDiggers + 
                 " Left:" + (this.diggersToSpawn - this.spawnedDiggers) + 
@@ -56,10 +57,10 @@ var scene = {
                 (
                     !this.scene.root.player ? "" : 
                         ( 
-                            " Fuel:" + this.scene.root.player.stats.fuel.toFixed(2)
+                            " Fuel:" + Math.floor(this.scene.root.player.stats.fuel)
                         )
                 ) +
-                " PlayTime:" + Math.floor(t / 3600) + ":" + Math.floor((t % 3600) / 60) + ":" + (t % 60).toFixed(1)
+                " PlayTime:" + Math.floor(t / 3600) + ":" + Math.floor((t % 3600) / 60) + ":" + Math.floor(t % 60)
             }
         };
         this.statistic.startTime = new Date().getTime();
@@ -153,6 +154,7 @@ function input(delta) {
 
 function evolve(delta) {
     if (scene.pause) return
+    if (!scene.gameoverFlag) scene.playTime += delta
     scene.root.evolve(delta, scene)
 }
 
@@ -186,12 +188,6 @@ function render(delta) {
     }
 
     var status = 'fps: ' + fps
-        +' mouse: ' + scene.mouseX + 'x' + scene.mouseY + ', ' + scene.mouseButton
-        + " Keyboard: "
-    for (var k in scene.keys) {
-        status += "-" + k
-    }
-    status += '-'
 
     ctx.font = '24px alien'
     ctx.textBaseline = 'bottom'
