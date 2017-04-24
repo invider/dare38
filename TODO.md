@@ -1,6 +1,10 @@
 
 TODO
 ====
+- [ ] labels for stat
+- [ ] hide/show FPS
+- [ ] play sfx funtion
+- [ ] map sfx to events
 - [ ] fix jetpack missing bug (explosion should not be killed)
 - [ ] jetpack overheat
 - [ ] respawn sprite
