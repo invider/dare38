@@ -42,3 +42,7 @@ Canon.prototype.evolve = function(delta, scene) {
 Canon.prototype.render = function(ctx, scene) {
     ActiveElement.prototype.render.call(this, ctx, scene);
 };
+
+Canon.prototype.kill = function() {
+    this.scene.root.explode('gun', this)
+}

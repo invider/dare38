@@ -6,7 +6,7 @@ var _evilSource = {
 
         if (
             scene.statistic.diggersToSpawn > scene.statistic.spawnedDiggers &&
-            (scene.keys[76] || Math.random() < this.frequency * delta)
+            (scene.keys[76] || Math.random() / (scene.level * scene.levelRatio + 1) < this.frequency * delta && !scene.gameoverFlag)
         ) {
             delete scene.keys[76];
             scene.statistic.spawnedDiggers ++;

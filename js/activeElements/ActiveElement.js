@@ -27,11 +27,9 @@ var ActiveElement = function(x, y, scene, imgs, animationDuration){
 };
 
 ActiveElement.prototype.init = function(){
-
 };
 
 ActiveElement.prototype.kill = function(){
-    //console.log(this + ": killed!");
 };
 
 ActiveElement.prototype.hit = function(power){

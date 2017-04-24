@@ -11,6 +11,15 @@ var _titleBuilder = function (type) {
             return new PlayerSpawn();
         case "B":
             return new BaseNode();
+        case "f":
+            return new FuelStation();
+        case "b":
+            return new BombStation();
+        case "w":
+            return new WallStation();
+        case "t":
+            return new TurretStation();
+        
         default:
             return new Wall(type);
     }
@@ -122,7 +131,7 @@ var PlanetProto = function () {
      * @param y
      * @param r - radius to detect
      */
-    this.getNearbyNodes = function(x, y, r){
+    this.getNearbyNodes = function(x, y, r, filter){
         r = r || 1;
         var res = [];
         this.eachNode(function(node, xx, yy){
@@ -130,9 +139,12 @@ var PlanetProto = function () {
                 res.push(node);
             }
         });
+        if (filter){
+            return res.filter(filter);
+        }
         return res;
     };
-    this.kill = function(x,y, r){
+    this.kill = function(x,y,r){
         if (x instanceof PlanetElement){
             this.removeNode(x);
         } else {
@@ -142,6 +154,12 @@ var PlanetProto = function () {
             }
         }
     };
+    this.hit = function(x, y, r, power, filter){
+        this.getNearbyNodes(x, y, r)
+            .forEach(function(element) {
+                element.hit(power)
+            }, filter)
+    }
     /**
      * returns player spawn point
      * @returns {PlayerSpawn}
@@ -154,7 +172,8 @@ var PlanetProto = function () {
             }
         });
         if (!retVal){
-            throw new Error("Could not find player spawn!!!");
+            // probably game over
+            //throw new Error("Could not find player spawn!!!");
         }
         return retVal;
     };
@@ -175,14 +194,14 @@ var _Planet = new PlanetProto(
     "X                X        X           X        X          X",
     "X                X        X           X        X          X",
     "X                XXXXXXXXXX           XXXXXXXXXX          X",
-    "X                             X                           X",
+    "X       f                     X                           X",
     "X      GGGGGGGGGGG       U      U   U     X               X",
     "X       GGGGGGGGGG    X       U                   X       X",
-    "X        GGGGGGG         U            X      UU  U        X",
+    "X        GGGGGGG      UUUU            X      UU  U        X",
     "X          GGG               XXXX              UU         X",
     "X              X           BB     UUU         X           X",
     "X         XXXXXXXXXXXXXXXXBBBBXXXXXXXXXXXXXXXX            X",
     "X           XXXXXXXXXXX  BBBBBBB                          X",
-    "X              XXXXXXXXXXBB   P                           X",
+    "X              XXXXXXXXXXBBf  P   t  w   b                X",
     "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
 );

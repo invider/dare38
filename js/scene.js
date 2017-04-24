@@ -12,7 +12,10 @@ var scene = {
     name: "Scene",
     width: 100,
     height: 100,
+    level:0,
+    levelRatio:0.2 ,
     pause: true,
+    gameoverFlag: false,
 
     // event flags
     mouseX: 0,
@@ -25,33 +28,76 @@ var scene = {
         this.root.entity.push(node)
         if (node.init) node.init(this.root, scene)
     },
-    initStatistic: function (){
-        this.statistic = {
+
+    initStatistic: function (scene){
+        var statistic = this.statistic = {
+            fps: 0,
             turrets: 10,
+            maxTurrets: 10,
+            walls: 10,
+            maxWalls: 10,
             bombs: 3,
-            lifes: 5,
+            maxBombs: 3,
+            lifes: 50000000,
             level: 0,
-            diggersToSpawn: 30,
+            scene: scene,
+            diggersToSpawn: 0 ,
             spawnedDiggers:0,
             diggersAlive:0,
+            startTime:0,
+            playTime: 0,
+            time: 0,
+            overheat: 0.0,
             toString:function(){
-                return "Level:" + this.level + " Turrets: " + this.turrets + " Bombs:" + this.bombs + " Lifes:" + this.lifes + " Diggers:" + this.spawnedDiggers + " Left:" + (this.diggersToSpawn - this.spawnedDiggers) + " Alive:" + this.diggersAlive
+                var t = this.playTime
+                return "Level:" + this.scene.level +
+                " Turrets: " + this.turrets + 
+                " Bombs:" + this.bombs + 
+                " walls:" + this.walls + 
+                " Diggers:" + this.spawnedDiggers + 
+                " Left:" + (this.diggersToSpawn - this.spawnedDiggers) + 
+                " Alive:" + this.diggersAlive +
+                (
+                    !this.scene.root.player ? "" : 
+                        ( 
+                            " Fuel:" + this.scene.root.player.stats.fuel +
+                            " Overheat: " + Math.floor(this.scene.root.player.stats.overheat)
+                        )
+                ) +
+                " PlayTime:" + Math.floor(t / 3600) + ":" + Math.floor((t % 3600) / 60) + ":" + Math.floor(t % 60)
             }
         };
+        this.statistic.diggersToSpawn = 30 * (this.level * this.levelRatio + 1);
+        this.statistic.startTime = new Date().getTime();
+        setInterval(function(){
+            statistic.time = new Date().getTime();
+        }, 100);
     },
     levelComplete: function(){
-        console.log("Complete!!!!");
+        this.level ++;
+        this.gameReInit();
+        console.log("Oh yeaaaaah, next level");
     },
     gameOver: function(){
-        console.log("Oh noooooooooo, game over!!!!!!!!!!");
+        this.gameoverFlag = true;
+    },
+    gameReInit: function(){
+        this.root.entity = [];
+        this.root.init(this, this);
+        this.initStatistic(this);
+    },
+    gameRestart: function(){
+        this.gameoverFlag = false;
+        this.level = 0;
+        this.gameReInit();
     },
     checkCompletion:function(){
-        if (this.statistic.diggersToSpawn == this.statistic.spawnedDiggers && this.diggersAlive == 0){
+        if (this.statistic.diggersToSpawn && this.statistic.diggersToSpawn == this.statistic.spawnedDiggers && this.statistic.diggersAlive == 0){
             this.levelComplete();
         }
     }
 };
-scene.initStatistic();
+scene.initStatistic(scene);
 // === INIT ====
 function expandCanvas() {
     var canvas = document.getElementById('canvas')
@@ -68,7 +114,6 @@ function init() {
     scene.manifest = _$resManifest
     scene.res = _$resManager
     scene.res.init(scene)
-
 
     load()
 
@@ -118,10 +163,11 @@ function input(delta) {
 
 function evolve(delta) {
     if (scene.pause) return
+    if (!scene.gameoverFlag) scene.statistic.playTime += delta
     scene.root.evolve(delta, scene)
 }
 
-var fps = 0, fpsa = 1, fpsc = 0
+var fpsa = 1, fpsc = 0
 function render(delta) {
     if (!scene.root) return
 
@@ -140,29 +186,22 @@ function render(delta) {
 
     scene.root.render(ctx, scene)
 
-    // draw status
+    // calculate fps
     if (fpsa >= 1 && delta > 0) {
-        fps = Math.round(fpsc/fpsa)
+        scene.statistic.fps = Math.round(fpsc/fpsa)
         fpsa = delta
         fpsc = 1
     } else {
         fpsc += 1
         fpsa += delta
     }
-
-    var status = 'fps: ' + fps
-        +' mouse: ' + scene.mouseX + 'x' + scene.mouseY + ', ' + scene.mouseButton
-        + " Keyboard: "
-    for (var k in scene.keys) {
-        status += "-" + k
-    }
-    status += '-'
-
+    /*
     ctx.font = '24px alien'
     ctx.textBaseline = 'bottom'
     ctx.fillStyle = "#FFFF00"
     ctx.fillText(status, 10, 30)
     ctx.fillText(scene.statusLine, 10, 60)
+    */
 }
 
 
