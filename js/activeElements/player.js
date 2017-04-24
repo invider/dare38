@@ -111,5 +111,5 @@ Player.prototype.kill = function(){
     // blow!!!
     scene.root.explode('player', this)
     scene.root.killNearbyNodes(this.x, this.y, 3)
-    scene.root.planet.kill(this.x, this.y, 2)
+    scene.root.planet.hit(this.x, this.y, 3, 100000000)
 };
