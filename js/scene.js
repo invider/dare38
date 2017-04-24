@@ -59,7 +59,7 @@ var scene = {
     },
     gameOver: function(){
         this.gameoverFlag = true;
-        console.log("Oh noooooooooo, game over!!!!!!!!!!");
+        console.log("Oh noooooooooo, GAME OVER!!!!!!!!!!");
     },
     checkCompletion:function(){
         if (this.statistic.diggersToSpawn == this.statistic.spawnedDiggers && this.statistic.diggersAlive == 0){

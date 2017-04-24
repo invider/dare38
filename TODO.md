@@ -1,6 +1,9 @@
 
 TODO
 ====
+- [ ] game over message
+- [ ] game restart on ESC
+- [ ] fix jetpack missing bug (explosion should not be killed)
 - [ ] jetpack overheat
 - [ ] bomb resource point
 - [ ] wall resource point
@@ -8,7 +11,6 @@ TODO
 - [ ] gun sprite
 - [ ] bomb sprite
 - [ ] show play time
-- [ ] game over message
 - [ ] restart level
 - [ ] flying stars on background
 - [ ] more explosions
