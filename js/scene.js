@@ -77,7 +77,9 @@ var scene = {
     gameRestart: function(){
         this.root.entity = [];
         this.root.init(this, this);
+        this.initStatistic(this);
         this.gameoverFlag = false;
+
     },
     checkCompletion:function(){
         if (this.statistic.diggersToSpawn == this.statistic.spawnedDiggers && this.statistic.diggersAlive == 0){
