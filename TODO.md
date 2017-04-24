@@ -3,18 +3,16 @@ TODO
 ====
 - [ ] labels for stat
 - [ ] hide/show FPS
-- [ ] play sfx funtion
+- [ ] play sfx function
 - [ ] map sfx to events
-- [ ] fix jetpack missing bug (explosion should not be killed)
 - [ ] jetpack overheat
 - [ ] respawn sprite
 - [ ] gun sprite
 - [ ] bomb sprite
 - [ ] flying stars on background
 - [ ] load and play background music
-- [ ] mine entity
 - [ ] draw tile sprites
-- [ ] and Z index
+- [ ] fix jetpack missing bug (explosion should not be killed)
 - [x] more explosions
 - [x] explosion/particles layer
 - [x] restart level

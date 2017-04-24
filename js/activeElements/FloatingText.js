@@ -65,6 +65,41 @@ FloatingText.prototype.render = function(ctx, scene) {
             scene.screenHeight/2 + this.y);
         break;
 
+    case 'right':
+        var tw = ctx.measureText(this.label).width
+        ctx.textBaseline = 'top'
+
+        if (this.shaddow) {
+            ctx.fillStyle = this.shaddowColor
+            ctx.fillText(this.label, scene.screenWidth - tw + this.x + this.sdx, this.y + this.sdy);
+        }
+        ctx.fillStyle = this.color
+        ctx.fillText(this.label, scene.screenWidth - tw + this.x, this.y);
+        break;
+
+    case 'bottom':
+        ctx.textBaseline = 'bottom'
+        if (this.shaddow) {
+            ctx.fillStyle = this.shaddowColor
+            ctx.fillText(this.label, this.x + this.sdx, scene.screenHeight + this.y + this.sdy);
+        }
+        ctx.fillStyle = this.color
+        ctx.fillText(this.label, this.x, scene.screenHeight + this.y);
+        break;
+
+    case 'edge':
+        var tw = ctx.measureText(this.label).width
+        ctx.textBaseline = 'bottom'
+        if (this.shaddow) {
+            ctx.fillStyle = this.shaddowColor
+            ctx.fillText(this.label, scene.screenWidth - tw + this.x + this.sdx,
+                scene.screenHeight + this.y + this.sdy);
+        }
+        ctx.fillStyle = this.color
+        ctx.fillText(this.label, scene.screenWidth - tw + this.x,
+                scene.screenHeight + this.y);
+        break;
+
     default:
             ctx.fillText(this.label, 0, 0);
     }

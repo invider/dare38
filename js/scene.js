@@ -16,8 +16,6 @@ var scene = {
     levelRatio:0.2 ,
     pause: true,
     gameoverFlag: false,
-    playTime: 0,
-
 
     // event flags
     mouseX: 0,
@@ -33,6 +31,7 @@ var scene = {
 
     initStatistic: function (scene){
         var statistic = this.statistic = {
+            fps: 0,
             turrets: 10,
             maxTurrets: 10,
             walls: 10,
@@ -46,9 +45,10 @@ var scene = {
             spawnedDiggers:0,
             diggersAlive:0,
             startTime:0,
+            playTime: 0,
             time: 0,
             toString:function(){
-                var t = scene.playTime
+                var t = this.playTime
                 return "Level:" + this.scene.level +
                 " Turrets: " + this.turrets + 
                 " Bombs:" + this.bombs + 
@@ -162,11 +162,11 @@ function input(delta) {
 
 function evolve(delta) {
     if (scene.pause) return
-    if (!scene.gameoverFlag) scene.playTime += delta
+    if (!scene.gameoverFlag) scene.statistic.playTime += delta
     scene.root.evolve(delta, scene)
 }
 
-var fps = 0, fpsa = 1, fpsc = 0
+var fpsa = 1, fpsc = 0
 function render(delta) {
     if (!scene.root) return
 
@@ -185,23 +185,22 @@ function render(delta) {
 
     scene.root.render(ctx, scene)
 
-    // draw status
+    // calculate fps
     if (fpsa >= 1 && delta > 0) {
-        fps = Math.round(fpsc/fpsa)
+        scene.statistic.fps = Math.round(fpsc/fpsa)
         fpsa = delta
         fpsc = 1
     } else {
         fpsc += 1
         fpsa += delta
     }
-
-    var status = 'fps: ' + fps
-
+    /*
     ctx.font = '24px alien'
     ctx.textBaseline = 'bottom'
     ctx.fillStyle = "#FFFF00"
     ctx.fillText(status, 10, 30)
     ctx.fillText(scene.statusLine, 10, 60)
+    */
 }
 
 
