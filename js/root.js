@@ -19,6 +19,29 @@ var _$root = {
         scene.width = this.planet.xSize
         scene.height = this.planet.ySize
     },
+
+    explode: function(type, src) {
+        switch(type) {
+        case 'wall':
+            this.scene.attach(new Explosion(src.x+0.5, src.y+0.5, 0.1, 1500,
+                    scene.res.img['particle-white'], 0.4, 0.4, 0.7, 0.5,
+                    0, Math.PI*2,
+                    0.5, 0.5))
+            break;
+        case 'bomb':
+            this.scene.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1000,
+                  this.scene.res.img['particle-white'], 2, 1, 0.5, 0,
+                  0, Math.PI*2,
+                  0.5, 2))
+            break;
+        default:
+            this.scene.attach(new Explosion(src.x, src.y, 0.2, 1000,
+                  this.scene.res.img['particle-red'], 2, 2, 0.5, 0,
+                  0, Math.PI*2,
+                  0.5, 2))
+            break;
+        }
+    },
     
     spawnPlayer: function(){
         if (this.scene.statistic.lifes > 0){

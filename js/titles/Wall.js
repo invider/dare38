@@ -12,9 +12,8 @@ var Wall = function (type) {
         if (this.hp >= 0){
             return true;
         }
-        console.log("Ooooh, you have broke the wall, so what you are going to do in neibouring cell?");
         this.scene.root.planet.removeNode(this);
-        Util.playSound("WallBroken");
+        this.scene.root.explode('wall', this);
         return false;
     };
 
