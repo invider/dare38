@@ -26,6 +26,7 @@ var scene = {
         this.root.entity.push(node)
         if (node.init) node.init(this.root, scene)
     },
+
     initStatistic: function (scene){
         this.statistic = {
             turrets: 10,

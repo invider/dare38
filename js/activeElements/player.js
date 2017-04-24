@@ -53,6 +53,7 @@ Player.prototype.evolve = function(delta, scene) {
 	if (scene.keys[scene.root.env.DEL]){
 		delete scene.keys[scene.root.env.DEL];
         scene.root.kill(this)
+        scene.root.explode('player', this) // Why explode in kill() doesn't work??? WTF?
 	}
 
 	if (scene.keys[scene.root.env.X]
