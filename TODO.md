@@ -10,7 +10,7 @@ TODO
 - [ ] respawn sprite
 - [ ] gun sprite
 - [ ] bomb sprite
-- [ ] show play time
+- [x] show play time
 - [ ] restart level
 - [ ] flying stars on background
 - [ ] more explosions
