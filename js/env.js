@@ -1,5 +1,6 @@
 var _$env = {
 
+    // key constants
     UP: 38,
     DOWN: 40,
     LEFT: 37, 
@@ -14,11 +15,12 @@ var _$env = {
     _DOWN: 83,
     _LEFT: 65, 
     _RIGHT: 68,
-    _X: 70,
+    _X: 69,
     _Y: 82,
     _Z: 70,
 
     __X: 188,
     __Y: 190,
     __Z: 191,
+
 }
