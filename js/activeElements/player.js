@@ -50,6 +50,11 @@ Player.prototype.evolve = function(delta, scene) {
 		scene.root.planet.spawnWall(this.x, this.y + 1, Math.random() > 0.5 ? "W": "G");
 	}
 
+	if (scene.keys[scene.root.env.DEL]){
+		delete scene.keys[scene.root.env.DEL];
+        scene.root.kill(this)
+	}
+
 	if (scene.keys[scene.root.env.X]
             || scene.keys[scene.root.env._X]
             || scene.keys[scene.root.env.__X]){
@@ -96,4 +101,6 @@ Player.prototype.kill = function(){
     scene.root._killNode(this.engine2)
     // blow!!!
     scene.root.explode('player', this)
+    scene.root.killNearbyNodes(this.x, this.y, 3)
+    scene.root.planet.kill(this.x, this.y, 2)
 };

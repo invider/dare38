@@ -134,7 +134,7 @@ var PlanetProto = function () {
         });
         return res;
     };
-    this.kill = function(x,y, r){
+    this.kill = function(x,y,r){
         if (x instanceof PlanetElement){
             this.removeNode(x);
         } else {

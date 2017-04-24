@@ -36,7 +36,6 @@ var scene = {
             spawnedDiggers:0,
             diggersAlive:0,
             toString:function(){
-                debugger;
                 return "Level:" + this.level + 
                 " Turrets: " + this.turrets + 
                 " Bombs:" + this.bombs + 
