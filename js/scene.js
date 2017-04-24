@@ -74,6 +74,11 @@ var scene = {
         this.gameoverFlag = true;
         console.log("Oh noooooooooo, GAME OVER!!!!!!!!!!");
     },
+    gameRestart: function(){
+        this.root.entity = [];
+        this.root.init(this, this);
+        this.gameoverFlag = false;
+    },
     checkCompletion:function(){
         if (this.statistic.diggersToSpawn == this.statistic.spawnedDiggers && this.statistic.diggersAlive == 0){
             this.levelComplete();
