@@ -17,6 +17,15 @@ var _$root = {
         // fix scene size based on the planet
         scene.width = this.planet.xSize
         scene.height = this.planet.ySize
+
+        // game over tag
+        this.gameOverTag = new FloatingText(0, -100,
+                "Game Over", "#C02030", "64px alien", "center")
+        this.gameOverTag.render = function(ctx, scene) {
+            if (!scene.gameoverFlag) return;
+            FloatingText.prototype.render.call(this, ctx, scene)
+        }
+        this.title.attach(this.gameOverTag)
     },
 
     explode: function(type, src) {
