@@ -28,7 +28,7 @@ var scene = {
     },
 
     initStatistic: function (scene){
-        this.statistic = {
+        var statistic = this.statistic = {
             turrets: 10,
             bombs: 3,
             lifes: 5,
@@ -37,7 +37,10 @@ var scene = {
             diggersToSpawn: 30,
             spawnedDiggers:0,
             diggersAlive:0,
+            startTime:0,
+            time: 0,
             toString:function(){
+                var t = (this.time - this.startTime) / 1000;
                 return "Level:" + this.level + 
                 " Turrets: " + this.turrets + 
                 " Bombs:" + this.bombs + 
@@ -50,9 +53,14 @@ var scene = {
                         ( 
                             " Fuel:" + this.scene.root.player.stats.fuel.toFixed(2)
                         )
-                )
+                ) +
+                " PlayTime:" + Math.floor(t / 3600) + ":" + Math.floor((t % 3600) / 60) + ":" + (t % 60).toFixed(1)
             }
         };
+        this.statistic.startTime = new Date().getTime();
+        setInterval(function(){
+            statistic.time = new Date().getTime();
+        }, 100);
     },
     levelComplete: function(){
         console.log("Complete!!!!");
