@@ -11,10 +11,6 @@ var _$root = {
         this.planet.init(this, scene);
         this.evilSource = _evilSource;
 
-        scene.attach(new Explosion(10, 5, 0.3, 2500,
-                    scene.res.img['particle-cyan'], 0.3, 1, 2, 0,
-                    Math.PI*2, 1, 0.5, 0))
-
         // fix scene size based on the planet
         scene.width = this.planet.xSize
         scene.height = this.planet.ySize
@@ -39,12 +35,6 @@ var _$root = {
                   this.scene.res.img['particle-red'], 2, 1, 1, 0.5,
                   0, Math.PI*2,
                   0.5, 0.5))
-            break;
-        default:
-            this.scene.attach(new Explosion(src.x, src.y, 0.2, 1000,
-                  this.scene.res.img['particle-red'], 2, 2, 2, 0.5,
-                  0, Math.PI*2,
-                  0.5, 0))
             break;
         }
     },
