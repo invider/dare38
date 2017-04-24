@@ -13,8 +13,7 @@ var _$root = {
         this.evilSource = _evilSource;
         this.effect = new LayerNode()
         this.title = new LayerNode()
-
-
+        this.player = false;
         // fix scene size based on the planet
         scene.width = this.planet.xSize
         scene.height = this.planet.ySize
@@ -67,6 +66,10 @@ var _$root = {
     },
 
     evolve: function(delta, scene) {
+        if (scene.keys[119]){
+            delete scene.keys[119];
+            scene.gameRestart();
+        }
         if (!this.player){
             this.spawnPlayer();
         }

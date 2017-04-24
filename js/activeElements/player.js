@@ -52,8 +52,9 @@ Player.prototype.evolve = function(delta, scene) {
 		this.acceleration = 0;
 	}
 
-	if (scene.keys[scene.root.env.SPACE]){
+	if (scene.keys[scene.root.env.SPACE] && scene.statistic.walls > 0){
 		delete scene.keys[scene.root.env.SPACE];
+		scene.statistic.walls --;
 		scene.root.planet.spawnWall(this.x, this.y + 1, Math.random() > 0.5 ? "W": "G");
 	}
 

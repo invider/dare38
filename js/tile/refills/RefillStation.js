@@ -1,11 +1,8 @@
-var FuelStation = function () {
+var RefillStation = function () {
     EmptySpace.call(this);
     this.hp = 1000;
     this.radius = 2
 
-    this.render = function (ctx, scene) {
-        ctx.drawImage(scene.res.img['soil-wired'],this.x, this.y, this.width, this.height);
-    };
     /**
      * @param delda {number}
      * @param scene {scene}
@@ -18,9 +15,13 @@ var FuelStation = function () {
                 this.x,
                 this.y
             ) <= this.radius){
-                scene.root.player.stats.fuel = scene.root.player.stats.maxFuel
+                this.refill(scene);
             }
     };
 };
 
-Util.extend(FuelStation, EmptySpace);
+Util.extend(RefillStation, EmptySpace);
+
+RefillStation.prototype.refill = function(scene){
+
+}

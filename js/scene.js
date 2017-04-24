@@ -30,7 +30,11 @@ var scene = {
     initStatistic: function (scene){
         var statistic = this.statistic = {
             turrets: 10,
+            maxTurrets: 10,
+            walls: 10,
+            maxWalls: 10,
             bombs: 3,
+            maxBombs: 3,
             lifes: 5,
             level: 0,
             scene: scene,
@@ -45,6 +49,7 @@ var scene = {
                 " Turrets: " + this.turrets + 
                 " Bombs:" + this.bombs + 
                 " Lifes:" + this.lifes + 
+                " walls:" + this.walls + 
                 " Diggers:" + this.spawnedDiggers + 
                 " Left:" + (this.diggersToSpawn - this.spawnedDiggers) + 
                 " Alive:" + this.diggersAlive + 
@@ -68,6 +73,13 @@ var scene = {
     gameOver: function(){
         this.gameoverFlag = true;
         console.log("Oh noooooooooo, GAME OVER!!!!!!!!!!");
+    },
+    gameRestart: function(){
+        this.root.entity = [];
+        this.root.init(this, this);
+        this.initStatistic(this);
+        this.gameoverFlag = false;
+
     },
     checkCompletion:function(){
         if (this.statistic.diggersToSpawn == this.statistic.spawnedDiggers && this.statistic.diggersAlive == 0){
