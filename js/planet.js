@@ -124,7 +124,7 @@ var PlanetProto = function () {
      * @param y
      * @param r - radius to detect
      */
-    this.getNearbyNodes = function(x, y, r){
+    this.getNearbyNodes = function(x, y, r, filter){
         r = r || 1;
         var res = [];
         this.eachNode(function(node, xx, yy){
@@ -132,6 +132,9 @@ var PlanetProto = function () {
                 res.push(node);
             }
         });
+        if (filter){
+            return res.filter(filter);
+        }
         return res;
     };
     this.kill = function(x,y,r){
@@ -144,6 +147,12 @@ var PlanetProto = function () {
             }
         }
     };
+    this.hit = function(x, y, r, power, filter){
+        this.getNearbyNodes(x, y, r)
+            .forEach(function(element) {
+                element.hit(power)
+            }, filter)
+    }
     /**
      * returns player spawn point
      * @returns {PlayerSpawn}

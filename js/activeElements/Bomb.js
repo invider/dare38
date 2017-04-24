@@ -6,6 +6,8 @@ var Bomb = function(ms, x, y, scene) {
     ActiveElement.call(this, x, y, scene, [ scene.res.img['ice-mono'] ], 100);
     this.counter = ms / 1000.0;
     this.type = "Bomb";
+    this.power = 100000000;
+    this.r = 2;
 };
 Util.extend(Bomb, ActiveElement);
 
@@ -24,8 +26,8 @@ Bomb.prototype.render = function(ctx, scene) {
 };
 
 Bomb.prototype.explode = function() {
-    scene.root.planet.kill(this.x, this.y, 2);
-    scene.root.killNearbyNodes(this.x, this.y, 2)
+    scene.root.planet.hit(this.x, this.y, this.r, this.power);
+    scene.root.killNearbyNodes(this.x, this.y, this.r)
     scene.root.planet.kill(this)
     scene.root.explode('bomb', this)
 };
