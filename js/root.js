@@ -66,8 +66,8 @@ var _$root = {
     },
 
     evolve: function(delta, scene) {
-        if (scene.keys[119]){
-            delete scene.keys[119];
+        if (scene.keys[27]){
+            delete scene.keys[27];
             scene.gameRestart();
         }
         if (!this.player){
