@@ -25,17 +25,31 @@ var scene = {
         this.root.entity.push(node)
         if (node.init) node.init(this.root, scene)
     },
-    initStatistic: function (){
+    initStatistic: function (scene){
         this.statistic = {
             turrets: 10,
             bombs: 3,
             lifes: 5,
             level: 0,
+            scene: scene,
             diggersToSpawn: 30,
             spawnedDiggers:0,
             diggersAlive:0,
             toString:function(){
-                return "Level:" + this.level + " Turrets: " + this.turrets + " Bombs:" + this.bombs + " Lifes:" + this.lifes + " Diggers:" + this.spawnedDiggers + " Left:" + (this.diggersToSpawn - this.spawnedDiggers) + " Alive:" + this.diggersAlive
+                debugger;
+                return "Level:" + this.level + 
+                " Turrets: " + this.turrets + 
+                " Bombs:" + this.bombs + 
+                " Lifes:" + this.lifes + 
+                " Diggers:" + this.spawnedDiggers + 
+                " Left:" + (this.diggersToSpawn - this.spawnedDiggers) + 
+                " Alive:" + this.diggersAlive + 
+                (
+                    !this.scene.root.player ? "" : 
+                        ( 
+                            " Fuel:" + this.scene.root.player.stats.fuel.toFixed(2)
+                        )
+                )
             }
         };
     },
@@ -46,12 +60,12 @@ var scene = {
         console.log("Oh noooooooooo, game over!!!!!!!!!!");
     },
     checkCompletion:function(){
-        if (this.statistic.diggersToSpawn == this.statistic.spawnedDiggers && this.diggersAlive == 0){
+        if (this.statistic.diggersToSpawn == this.statistic.spawnedDiggers && this.statistic.diggersAlive == 0){
             this.levelComplete();
         }
     }
 };
-scene.initStatistic();
+scene.initStatistic(scene);
 // === INIT ====
 function expandCanvas() {
     var canvas = document.getElementById('canvas')

@@ -11,6 +11,8 @@ var _titleBuilder = function (type) {
             return new PlayerSpawn();
         case "B":
             return new BaseNode();
+        case "F":
+            return new FuelStation();
         default:
             return new Wall(type);
     }
@@ -175,7 +177,7 @@ var _Planet = new PlanetProto(
     "X                X        X           X        X          X",
     "X                X        X           X        X          X",
     "X                XXXXXXXXXX           XXXXXXXXXX          X",
-    "X                             X                           X",
+    "X       F                     X                           X",
     "X      GGGGGGGGGGG       U      U   U     X               X",
     "X       GGGGGGGGGG    X       U                   X       X",
     "X        GGGGGGG         U            X      UU  U        X",
@@ -183,6 +185,6 @@ var _Planet = new PlanetProto(
     "X              X           BB     UUU         X           X",
     "X         XXXXXXXXXXXXXXXXBBBBXXXXXXXXXXXXXXXX            X",
     "X           XXXXXXXXXXX  BBBBBBB                          X",
-    "X              XXXXXXXXXXBB   P                           X",
+    "X              XXXXXXXXXXBBF  P                           X",
     "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
 );
