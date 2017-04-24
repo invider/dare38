@@ -45,6 +45,7 @@ var scene = {
             diggersAlive:0,
             startTime:0,
             time: 0,
+            levelRatio:0.2 ,
             toString:function(){
                 var t = scene.playTime
                 return "Level:" + this.level + 
@@ -63,28 +64,30 @@ var scene = {
                 " PlayTime:" + Math.floor(t / 3600) + ":" + Math.floor((t % 3600) / 60) + ":" + Math.floor(t % 60)
             }
         };
-        this.statistic.diggersToSpawn = 30 * this.statistic.level;
+        this.statistic.diggersToSpawn = 30 * (this.statistic.level * this.statistic.levelRatio + 1);
         this.statistic.startTime = new Date().getTime();
         setInterval(function(){
             statistic.time = new Date().getTime();
         }, 100);
     },
     levelComplete: function(){
-        this.scene.level ++;
-        this.gameRestart();
+        this.statistic.level ++;
+        this.gameReInit();
         console.log("Oh yeaaaaah, next level");
     },
     gameOver: function(){
         this.gameoverFlag = true;
         console.log("Oh noooooooooo, GAME OVER!!!!!!!!!!");
     },
-    gameRestart: function(){
+    gameReInit: function(){
         this.root.entity = [];
-        this.scene.level = 0;
         this.root.init(this, this);
         this.initStatistic(this);
+    },
+    gameRestart: function(){
         this.gameoverFlag = false;
-
+        this.statistic.level = 0;
+        this.gameReInit();
     },
     checkCompletion:function(){
         if (this.statistic.diggersToSpawn && this.statistic.diggersToSpawn == this.statistic.spawnedDiggers && this.statistic.diggersAlive == 0){
