@@ -24,30 +24,40 @@ Player.prototype.evolve = function(delta, scene) {
     	this.bombSpawnRate -= delta;
 	}
 
-	if (scene.keys[39]){
+	if (scene.keys[scene.root.env.RIGHT] || scene.keys[scene.root.env._RIGHT]){
 		this.horzAcceleration = 17;
-	} else if (scene.keys[37]){
+    } else if (scene.keys[scene.root.env.LEFT] || scene.keys[scene.root.env._LEFT]){
 		this.horzAcceleration = - 17;
 	} else {
 		this.horzAcceleration = 0;
 	}
-	if (scene.keys[38]){
+
+	if (scene.keys[scene.root.env.UP] || scene.keys[scene.root.env._UP]){
 		this.acceleration = 20;
 	} else {
 		this.acceleration = 0;
 	}
-	if (scene.keys[32]){
-		delete scene.keys[32];
+
+	if (scene.keys[scene.root.env.SPACE]){
+		delete scene.keys[scene.root.env.SPACE];
 		scene.root.planet.spawnWall(this.x, this.y + 1, Math.random() > 0.5 ? "W": "G");
 	}
-	if (scene.keys[84]){
-		delete scene.keys[84];
+
+	if (scene.keys[scene.root.env.X]
+            || scene.keys[scene.root.env._X]
+            || scene.keys[scene.root.env.__X]){
+
+		delete scene.keys[scene.root.env.X];
+		delete scene.keys[scene.root.env._X];
+		delete scene.keys[scene.root.env.__X];
 		if (scene.statistic.turrets > 0){
 			scene.statistic.turrets --;
 			scene.attach(new Canon(this.x, this.y, scene));
 		}
 	}
- 	if (scene.keys[67] && this.bombSpawnRate <= 0){
+
+ 	if ((scene.keys[scene.root.env.DOWN] || scene.keys[scene.root.env._DOWN])
+                && this.bombSpawnRate <= 0){
 		if (scene.statistic.bombs > 0) {
 			scene.statistic.bombs--;
 			this.bombSpawnRate = _spawnRate;

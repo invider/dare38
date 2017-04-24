@@ -178,7 +178,7 @@ var _Planet = new PlanetProto(
     "X                             X                           X",
     "X      GGGGGGGGGGG       U      U   U     X               X",
     "X       GGGGGGGGGG    X       U                   X       X",
-    "X        GGGGGGG         U            X      UU  U        X",
+    "X        GGGGGGG      UUUU            X      UU  U        X",
     "X          GGG               XXXX              UU         X",
     "X              X           BB     UUU         X           X",
     "X         XXXXXXXXXXXXXXXXBBBBXXXXXXXXXXXXXXXX            X",

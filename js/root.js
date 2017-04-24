@@ -5,6 +5,7 @@ var _$root = {
 
     init: function(parent, scene) {
         // Create the World!
+        this.env = _$env
         this.background = _background;
         this.planet = _Planet;
         this.scene = scene;
