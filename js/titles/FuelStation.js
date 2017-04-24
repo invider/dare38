@@ -6,7 +6,10 @@ var FuelStation = function () {
     this.render = function (ctx, scene) {
         ctx.drawImage(scene.res.img['soil-wired'],this.x, this.y, this.width, this.height);
     };
-    
+    /**
+     * @param delda {number}
+     * @param scene {scene}
+     */
     this.evolve=function(delta, scene) {
         if ( scene.root.player &&
             Util.getLength(

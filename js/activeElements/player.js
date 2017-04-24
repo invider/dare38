@@ -21,6 +21,13 @@ var Player = function(x, y, scene) {
 
 Util.extend(Player, ActiveElement);
 Player.prototype.evolve = function(delta, scene) {
+	if (this.x > scene.width + 1000 ||
+		this.y > scene.height + 1000 ||
+		this.x < -1000 ||
+		this.y < -1000 
+		){
+			scene.root.kill(this)
+		}
     ActiveElement.prototype.evolve.call(this, delta, scene);
 
     if(this.bombSpawnRate > 0) {
