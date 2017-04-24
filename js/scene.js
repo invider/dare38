@@ -60,7 +60,7 @@ var scene = {
                 (
                     !this.scene.root.player ? "" : 
                         ( 
-                            " Fuel:" + Math.floor(this.scene.root.player.stats.fuel) +
+                            " Fuel:" + this.scene.root.player.stats.fuel +
                             " Overheat: " + Math.floor(this.scene.root.player.stats.overheat)
                         )
                 ) +

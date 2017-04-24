@@ -1,8 +1,8 @@
 
 var _bombSpawnRate = 2.0;
 var _jetpackOverheatTime = 1.0;
-var _decreasOverheatVal = 0.2;
-var _decreasIfOverheatedVal = 0.1;
+var _decreasOverheatVal = 0.02;
+var _decreasIfOverheatedVal = 0.01;
 
 
 var Player = function(x, y, scene) {
@@ -49,14 +49,12 @@ Player.prototype.evolve = function(delta, scene) {
 		this.horzAcceleration = 0;
 	}
 
-	if ((scene.keys[scene.root.env.UP] || scene.keys[scene.root.env._UP]) && this.stats.fuel > 0 && !this.isOverheated){
-    	this.stats.overheat += delta * 10;
+	if ((scene.keys[scene.root.env.UP] || scene.keys[scene.root.env._UP]) && this.stats.fuel > 0 && !this.stats.isOverheated){
+    	this.stats.overheat += delta;
 		this.stats.fuel -= delta * 10;
 		if (this.stats.fuel < 0){
 			this.stats.fuel = 0;
 		}
-
-		console.log(this.stats.overheat + ' ' + _jetpackOverheatTime);
 
 		this.acceleration = 20;
 		if (this.stats.overheat > _jetpackOverheatTime){
