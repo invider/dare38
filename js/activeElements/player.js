@@ -79,6 +79,7 @@ Player.prototype.evolve = function(delta, scene) {
 		delete scene.keys[scene.root.env.SPACE];
 		scene.statistic.walls --;
 		scene.root.planet.spawnWall(this.x, this.y + 1, "0");
+        scene.sfx('powerup-1', 0.3)
 	}
 
 	if (scene.keys[scene.root.env.DEL]){
@@ -97,6 +98,7 @@ Player.prototype.evolve = function(delta, scene) {
 		if (scene.statistic.turrets > 0){
 			scene.statistic.turrets --;
 			scene.attach(new Canon(this.x, this.y, scene));
+            scene.sfx('robot-1', 0.3)
 		}
 	}
 
@@ -106,6 +108,7 @@ Player.prototype.evolve = function(delta, scene) {
 			scene.statistic.bombs--;
 			this.bombSpawnRate = _bombSpawnRate;
 			scene.attach(new Bomb(1000, this.x, this.y, scene));
+            scene.sfx('powerup-1', 0.3)
 		}
     }
 

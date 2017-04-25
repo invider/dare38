@@ -4,7 +4,9 @@
 var _$resManifest = {
   img: [
 	{ name:"jet-man", src:"img/jet-man.png"},
+	{ name:"gun-man", src:"img/gun-man.png"},
 	{ name:"dig-man", src:"img/dig-man.png"},
+	{ name:"dig-man.2", src:"img/dig-man.2.png"},
 	{ name:"shot-1", src:"img/shot-1.png"},
 	{ name:"shot-2", src:"img/shot-2.png"},
 	{ name:"particle", src:"img/particle.png"},
@@ -38,6 +40,11 @@ var _$resManifest = {
 	{ name:"stone-3.cybermold", src:"img/tile/stone-3.cybermold.png"},
 	{ name:"stone-3.mold", src:"img/tile/stone-3.mold.png"},
 	{ name:"stone-3", src:"img/tile/stone-3.png"},
+	{ name:"door-1", src:"img/tile/door-1.png"},
+	{ name:"door-2", src:"img/tile/door-2.png"},
+	{ name:"door-3", src:"img/tile/door-3.png"},
+	{ name:"door-4", src:"img/tile/door-4.png"},
+	{ name:"door-5", src:"img/tile/door-5.png"},
   ],
   sfx: [
 	{ name:"explosion-1", src:"sfx/explosion-1.wav" },

@@ -4,7 +4,7 @@ var TurretStation = function () {
     this.radius = 2
 
     this.render = function (ctx, scene) {
-        ctx.drawImage(scene.res.img['soil-wired'],this.x, this.y, this.width, this.height);
+        ctx.drawImage(scene.res.img['door-2'],this.x, this.y, this.width, this.height);
     };
 };
 

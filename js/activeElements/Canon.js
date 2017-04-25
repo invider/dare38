@@ -1,5 +1,5 @@
 var Canon = function(x, y, scene) {
-    ActiveElement.call(this, x, y, scene, [ scene.res.img['dig-man'] ], 100);
+    ActiveElement.call(this, x, y, scene, [ scene.res.img['gun-man'] ], 100);
 	this.type = "Canon";
 	/** @type {ActiveElement|boolean} */
 	this.enemy = false;

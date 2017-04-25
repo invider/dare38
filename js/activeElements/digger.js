@@ -1,5 +1,6 @@
 var Digger = function(x, y, scene) {
-    ActiveElement.call(this, x, y, scene, [ scene.res.img['dig-man'], scene.res.img['jet-man'] ], 1000);
+    ActiveElement.call(this, x, y, scene,
+            [ scene.res.img['dig-man'], scene.res.img['dig-man.2'] ], 1000);
 
 	this.type = "Digger";
 	this.lastShot = new Date().getTime();

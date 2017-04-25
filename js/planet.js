@@ -204,7 +204,7 @@ var _Planet = new PlanetProto(
     "X  dGGGGGGGGad            UUUUUUUUU         X",
     "X   dGGGGGGGd          B                 0000X",
     "X    daaadss    B     BB     B  0           X",
-    "X     ddds   0 BB wt BBB bw BB000           X",
+    "X     ddds   0 BB wt BBB bf BB000           X",
     "X     sss    0BBBBBBBBBBBBBBBBBB0    000000 X",
     "X      s     BBBBBBBBBBBBBBBBBBBB           X",
     "X                     P                     X", 
