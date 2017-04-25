@@ -27,17 +27,6 @@ var _$root = {
         }
         this.title.attach(this.gameOverTag)
 
-        /*
-        // next level floating message
-        var nextLevelMsg = new FloatingText(0, 0,
-                "Next Level!", "#FF8000", "32px alien", "center")
-        nextLevelMsg.lifespan = 7 
-        nextLevelMsg.fadespan = 2
-        nextLevelMsg.dx = 20
-        nextLevelMsg.dy = -20
-        this.title.attach(nextLevelMsg)
-        */
-
         // stat
         this.fuelTag = new FloatingText(10, 10, "F", "#FF8000", "24px alien")
         this.title.attach(this.fuelTag)
