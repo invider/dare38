@@ -51,7 +51,7 @@ Player.prototype.evolve = function(delta, scene) {
 
 	if ((scene.keys[scene.root.env.UP] || scene.keys[scene.root.env._UP]) && this.stats.fuel > 0 && !this.stats.isOverheated){
     	this.stats.overheat += delta;
-		this.stats.fuel -= delta * 10;
+		this.stats.fuel -= delta * 2;
 		if (this.stats.fuel < 0){
 			this.stats.fuel = 0;
 		}

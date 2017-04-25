@@ -69,30 +69,35 @@ var _$root = {
                     scene.res.img['particle-white'], 0.4, 0.4, 0.7, 0.5,
                     0, Math.PI*2,
                     0.5, 0.5))
+            this.scene.sfx('hit-1', 0.2)
             break;
         case 'bomb':
             this.effect.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1000,
                   this.scene.res.img['particle-white'], 2, 1, 0.5, 0,
                   0, Math.PI*2,
                   0.5, 2))
+            this.scene.sfx('explosion-2', 0.3)
             break;
         case 'player':
             this.effect.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1500,
                   this.scene.res.img['particle-red'], 2, 1, 1, 0.5,
                   0, Math.PI*2,
                   0.5, 0.5))
+            this.scene.sfx('explosion-3', 0.5)
             break;
         case 'digger':
             this.effect.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1500,
                   this.scene.res.img['particle-cyan'], 2, 1, 1, 0.5,
                   0, Math.PI*2,
                   0.5, 0.5))
+              this.scene.sfx('explosion-1', 0.3)
             break;
         case 'gun':
             this.effect.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1500,
                   this.scene.res.img['particle-blue'], 2, 1, 1, 0.5,
                   0, Math.PI*2,
                   0.5, 0.5))
+            this.scene.sfx('explosion-3', 0.3)
             break;
         }
     },

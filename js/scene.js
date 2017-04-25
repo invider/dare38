@@ -29,6 +29,15 @@ var scene = {
         if (node.init) node.init(this.root, scene)
     },
 
+    sfx: function(name, vol) {
+        var audio = this.res.sfx[name]
+        if (!audio) return
+		//var snd = new Audio(audio.src)
+        var snd = audio
+        if (vol) snd.volume = vol
+        snd.play()
+    },
+
     initStatistic: function (scene){
         var statistic = this.statistic = {
             fps: 0,
@@ -98,6 +107,8 @@ var scene = {
     }
 };
 scene.initStatistic(scene);
+
+
 // === INIT ====
 function expandCanvas() {
     var canvas = document.getElementById('canvas')
