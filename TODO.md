@@ -1,18 +1,16 @@
 
 TODO
 ====
-- [ ] labels for stat
-- [ ] hide/show FPS
-- [ ] play sfx function
-- [ ] map sfx to events
-- [ ] jetpack overheat
-- [ ] respawn sprite
-- [ ] gun sprite
-- [ ] bomb sprite
 - [ ] flying stars on background
 - [ ] load and play background music
-- [ ] draw tile sprites
 - [ ] fix jetpack missing bug (explosion should not be killed)
+- [x] labels for stat
+- [x] play sfx function
+- [x] map sfx to events
+- [x] jetpack overheat
+- [x] respawn sprite
+- [x] gun sprite
+- [x] bomb sprite
 - [x] more explosions
 - [x] explosion/particles layer
 - [x] restart level
