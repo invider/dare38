@@ -52,6 +52,14 @@ ActiveElement.prototype.evolve = function(delta, scene){
     else {
         this.acum += delta;
     }
+
+    // autokill for remote areas
+	if (this.x > scene.width + 200 ||
+		this.y > scene.height + 200 ||
+		this.x < -200 ||
+		this.y < -200){
+			scene.root.kill(this)
+    }
 };
 
 ActiveElement.prototype.render = function(ctx){

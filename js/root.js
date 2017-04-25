@@ -134,7 +134,7 @@ var _$root = {
         this.turretTag.label = "Turrets: " + scene.statistic.turrets
         this.heatTag.label = "Heat: " +  (scene.root.player ? Math.floor(scene.root.player.stats.overheat*100) : 0) + "°"
 
-        this.levelTag.label = "Level: " + (scene.statistic.level+1)
+        this.levelTag.label = "Level: " + (scene.level+1)
         this.waveTag.label = "Wave: " + (scene.statistic.diggersToSpawn
                 - scene.statistic.spawnedDiggers)
         this.playtimeTag.label = "Time: " + Math.floor((scene.statistic.playTime % 3600) / 60)

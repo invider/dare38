@@ -43,12 +43,11 @@ var scene = {
             fps: 0,
             turrets: 10,
             maxTurrets: 10,
-            walls: 10,
-            maxWalls: 10,
-            bombs: 3,
-            maxBombs: 3,
+            walls: 20,
+            maxWalls: 20,
+            bombs: 5,
+            maxBombs: 5,
             lifes: 50000000,
-            level: 0,
             scene: scene,
             diggersToSpawn: 0 ,
             spawnedDiggers:0,
@@ -88,7 +87,7 @@ var scene = {
 
         // next level floating message
         var nextLevelMsg = new FloatingText(0, 0,
-                "Next Level! #" + this.level, "#FF8000", "32px alien", "center")
+                "Level Up!", "#FF8000", "32px alien", "center")
         nextLevelMsg.lifespan = 7 
         nextLevelMsg.fadespan = 2
         nextLevelMsg.dx = 20
