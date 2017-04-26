@@ -17,10 +17,10 @@ var Player = function(x, y, scene) {
     	isOverheated:false
 	}
     this.engine1 = new Explosion(x, y+0.8, -1, 200,
-        scene.res.img['particle-yellow'], 0.3, 0, 0.8, 0.2,
+        false, 0.1, 0, 0.8, 0.2,
         Math.PI/2-Math.PI/16, Math.PI/8, 1, 0.5)
     this.engine2 = new Explosion(x+0.9, y+0.8, -1, 200,
-        scene.res.img['particle-yellow'], 0.3, 0, 0.8, 0.2,
+        false, 0.1, 0, 0.8, 0.2,
         Math.PI/2-Math.PI/16, Math.PI/8, 1, 0.5)
     scene.attach(this.engine1)
     scene.attach(this.engine2)
@@ -108,10 +108,14 @@ Player.prototype.evolve = function(delta, scene) {
 	scene.physics.clearEvents();
 	scene.physics.evolve(this, delta);
 
+    // fix engines
     this.engine1.x = this.x+0.1
     this.engine1.y = this.y+0.8
     this.engine2.x = this.x+0.9
     this.engine2.y = this.y+0.8
+    var heat = (_jetpackOverheatTime/this.stats.overheat) * 255
+    //this.engine1.color = "rgba(255, 255, 255, 100)";
+    this.engine1.color = "#FFFF00"
 };
 
 Player.prototype.render = function(ctx, scene) {

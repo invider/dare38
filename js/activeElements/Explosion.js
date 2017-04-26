@@ -5,6 +5,7 @@ var Explosion = function(x, y, lifespan, force,
     this.x = x
     this.y = y
     this.img = particleImg
+    this.color = "#FFFFFF"
     this.size = size
     this.vsize = vsize
     this.speed = speed
@@ -37,7 +38,7 @@ var Explosion = function(x, y, lifespan, force,
         this.dy = Math.sin(angle) * speed
         this.lifespan = lifespan
         this.maxspan = lifespan
-        this.fadespan = this.lifespan*2
+        this.fadespan = this.lifespan*4
 
         this.mutate = function(delta) {
             this.lifespan -= delta
@@ -57,8 +58,20 @@ var Explosion = function(x, y, lifespan, force,
                 ctx.globalAlpha = 1
             }
             */
-            ctx.globalAlpha = 0.5
-            ctx.drawImage(this.img, this.x-this.r/2, this.y-this.r/2, this.r, this.r);
+            if (this.img) {
+                ctx.globalAlpha = 0.5
+                ctx.drawImage(this.img, this.x-this.r/2, this.y-this.r/2, this.r, this.r);
+            } else {
+                ctx.beginPath();
+                if (this.lifespan < this.fadespan) {
+                    ctx.globalAlpha = this.lifespan/this.fadespan
+                } else {
+                    ctx.globalAlpha = 1
+                }
+                ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
         }
     }
 
