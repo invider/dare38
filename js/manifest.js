@@ -57,5 +57,6 @@ var _$resManifest = {
 	{ name:"powerup-1", src:"sfx/powerup-1.wav" },
 	{ name:"robot-1", src:"sfx/robot-1.wav" },
 	{ name:"select-1", src:"sfx/select-1.wav" },
+	{ name:"refill", src:"sfx/pickup-1.wav" },
   ],
 };

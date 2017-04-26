@@ -2,6 +2,8 @@ var BombStation = function () {
     RefillStation.call(this);
     this.hp = 1000;
     this.radius = 2
+    this.wait = 0
+    this.delay = 2
 
     this.render = function (ctx, scene) {
         ctx.drawImage(scene.res.img['door-5'],this.x, this.y, this.width, this.height);
@@ -11,5 +13,8 @@ var BombStation = function () {
 Util.extend(BombStation, RefillStation);
 
 BombStation.prototype.refill = function(scene){
-    scene.statistic.bombs = scene.statistic.maxBombs;
+    if (scene.statistic.bombs < scene.statistic.maxBombs) {
+        scene.statistic.bombs++
+        scene.sfx('refill')
+    }
 }

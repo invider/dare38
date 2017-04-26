@@ -11,8 +11,8 @@ var Player = function(x, y, scene) {
 
 	this.type = "Player";
      this.stats = {
-		fuel:100,
-		maxFuel:100,
+        fuel: 100,
+		maxFuel: 100,
         overheat:0.0,
     	isOverheated:false
 	}
@@ -132,4 +132,8 @@ Player.prototype.kill = function(){
     scene.root.killNearbyNodes(this.x, this.y, 3)
     scene.root.planet.hit(this.x, this.y, 3, 100000000)
 	scene.root.player = false;
+    // no more goodies!
+    this.scene.statistic.walls = 0
+    this.scene.statistic.bombs = 0
+    this.scene.statistic.turrets = 0
 };
