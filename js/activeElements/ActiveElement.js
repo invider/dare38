@@ -35,7 +35,6 @@ ActiveElement.prototype.kill = function(){
 ActiveElement.prototype.hit = function(power){
     this.hp -= power;
     if (this.hp <= 0){
-        console.log("killed by hit:" + this);
         this.scene.root.kill(this);
     }
 };
