@@ -119,7 +119,9 @@ Player.prototype.evolve = function(delta, scene) {
     this.engine2.y = this.y+0.8
     // update exhaust color depending on overheat
     var heat = 255
-    if (this.stats.overheat > 0) {
+    if (this.stats.isOverheated) {
+        heat = 0
+    } if (this.stats.overheat > 0) {
         heat = Math.floor((1-this.stats.overheat/_jetpackOverheatTime) * 255)
     }
     this.engine1.color = "rgb(255,"+ heat + ",0)"

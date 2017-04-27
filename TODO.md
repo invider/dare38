@@ -4,6 +4,8 @@ TODO
 - [ ] flying stars on background
 - [ ] load and play background music
 - [ ] fix jetpack missing bug (explosion should not be killed)
+- [x] responsive exhaust
+- [x] pause on keys
 - [x] labels for stat
 - [x] play sfx function
 - [x] map sfx to events

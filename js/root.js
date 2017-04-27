@@ -2,6 +2,7 @@
 var _$root = {
     entity: [],
     player: false,
+    paused: false,
 
     init: function(parent, scene) {
         // Create the World!
@@ -105,14 +106,20 @@ var _$root = {
     },
 
     evolve: function(delta, scene) {
-        if (scene.keys[27]){
-            delete scene.keys[27];
-            scene.gameRestart();
+        if (scene.keys[this.env.ESC]){
+            delete scene.keys[this.env.ESC]
+            scene.gameRestart()
         }
-        if (scene.keys[46]){
-            delete scene.keys[46];
-            scene.levelComplete();
+        if (scene.keys[this.env.F1]){
+            delete scene.keys[this.env.F1]
+            scene.levelComplete()
         }
+        if (scene.keys[this.env.PAUSE]) {
+            delete scene.keys[this.env.PAUSE]
+            this.paused = true
+        }
+        if (this.paused) return
+
         if (!this.player){
             this.spawnPlayer();
         }

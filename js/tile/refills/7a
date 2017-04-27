@@ -15,14 +15,13 @@ Util.extend(BombStation, RefillStation);
 BombStation.prototype.refill = function(scene){
     if (scene.statistic.bombs < scene.statistic.maxBombs) {
         scene.statistic.bombs++
-        var msg = new FloatingText(this.x+1, this.y-1,
-                "+1 bomb", "#FF0030", "1px alien", "absolute")
+        var msg = new FloatingText(this.x+0.5, this.y-0.5,
+                "+1 fuel", "#FF0030", "0.4px alien", "absolute")
         msg.dx = 1
         msg.dy = -1
-        msg.lifespan = 5
-        msg.fadespan = 2
         msg.shaddow = false
         scene.root.effect.attach(msg) 
-        scene.sfx('recharge')
+        //scene.root.title.attach(msg)
+        scene.sfx('refill')
     }
 }

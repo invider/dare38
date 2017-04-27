@@ -18,5 +18,14 @@ FuelStation.prototype.refill = function(scene){
     if (scene.root.player.stats.fuel > scene.root.player.stats.maxFuel) {
         scene.root.player.stats.fuel = scene.root.player.stats.maxFuel
     }
-    scene.sfx('refill')
+
+    var msg = new FloatingText(this.x+1, this.y-1,
+            "+5 fuel", "#FFFF00", "1px alien", "absolute")
+    msg.dx = 1.5
+    msg.dy = -1.5
+    msg.lifespan = 4
+    msg.fadespan = 2
+    msg.shaddow = false
+    scene.root.effect.attach(msg) 
+    scene.sfx('refuel')
 };

@@ -300,10 +300,13 @@ function handleContextMenu() {
 
 function handleKeyDown(e) {
     var code = e.which || e.keyCode
-    if (code == 116 || code == 123){
-        return true;
+    scene.keys[code] = true
+
+    // out of pause
+    if (scene.root.paused) {
+        scene.root.paused = false
+        delete scene.keys[scene.root.env.PAUSE]
     }
-    scene.keys[code] = 1
 
     e.preventDefault()
     e.stopPropagation()

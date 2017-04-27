@@ -5,6 +5,8 @@ var _$env = {
     SHIFT: 16,
     DEL: 8,
     ESC: 27,
+    PAUSE: 80,
+    F1: 112,
 
     UP: 38,
     DOWN: 40,
