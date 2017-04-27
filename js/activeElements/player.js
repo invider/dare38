@@ -3,6 +3,10 @@ var _bombSpawnRate = 2.0;
 var _jetpackOverheatTime = 2;
 var _decreasOverheatVal = 0.02;
 var _decreasIfOverheatedVal = 0.01;
+var _varEngineForce = 300
+var _minEngineForce = 10
+var _varExhaustLevel = 0.25
+var _fuelBurnRate = 4
 
 
 var Player = function(x, y, scene) {
@@ -10,16 +14,16 @@ var Player = function(x, y, scene) {
 	this.bombSpawnRate = 0.0;
 
 	this.type = "Player";
-     this.stats = {
+    this.stats = {
         fuel: 100,
 		maxFuel: 100,
         overheat:0.0,
     	isOverheated:false
 	}
-    this.engine1 = new Explosion(x, y+0.8, -1, 200,
+    this.engine1 = new Explosion(x, y+0.8, -1, 1,
         false, 0.1, 0, 0.8, 0.2,
         Math.PI/2-Math.PI/16, Math.PI/8, 1, 0.5)
-    this.engine2 = new Explosion(x+0.9, y+0.8, -1, 200,
+    this.engine2 = new Explosion(x+0.9, y+0.8, -1, 1,
         false, 0.1, 0, 0.8, 0.2,
         Math.PI/2-Math.PI/16, Math.PI/8, 1, 0.5)
     scene.attach(this.engine1)
@@ -44,7 +48,7 @@ Player.prototype.evolve = function(delta, scene) {
 
 	if ((scene.keys[scene.root.env.UP] || scene.keys[scene.root.env._UP]) && this.stats.fuel > 0 && !this.stats.isOverheated){
     	this.stats.overheat += delta;
-		this.stats.fuel -= delta * 2;
+		this.stats.fuel -= delta * _fuelBurnRate;
 		if (this.stats.fuel < 0){
 			this.stats.fuel = 0;
 		}
@@ -113,9 +117,21 @@ Player.prototype.evolve = function(delta, scene) {
     this.engine1.y = this.y+0.8
     this.engine2.x = this.x+0.9
     this.engine2.y = this.y+0.8
-    var heat = (_jetpackOverheatTime/this.stats.overheat) * 255
-    //this.engine1.color = "rgba(255, 255, 255, 100)";
-    this.engine1.color = "#FFFF00"
+    // update exhaust color depending on overheat
+    var heat = 255
+    if (this.stats.overheat > 0) {
+        heat = Math.floor((1-this.stats.overheat/_jetpackOverheatTime) * 255)
+    }
+    this.engine1.color = "rgb(255,"+ heat + ",0)"
+    this.engine2.color = "rgb(255,"+ heat + ",0)"
+    // update exhaust depending on fuel
+    var e = this.stats.fuel/this.stats.maxFuel
+    var exhaust = 1 / (_minEngineForce + _varEngineForce)
+    if (e < _varExhaustLevel) {
+        var exhaust = 1/(_minEngineForce + ((this.stats.fuel/this.stats.maxFuel)/_varExhaustLevel) * _varEngineForce)
+    }
+    this.engine1.frequency = exhaust
+    this.engine2.frequency = exhaust
 };
 
 Player.prototype.render = function(ctx, scene) {

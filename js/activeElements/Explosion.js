@@ -25,9 +25,10 @@ var Explosion = function(x, y, lifespan, force,
         return Math.random() * n
     }
 
-    this.Particle = function(img, x, y, speed, angle, lifespan) {
+    this.Particle = function(img, color, x, y, speed, angle, lifespan) {
         this.alive = true
         this.img = img
+        this.color = color
         this.r = 1
         this.gr = -this.r
         this.x = x
@@ -38,7 +39,7 @@ var Explosion = function(x, y, lifespan, force,
         this.dy = Math.sin(angle) * speed
         this.lifespan = lifespan
         this.maxspan = lifespan
-        this.fadespan = this.lifespan*4
+        this.fadespan = this.lifespan*2
 
         this.mutate = function(delta) {
             this.lifespan -= delta
@@ -69,7 +70,7 @@ var Explosion = function(x, y, lifespan, force,
                     ctx.globalAlpha = 1
                 }
                 ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
-                ctx.fillStyle = this.color;
+                ctx.fillStyle = this.color
                 ctx.fill();
             }
         }
@@ -78,6 +79,7 @@ var Explosion = function(x, y, lifespan, force,
     this.createParticle = function() {
         var p = new this.Particle(
                 this.img,
+                this.color,
                 this.x,
                 this.y,
                 this.speed + this.rnd(this.vspeed),                // speed
