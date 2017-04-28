@@ -14,6 +14,8 @@ var FloatingText = function(x, y, label, color, font, ancor) {
     // dynamic values
     this.lifespan = -1
     this.fadespan = -1
+    this.fadein = -1
+    this.fadeval = -1
 }
 
 FloatingText.prototype.init = function(parent, scene) {
@@ -28,6 +30,10 @@ FloatingText.prototype.evolve = function(delta, scene) {
             this.parent._killNode(this)
         }
     }
+    if (this.fadeval > 0) {
+        this.fadeval -= delta
+        if (this.fadeval < 0) this.fadeval = 0
+    }
     if (this.dx) this.x += this.dx*delta
     if (this.dy) this.y += this.dy*delta
 }
@@ -37,6 +43,9 @@ FloatingText.prototype.render = function(ctx, scene) {
 
     if (this.lifespan > 0 && this.fadespan > 0 && this.lifespan < this.fadespan) {
         ctx.globalAlpha = this.lifespan / this.fadespan
+    } else if (this.fadein > 0) {
+        if (this.fadeval < 0) this.fadeval = this.fadein
+        ctx.globalAlpha = 1 - this.fadeval/this.fadein
     }
 
     switch(this.ancor) {

@@ -87,7 +87,7 @@ var scene = {
 
         // next level floating message
         var nextLevelMsg = new FloatingText(0, 0,
-                "Level Up!", "#FF8000", "32px alien", "center")
+                "Level Up!", "#FF8000", "48px alien", "center")
         nextLevelMsg.lifespan = 7 
         nextLevelMsg.fadespan = 2
         nextLevelMsg.dx = 20

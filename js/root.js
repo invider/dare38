@@ -148,6 +148,36 @@ var _$root = {
                 + ":" + Math.floor(scene.statistic.playTime % 60)
 
         this.fpsTag.label = "FPS: " + scene.statistic.fps
+
+        // game over titles
+        if (scene.gameoverFlag) {
+            scene.gameoverTick += delta
+            if (scene.gameoverTick > 4 && scene.gameoverState == 0) {
+                scene.gameoverState++
+                this.showTitle("Credits", scene)
+            } else if (scene.gameoverTick > 8 && scene.gameoverState == 1) {
+                scene.gameoverState++
+                this.showTitle("Anatoliy Yakushko", scene)
+            } else if (scene.gameoverTick > 12 && scene.gameoverState == 2) {
+                scene.gameoverState++
+                this.showTitle("Boris Sheludchenko", scene)
+            } else if (scene.gameoverTick > 16 && scene.gameoverState == 3) {
+                scene.gameoverState++
+                this.showTitle("Tymur Zablockiy", scene)
+            } else if (scene.gameoverTick > 20 && scene.gameoverState == 4) {
+                scene.gameoverState++
+                this.showTitle("Igor Khotin", scene)
+            }
+        }
+    },
+
+    showTitle: function(msg, scene) {
+        var title = new FloatingText(0, scene.screenHeight/2, msg, "#FFFF00", "32px alien", "center")
+        title.lifespan = 20
+        title.fadein = 2
+        title.fadespan = 2
+        title.dy = -20
+        scene.root.title.attach(title)
     },
 
     _killNode: function(node){
@@ -206,6 +236,8 @@ var _$root = {
         }
     },
     portalKilled: function(){
+        this.scene.gameoverTick = 0;
+        this.scene.gameoverState = 0;
         this.scene.gameOver();
     },
     render: function(ctx, scene) {
