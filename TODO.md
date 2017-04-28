@@ -1,6 +1,12 @@
-
 TODO
 ====
+- [ ] titles with credits
+- [ ] free following camera (for bigger levels)
+- [ ] level complete condition
+- [ ] bomb load visual indicator?
+- [ ] wall load visual indicator?
+- [ ] turret load visual indicator?
+- [ ] "Pause<LF> Press any key to continue..." label
 - [ ] flying stars on background
 - [ ] load and play background music
 - [ ] fix jetpack missing bug (explosion should not be killed)
