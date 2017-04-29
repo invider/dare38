@@ -81,5 +81,4 @@ var Util = {
     getLength: function(x, y, xx, yy){
         return Math.sqrt(Math.pow(x - xx, 2) + Math.pow(y - yy, 2));
     }
-
 };

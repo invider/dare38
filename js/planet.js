@@ -33,9 +33,10 @@ var PlanetProto = function () {
             .map(function (s) {
                 return s.trim();
             });
-
         field = field.concat(chunk);
     }
+    field = Mapper.applyMapping(field, "*", ["X"]);
+    field = Mapper.applyMapping(field, "-", ["X", "0", "g"]);
 
     this.generate = function(scene) {
         this.x = 0;
@@ -185,7 +186,8 @@ var PlanetProto = function () {
  *
  * @type {PlanetProto}
  */
-var _Planet = new PlanetProto(
+var levels = [];
+levels[0] = new PlanetProto(
     "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
     "XWWWWWWWWWWW            WWWWWWWWWWWWWWWWWWWWX",
     "XIIIIIIIW                  QQQQQQQQQQQQQQQQQX",
@@ -210,3 +212,30 @@ var _Planet = new PlanetProto(
     "X                     P                     X", 
     "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
 );
+for (var i=0; i<100; i++){
+    levels.push(new PlanetProto(
+        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        "X*******************************************X",
+        "X*******************************************X",
+        "X*******************************************X",
+        "X*******************************************X",
+        "X*******************************************X",
+        "X*******************************************X",
+        "X*******************************************X",
+        "X*******************************************X",
+        "X*******************************************X",
+        "X*******************************************X",
+        "X*******************************************X",
+        "X*******************************************X",
+        "X*******************************************X",
+        "X*******************************************X",
+        "X**************                 ***********X",
+        "X                                           X",
+        "X  ******    0 BBw  tBBBb  fBB000    ****** X",
+        "X  ******    0BBBBBBBBBBBBBBBBBB0    ****** X",
+        "X  ******    BBBBBBBBBBBBBBBBBBBB    ****** X",
+        "X  ******             P              ****** X",
+        "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
+    ));
+}
+

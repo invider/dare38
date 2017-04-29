@@ -8,7 +8,7 @@ var _$root = {
         // Create the World!
         this.env = _$env
         this.background = _background;
-        this.planet = _Planet;
+        this.planet = levels[scene.level % levels.length];
         this.scene = scene;
         this.planet.init(this, scene);
         this.evilSource = _evilSource;
