@@ -1,4 +1,5 @@
 /** @type Entity */
+
 var _$root = {
     entity: [],
     player: false,
@@ -99,6 +100,15 @@ var _$root = {
                 var spawnPoint = this.planet.getSpawnPoint();
                 this.player = new Player(spawnPoint.x, spawnPoint.y, this.scene);
                 this.entity.push(this.player);
+
+                this.effect.attach(new Explosion(
+                    spawnPoint.x+0.5, spawnPoint.y+0.5,
+                    0.1, 6000,
+                    this.scene.res.img['particle-cyan'],
+                    0.5, 0, 4, 0, // size/v, speed/v
+                    0, Math.PI*2,
+                    0.7, 0.2))
+                this.scene.sfx('respawn')
             } else {
                 this.scene.gameOver();
             }
@@ -152,19 +162,19 @@ var _$root = {
         // game over titles
         if (scene.gameoverFlag) {
             scene.gameoverTick += delta
-            if (scene.gameoverTick > 4 && scene.gameoverState == 0) {
+            if (scene.gameoverTick > 2 && scene.gameoverState == 0) {
                 scene.gameoverState++
                 this.showTitle("Credits", scene)
-            } else if (scene.gameoverTick > 8 && scene.gameoverState == 1) {
+            } else if (scene.gameoverTick > 7 && scene.gameoverState == 1) {
                 scene.gameoverState++
                 this.showTitle("Anatoliy Yakushko", scene)
-            } else if (scene.gameoverTick > 12 && scene.gameoverState == 2) {
+            } else if (scene.gameoverTick > 11 && scene.gameoverState == 2) {
                 scene.gameoverState++
                 this.showTitle("Boris Sheludchenko", scene)
-            } else if (scene.gameoverTick > 16 && scene.gameoverState == 3) {
+            } else if (scene.gameoverTick > 15 && scene.gameoverState == 3) {
                 scene.gameoverState++
                 this.showTitle("Tymur Zablockiy", scene)
-            } else if (scene.gameoverTick > 20 && scene.gameoverState == 4) {
+            } else if (scene.gameoverTick > 19 && scene.gameoverState == 4) {
                 scene.gameoverState++
                 this.showTitle("Igor Khotin", scene)
             }
@@ -172,7 +182,7 @@ var _$root = {
     },
 
     showTitle: function(msg, scene) {
-        var title = new FloatingText(0, scene.screenHeight/2, msg, "#FFFF00", "32px alien", "center")
+        var title = new FloatingText(-50, scene.screenHeight, msg, "#FFFF00", "32px alien", "right")
         title.lifespan = 20
         title.fadein = 2
         title.fadespan = 2
@@ -235,10 +245,12 @@ var _$root = {
             this._killNode(toKill[i]);
         }
     },
+    // Actual GameOver event
     portalKilled: function(){
         this.scene.gameoverTick = 0;
         this.scene.gameoverState = 0;
         this.scene.gameOver();
+        this.scene.sfx('gameover')
     },
     render: function(ctx, scene) {
         this.background.render(ctx, scene)
@@ -251,10 +263,15 @@ var _$root = {
         var horizontalEdge = scene.screenWidth - (scene.width * scaleFactor)
         ctx.translate(horizontalEdge/2,verticalEdge/2)
         ctx.scale(scaleFactor, scaleFactor);
+
+        ctx.imageSmoothingEnabled = true
         this.planet.render(ctx, scene);
+
+        ctx.imageSmoothingEnabled = false
         Util.renderChildren(this.entity, ctx, scene);
 
         // draw effects
+        ctx.imageSmoothingEnabled = true
         this.effect.render(ctx, scene)
 
         // transform back to origins

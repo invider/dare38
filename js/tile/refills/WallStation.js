@@ -22,6 +22,6 @@ WallStation.prototype.refill = function(scene){
         msg.fadespan = 2
         msg.shaddow = false
         scene.root.effect.attach(msg) 
-        scene.sfx('rewall')
+        scene.sfx('pickup-block')
     }
 }

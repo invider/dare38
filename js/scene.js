@@ -93,6 +93,7 @@ var scene = {
         nextLevelMsg.dx = 20
         nextLevelMsg.dy = -20
         this.root.title.attach(nextLevelMsg)
+        this.sfx('levelup', 1)
     },
     gameOver: function(){
         this.gameoverFlag = true;

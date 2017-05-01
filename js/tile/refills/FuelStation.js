@@ -2,7 +2,7 @@ var FuelStation = function () {
     RefillStation.call(this);
     this.hp = 1000;
     this.radius = 2
-    this.delay = 1
+    this.delay = 1.5
 
     this.render = function (ctx, scene) {
         ctx.drawImage(scene.res.img['door-4'],this.x, this.y, this.width, this.height);
@@ -27,5 +27,5 @@ FuelStation.prototype.refill = function(scene){
     msg.fadespan = 2
     msg.shaddow = false
     scene.root.effect.attach(msg) 
-    scene.sfx('refuel')
+    scene.sfx('pickup-fuel')
 };

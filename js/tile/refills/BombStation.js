@@ -23,6 +23,6 @@ BombStation.prototype.refill = function(scene){
         msg.fadespan = 2
         msg.shaddow = false
         scene.root.effect.attach(msg) 
-        scene.sfx('recharge')
+        scene.sfx('pickup-bomb')
     }
 }

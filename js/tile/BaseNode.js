@@ -12,7 +12,6 @@ var BaseNode = function () {
         }
         this.scene.root.planet.removeNode(this);
         this.scene.root.explode('wall', this);
-        Util.playSound("BaseHit");
         return false;
     };
     this.render = function (ctx, scene) {
