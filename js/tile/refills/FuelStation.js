@@ -27,5 +27,5 @@ FuelStation.prototype.refill = function(scene){
     msg.fadespan = 2
     msg.shaddow = false
     scene.root.effect.attach(msg) 
-    scene.sfx('pickup-fuel')
+    scene.sfx('pickup-fuel', 0.4)
 };

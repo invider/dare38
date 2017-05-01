@@ -90,6 +90,26 @@ var _$root = {
                   0.5, 0.5))
             this.scene.sfx('explosion-3', 0.3)
             break;
+        case 'respawn':
+            this.effect.attach(new Explosion(
+                src.x+0.5, src.y+0.5,
+                0.1, 6000,
+                this.scene.res.img['particle-cyan'],
+                0.5, 0, 4, 0, // size/v, speed/v
+                0, Math.PI*2,
+                0.7, 0.2))
+            this.scene.sfx('respawn')
+            break;
+        case 'digger-spawn':
+            this.effect.attach(new Explosion(
+                src.x+0.5, src.y+0.5,
+                0.1, 5000,
+                this.scene.res.img['particle-red'],
+                0.5, 0, 4, 0, // size/v, speed/v
+                0, Math.PI*2,
+                0.5, 0.1))
+            this.scene.sfx('digger-spawn', 0.2)
+            break;
         }
     },
     
@@ -100,15 +120,7 @@ var _$root = {
                 var spawnPoint = this.planet.getSpawnPoint();
                 this.player = new Player(spawnPoint.x, spawnPoint.y, this.scene);
                 this.entity.push(this.player);
-
-                this.effect.attach(new Explosion(
-                    spawnPoint.x+0.5, spawnPoint.y+0.5,
-                    0.1, 6000,
-                    this.scene.res.img['particle-cyan'],
-                    0.5, 0, 4, 0, // size/v, speed/v
-                    0, Math.PI*2,
-                    0.7, 0.2))
-                this.scene.sfx('respawn')
+                this.explode('respawn', this.player);
             } else {
                 this.scene.gameOver();
             }
@@ -164,32 +176,33 @@ var _$root = {
             scene.gameoverTick += delta
             if (scene.gameoverTick > 2 && scene.gameoverState == 0) {
                 scene.gameoverState++
-                this.showTitle("Credits", scene)
+                this.showTitle("Credits", "#80FF20", scene)
             } else if (scene.gameoverTick > 7 && scene.gameoverState == 1) {
                 scene.gameoverState++
-                this.showTitle("Anatoliy Yakushko", scene)
+                this.showTitle("Anatoliy Yakushko", "#FFFF00", scene)
             } else if (scene.gameoverTick > 11 && scene.gameoverState == 2) {
                 scene.gameoverState++
-                this.showTitle("Boris Sheludchenko", scene)
+                this.showTitle("Boris Sheludchenko", "#FFFF00", scene)
             } else if (scene.gameoverTick > 15 && scene.gameoverState == 3) {
                 scene.gameoverState++
-                this.showTitle("Tymur Zablockiy", scene)
+                this.showTitle("Tymur Zablockiy", "#FFFF00", scene)
             } else if (scene.gameoverTick > 19 && scene.gameoverState == 4) {
                 scene.gameoverState++
-                this.showTitle("Igor Khotin", scene)
+                this.showTitle("Igor Khotin", "#FFFF00", scene)
             } else if (scene.gameoverTick > 25 && scene.gameoverState == 5) {
                 scene.gameoverState++
-                this.showTitle("Specially for Ludum Dare 38 Jam", scene)
+                this.showTitle("Specially for Ludum Dare 38 Jam", "#FFC000", scene)
             }
         }
     },
 
-    showTitle: function(msg, scene) {
-        var title = new FloatingText(-50, scene.screenHeight, msg, "#FFFF00", "32px alien", "right")
-        title.lifespan = 20
+    showTitle: function(msg, color, scene) {
+        var title = new FloatingText(-50, scene.screenHeight, msg, color, "32px alien", "right")
+        var speed = 20
+        title.dy = -speed
+        title.lifespan = (scene.screenHeight/2)/speed // live for half a screen
         title.fadein = 2
         title.fadespan = 2
-        title.dy = -20
         scene.root.title.attach(title)
     },
 

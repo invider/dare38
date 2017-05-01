@@ -10,6 +10,7 @@ TODO
 - [ ] flying stars on background
 - [ ] load and play background music
 - [ ] fix jetpack missing bug (explosion should not be killed)
+- [ ] on Firefox tranlsated font doesn't work, need to recalculate player screen coordinates and put text there
 - [x] responsive exhaust
 - [x] pause on keys
 - [x] labels for stat

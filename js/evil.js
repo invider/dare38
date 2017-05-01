@@ -11,8 +11,10 @@ var _evilSource = {
             delete scene.keys[118];
             scene.statistic.spawnedDiggers ++;
             scene.statistic.diggersAlive ++;
-            scene.attach(new Digger(Math.random() * scene.width, 1, scene));
-            scene.sfx('digger-respawn', 0.5)
+
+            var digger = new Digger(Math.floor((Math.random() * scene.width-2)) + 1, 0, scene)
+            scene.attach(digger)
+            scene.root.explode('digger-spawn', digger)
         }
     }
 };

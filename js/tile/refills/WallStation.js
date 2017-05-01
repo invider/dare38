@@ -2,7 +2,7 @@ var WallStation = function () {
     RefillStation.call(this);
     this.hp = 1000;
     this.radius = 2
-    this.delay = 0.5
+    this.delay = 0.7
 
     this.render = function (ctx, scene) {
         ctx.drawImage(scene.res.img['door-3'],this.x, this.y, this.width, this.height);

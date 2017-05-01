@@ -39,8 +39,10 @@ Player.prototype.evolve = function(delta, scene) {
 	}
 
 	if (scene.keys[scene.root.env.RIGHT] || scene.keys[scene.root.env._RIGHT]){
+        if (this.horzAcceleration === 0) this.scene.sfx('vengine', 0.2)
 		this.horzAcceleration = 17;
     } else if (scene.keys[scene.root.env.LEFT] || scene.keys[scene.root.env._LEFT]){
+        if (this.horzAcceleration === 0) this.scene.sfx('vengine', 0.2)
 		this.horzAcceleration = - 17;
 	} else {
 		this.horzAcceleration = 0;
@@ -53,6 +55,9 @@ Player.prototype.evolve = function(delta, scene) {
 			this.stats.fuel = 0;
 		}
 
+        if (this.acceleration == 0 && !this.stats.isOverheated) {
+            this.scene.sfx('engine', 0.2)
+        }
 		this.acceleration = 20;
 		if (this.stats.overheat > _jetpackOverheatTime){
 			this.stats.isOverheated = true;
