@@ -177,6 +177,9 @@ var _$root = {
             } else if (scene.gameoverTick > 19 && scene.gameoverState == 4) {
                 scene.gameoverState++
                 this.showTitle("Igor Khotin", scene)
+            } else if (scene.gameoverTick > 25 && scene.gameoverState == 5) {
+                scene.gameoverState++
+                this.showTitle("Specially for Ludum Dare 38 Jam", scene)
             }
         }
     },
