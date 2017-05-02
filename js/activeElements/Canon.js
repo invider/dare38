@@ -1,5 +1,37 @@
 var Canon = function(x, y, scene) {
-    ActiveElement.call(this, x, y, scene, [ scene.res.img['gun-man'] ], 100);
+    ActiveElement.call(this, x, y, scene, [
+            scene.res.img['drone-1'],
+            scene.res.img['drone-1'],
+            scene.res.img['drone-1'],
+            scene.res.img['drone-1'],
+            scene.res.img['drone-1'],
+            scene.res.img['drone-1'],
+            scene.res.img['drone-1'],
+            scene.res.img['drone-1'],
+            scene.res.img['drone-1'],
+            scene.res.img['drone-2'],
+            scene.res.img['drone-3'],
+            scene.res.img['drone-4'],
+            scene.res.img['drone-5'],
+            scene.res.img['drone-6'],
+            scene.res.img['drone-7'],
+            scene.res.img['drone-8'],
+            scene.res.img['drone-9'],
+            scene.res.img['drone-10'],
+            scene.res.img['drone-1'],
+            scene.res.img['drone-1'],
+            scene.res.img['drone-1'],
+            scene.res.img['drone-1'],
+            scene.res.img['drone-10'],
+            scene.res.img['drone-9'],
+            scene.res.img['drone-8'],
+            scene.res.img['drone-7'],
+            scene.res.img['drone-6'],
+            scene.res.img['drone-5'],
+            scene.res.img['drone-4'],
+            scene.res.img['drone-3'],
+            scene.res.img['drone-2'],
+        ], 1500);
 	this.type = "Canon";
 	/** @type {ActiveElement|boolean} */
 	this.enemy = false;
@@ -18,6 +50,7 @@ Canon.prototype.spawnBullet = function(target){
 };
 
 Canon.prototype.evolve = function(delta, scene) {
+    ActiveElement.prototype.evolve.call(this, delta, scene);
 	var my = this;
 	if (new Date().getTime() - this.lastShot > this.shotInterval){
 		var nodes = scene.root.getNearbyNodes(this.x, this.y, this.r)

@@ -23,6 +23,6 @@ TurretStation.prototype.refill = function(scene){
         msg.fadespan = 2
         msg.shaddow = false
         scene.root.effect.attach(msg) 
-        scene.sfx('refill')
+        scene.sfx('pickup-turret', 0.3)
     }
 }
