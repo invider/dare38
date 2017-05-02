@@ -1,16 +1,19 @@
 TODO
 ====
-- [ ] titles with credits
+- [ ] theme music
 - [ ] free following camera (for bigger levels)
+- [ ] background with flying stars
 - [ ] level complete condition
 - [ ] bomb load visual indicator?
 - [ ] wall load visual indicator?
 - [ ] turret load visual indicator?
 - [ ] "Pause<LF> Press any key to continue..." label
+- [ ] "Game Over<LF> Press any key to restart..." label and behavior
 - [ ] flying stars on background
 - [ ] load and play background music
 - [ ] fix jetpack missing bug (explosion should not be killed)
 - [ ] on Firefox tranlsated font doesn't work, need to recalculate player screen coordinates and put text there
+- [x] titles with credits
 - [x] responsive exhaust
 - [x] pause on keys
 - [x] labels for stat
