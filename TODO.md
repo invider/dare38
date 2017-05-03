@@ -2,7 +2,6 @@ TODO
 ====
 - [ ] theme music
 - [ ] free following camera (for bigger levels)
-- [ ] background with flying stars
 - [ ] level complete condition
 - [ ] bomb load visual indicator?
 - [ ] wall load visual indicator?
@@ -13,6 +12,7 @@ TODO
 - [ ] load and play background music
 - [ ] fix jetpack missing bug (explosion should not be killed)
 - [ ] on Firefox tranlsated font doesn't work, need to recalculate player screen coordinates and put text there
+- [x] background with flying stars
 - [x] titles with credits
 - [x] responsive exhaust
 - [x] pause on keys
