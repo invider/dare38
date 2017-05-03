@@ -72,14 +72,14 @@ var _$root = {
             break;
         case 'player':
             this.effect.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1500,
-                  this.scene.res.img['particle-red'], 2, 1, 1, 0.5,
+                  this.scene.res.img['particle-yellow'], 2, 1, 1, 0.5,
                   0, Math.PI*2,
                   0.5, 0.5))
             this.scene.sfx('explosion-3', 0.5)
             break;
         case 'digger':
             this.effect.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1500,
-                  this.scene.res.img['particle-cyan'], 2, 1, 1, 0.5,
+                  this.scene.res.img['particle-red'], 2, 1, 1, 0.5,
                   0, Math.PI*2,
                   0.5, 0.5))
               this.scene.sfx('explosion-1', 0.3)

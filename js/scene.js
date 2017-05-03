@@ -3,7 +3,7 @@ _ = scene = (function(window) {
 "use strict"
 
 var TARGET_FPS = 60
-var MAX_EVO_TIME = 0.1
+var MAX_EVO_TIME = 0.05
 
 var canvas, ctx
 var lastFrame = Date.now()

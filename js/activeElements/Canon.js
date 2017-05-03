@@ -73,7 +73,7 @@ Canon.prototype.evolve = function(delta, scene) {
 };
 
 Canon.prototype.render = function(ctx, scene) {
-    ActiveElement.prototype.render.call(this, ctx, scene);
+    this.currentImg && ctx.drawImage(this.currentImg, this.x, this.y+0.1, this.scaleX, this.scaleY);
 };
 
 Canon.prototype.kill = function() {

@@ -1,6 +1,9 @@
 TODO
 ====
+- [ ] background story
+- [ ] title screen
 - [ ] theme music
+- [ ] pause on loosing focus
 - [ ] free following camera (for bigger levels)
 - [ ] level complete condition
 - [ ] bomb load visual indicator?
@@ -10,6 +13,7 @@ TODO
 - [ ] "Game Over<LF> Press any key to restart..." label and behavior
 - [ ] flying stars on background
 - [ ] load and play background music
+- [ ] fix player jumps inside walls
 - [ ] fix jetpack missing bug (explosion should not be killed)
 - [ ] on Firefox tranlsated font doesn't work, need to recalculate player screen coordinates and put text there
 - [x] background with flying stars
