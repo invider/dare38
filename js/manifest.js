@@ -56,6 +56,9 @@ var _$resManifest = {
 	{ name:"door-3", src:"img/tile/door-3.png"},
 	{ name:"door-4", src:"img/tile/door-4.png"},
 	{ name:"door-5", src:"img/tile/door-5.png"},
+	{ name:"star-blue", src:"img/tile/star-big-blue.png"},
+	{ name:"star-red", src:"img/tile/star-big-red.png"},
+	{ name:"star-yellow", src:"img/tile/star-big-yellow.png"},
   ],
   sfx: [
 	{ name:"explosion-1", src:"sfx/explosion-1.wav" },

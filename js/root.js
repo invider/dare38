@@ -9,6 +9,7 @@ var _$root = {
         // Create the World!
         this.env = _$env
         this.background = _background;
+        this.background.init(this, scene)
         this.planet = levels[scene.level % levels.length];
         this.scene = scene;
         this.planet.init(this, scene);
@@ -145,6 +146,7 @@ var _$root = {
         if (!this.player){
             this.spawnPlayer();
         }
+        this.background.evolve(delta, scene)
         this.evilSource.evolve(delta, scene)
         this.planet.evolve(delta, scene);
         Util.evolveChildren(this.entity, delta, scene);
