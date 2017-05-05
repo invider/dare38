@@ -13,6 +13,7 @@ TODO
 - [ ] "Game Over<LF> Press any key to restart..." label and behavior
 - [ ] flying stars on background
 - [ ] load and play background music
+- [ ] you can build walls on resource points and turrets - dissallow building when something is on the way
 - [ ] fix player jumps inside walls
 - [ ] fix jetpack missing bug (explosion should not be killed)
 - [ ] on Firefox tranlsated font doesn't work, need to recalculate player screen coordinates and put text there

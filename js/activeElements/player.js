@@ -92,11 +92,13 @@ Player.prototype.evolve = function(delta, scene) {
 
 	if (scene.keys[scene.root.env.X]
             || scene.keys[scene.root.env._X]
-            || scene.keys[scene.root.env.__X]){
+            || scene.keys[scene.root.env.__X]
+            || scene.keys[scene.root.env.SHIFT]){
 
 		delete scene.keys[scene.root.env.X];
 		delete scene.keys[scene.root.env._X];
 		delete scene.keys[scene.root.env.__X];
+		delete scene.keys[scene.root.env.SHIFT];
 		if (scene.statistic.turrets > 0){
 			scene.statistic.turrets --;
 			scene.attach(new Canon(this.x, this.y, scene));

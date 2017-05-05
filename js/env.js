@@ -3,6 +3,7 @@ var _$env = {
     // key constants
     SPACE: 32,
     SHIFT: 16,
+    CTRL: 17,
     DEL: 8,
     ESC: 27,
     PAUSE: 80,

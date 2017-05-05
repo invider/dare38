@@ -56,24 +56,6 @@ var scene = {
             playTime: 0,
             time: 0,
             overheat: 0.0,
-            toString:function(){
-                var t = this.playTime
-                return "Level:" + this.scene.level +
-                " Turrets: " + this.turrets + 
-                " Bombs:" + this.bombs + 
-                " walls:" + this.walls + 
-                " Diggers:" + this.spawnedDiggers + 
-                " Left:" + (this.diggersToSpawn - this.spawnedDiggers) + 
-                " Alive:" + this.diggersAlive +
-                (
-                    !this.scene.root.player ? "" : 
-                        ( 
-                            " Fuel:" + this.scene.root.player.stats.fuel +
-                            " Overheat: " + Math.floor(this.scene.root.player.stats.overheat)
-                        )
-                ) +
-                " PlayTime:" + Math.floor(t / 3600) + ":" + Math.floor((t % 3600) / 60) + ":" + Math.floor(t % 60)
-            }
         };
         this.statistic.diggersToSpawn = 30 * (this.level * this.levelRatio + 1);
         this.statistic.startTime = new Date().getTime();
@@ -142,12 +124,6 @@ function init() {
     // setup canvas
     canvas= document.getElementById("canvas")
     ctx = canvas.getContext("2d")
-    if (canvas.webkitRequestFullScreen) {
-        canvas.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT); //Chrome
-    }
-    if (canvas.mozRequestFullScreen) {
-        canvas.mozRequestFullScreen(); //Firefox
-    }
     expandCanvas()
 
     // setup scene
