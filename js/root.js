@@ -22,13 +22,36 @@ var _$root = {
         scene.height = this.planet.ySize
 
         // game over tag
-        this.gameOverTag = new FloatingText(0, -100,
-                "Game Over", "#C02030", "64px alien", "center")
-        this.gameOverTag.render = function(ctx, scene) {
+        var renderFn = function(ctx, scene) {
             if (!scene.gameoverFlag) return;
             FloatingText.prototype.render.call(this, ctx, scene)
         }
+        this.gameOverTag = new FloatingText(0, -100,
+                "Game Over", "#FF4010", "80px alien", "center")
+        this.gameOverTag.render = renderFn
+        this.gameOverTag.sdx = 6
+        this.gameOverTag.sdy = 6
         this.title.attach(this.gameOverTag)
+
+        this.gameOverTag2 = new FloatingText(0, 0,
+                "Press Spacebar to continue", "#FF8000", "40px alien", "center")
+        this.gameOverTag2.render = renderFn
+        this.gameOverTag2.sdx = 5
+        this.gameOverTag2.sdy = 5
+        this.gameOverTag2.blinking = 0.5
+        this.title.attach(this.gameOverTag2)
+
+        this.pauseTag = new FloatingText(0, 0,
+                "Paused... Press any key to continue", "#FF8000", "40px alien", "center")
+        this.pauseTag.render = function(ctx, scene) {
+            if (!scene.gameoverFlag && scene.root.paused) {
+                FloatingText.prototype.render.call(this, ctx, scene)
+            }
+        }
+        this.pauseTag.sdx = 5
+        this.pauseTag.sdy = 5
+        this.pauseTag.blinking = 0.5
+        this.title.attach(this.pauseTag)
 
         // stat
         this.fuelTag = new FloatingText(10, 10, "F", "#FF8000", "24px alien")
@@ -52,6 +75,8 @@ var _$root = {
 
         this.fpsTag = new FloatingText(-10, -10, "FPS", "#C04020", "24px alien", "edge")
         this.title.attach(this.fpsTag)
+
+        this.scene.play('track-1')
     },
 
     explode: function(type, src) {
@@ -133,14 +158,20 @@ var _$root = {
             delete scene.keys[this.env.ESC]
             scene.gameRestart()
         }
+        if (scene.gameoverFlag && scene.keys[this.env.SPACE]) {
+            delete scene.keys[this.env.SPACE]
+            scene.gameRestart()
+        }
         if (scene.keys[this.env.F1]){
             delete scene.keys[this.env.F1]
             scene.levelComplete()
         }
-        if (scene.keys[this.env.PAUSE]) {
+        if (scene.keys[this.env.PAUSE] && !scene.gameoverFlag) {
             delete scene.keys[this.env.PAUSE]
             this.paused = true
         }
+
+        this.title.evolve(delta, scene)
         if (this.paused) return
 
         if (!this.player){
@@ -151,7 +182,6 @@ var _$root = {
         this.planet.evolve(delta, scene);
         Util.evolveChildren(this.entity, delta, scene);
         this.effect.evolve(delta, scene)
-        this.title.evolve(delta, scene)
 
         scene.statusLine = this.scene.statistic.toString();
         scene.checkCompletion();
@@ -269,6 +299,11 @@ var _$root = {
         this.scene.gameoverState = 0;
         this.scene.gameOver();
         this.scene.sfx('gameover')
+
+        var scene = this.scene
+        setTimeout(function() {
+            scene.play('track-2')
+        }, 4000)
     },
     render: function(ctx, scene) {
         this.background.render(ctx, scene)

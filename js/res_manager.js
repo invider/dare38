@@ -5,7 +5,7 @@
 var _$resManager = {
     img: [],
     sfx: [],
-    snd: [],
+    track: {},
     loaded: 0,
     expected: 0,
 
@@ -42,5 +42,12 @@ var _$resManager = {
 		audio.preload = true
         this.sfx[name] = audio;
         //console.log('loading ' + name + " @" + src)
+    },
+    
+    initTrack: function(name, src) {
+		var audio = new Audio(src)
+		audio.preload = false
+        audio.loop = true
+        this.track[name] = audio;
     }
 };

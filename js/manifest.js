@@ -88,4 +88,8 @@ var _$resManifest = {
 	{ name:"levelup", src:"sfx/wave-1.wav" },
 	{ name:"gameover", src:"sfx/gameover.wav" },
   ],
+  music: [
+    { name: "track-1", src: "music/track-1.wav" },
+    { name: "track-2", src: "music/track-2.wav" },
+  ]
 };

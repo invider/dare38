@@ -1,5 +1,7 @@
 var FloatingText = function(x, y, label, color, font, ancor) {
     this.visible = true
+    this.blinking = false
+    this.blinkspan = 0
     this.x = x
     this.y = y
     this.label = label
@@ -34,11 +36,19 @@ FloatingText.prototype.evolve = function(delta, scene) {
         this.fadeval -= delta
         if (this.fadeval < 0) this.fadeval = 0
     }
+    if (this.blinking) {
+        this.blinkspan += delta
+        if (this.blinkspan >= this.blinking) {
+            this.blinkspan = 0
+            this.visible = !this.visible
+        }
+    }
     if (this.dx) this.x += this.dx*delta
     if (this.dy) this.y += this.dy*delta
 }
 
 FloatingText.prototype.render = function(ctx, scene) {
+    if (!this.visible) return
     ctx.font = this.font
 
     if (this.lifespan > 0 && this.fadespan > 0 && this.lifespan < this.fadespan) {

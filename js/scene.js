@@ -1,4 +1,3 @@
-
 _ = scene = (function(window) {
 "use strict"
 
@@ -17,6 +16,10 @@ var scene = {
     pause: true,
     gameoverFlag: false,
 
+    // music
+    playing: false,
+    musicVolume: 0.3,
+
     // event flags
     mouseX: 0,
     mouseY: 0,
@@ -30,12 +33,28 @@ var scene = {
     },
 
     sfx: function(name, vol) {
-        var audio = this.res.sfx[name]
-        if (!audio) return
-		//var snd = new Audio(audio.src)
-        var snd = audio
-        if (vol) snd.volume = vol
-        snd.play()
+        var sfx = this.res.sfx[name]
+        if (!sfx) {
+            console.log("WARNING! Missing sfx [" + name +  "]")
+            return
+        }
+        if (vol) sfx.volume = vol
+        sfx.play()
+    },
+
+    play: function(name) {
+        if (this.playing) {
+            this.playing.pause()
+        }
+        var track = this.res.track[name]
+        if (!track) {
+            console.log("WARNING! Missing track [" + name +  "]")
+            return
+        }
+        track.currentTime = 0
+        track.volume = this.musicVolume
+        track.play()
+        this.playing = track
     },
 
     initStatistic: function (scene){
@@ -84,6 +103,7 @@ var scene = {
         this.root.entity = [];
         this.root.init(this, this);
         this.initStatistic(this);
+        this.play('track-1')
     },
     gameRestart: function(){
         this.gameoverFlag = false;
@@ -145,6 +165,9 @@ function load() {
     })
     scene.manifest.sfx.forEach( function(sfx) {
         scene.res.loadSfx(sfx.name, sfx.src)
+    })
+    scene.manifest.music.forEach( function(track) {
+        scene.res.initTrack(track.name, track.src)
     })
 }
 
