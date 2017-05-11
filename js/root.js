@@ -84,6 +84,8 @@ var _$root = {
         this.term.fadespan = 3
         this.title.attach(this.term)
         */
+        this.trg = new TargetText(200, 200, "Target here", "#FFFF00", "24px alien", 5, 2)
+        this.title.attach(this.trg)
     },
 
     explode: function(type, src) {
