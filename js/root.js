@@ -77,6 +77,13 @@ var _$root = {
         this.title.attach(this.fpsTag)
 
         this.scene.play('track-1')
+
+        /*
+        this.term = new TermText(0, 0, "Test terminal output", "#FFFF00", "24px alien", "center")
+        this.term.lifespan = 10
+        this.term.fadespan = 3
+        this.title.attach(this.term)
+        */
     },
 
     explode: function(type, src) {
