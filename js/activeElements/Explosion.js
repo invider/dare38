@@ -1,11 +1,16 @@
 var Explosion = function(x, y, lifespan, force,
-        particleImg, size, vsize, speed, vspeed,
+        particle, size, vsize, speed, vspeed,
         startAngle, spread, minLifespan, vLifespan) {
     this.lifespan = lifespan
     this.x = x
     this.y = y
-    this.img = particleImg
-    this.color = "#FFFFFF"
+    if (typeof particle === 'string') {
+        this.color = particle
+        this.img = false
+    } else {
+        this.img = particle
+        this.color = "#FFFFFF"
+    }
     this.size = size
     this.vsize = vsize
     this.speed = speed

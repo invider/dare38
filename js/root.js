@@ -88,6 +88,13 @@ var _$root = {
                     0.5, 0.5))
             this.scene.sfx('hit-1', 0.2)
             break;
+        case 'construct':
+            this.effect.attach(new Explosion(src.x+0.5, src.y+0.5, 0.1, 800,
+                    '#7070C0', 0.4, 0, 2, 0.2,
+                    0, Math.PI*2,
+                    0.5, 0))
+            scene.sfx('place-block', 0.3)
+            break;
         case 'bomb':
             this.effect.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1000,
                   this.scene.res.img['particle-white'], 2, 1, 0.5, 0,
