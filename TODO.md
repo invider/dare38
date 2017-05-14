@@ -1,22 +1,27 @@
 TODO
 ====
 - [ ] background story
-- [ ] title screen
-- [ ] theme music
+- [ ] console text
+- [ ] show story snippets
+- [ ] target indicator
+- [ ] hints
+- [ ] basic stat
 - [ ] pause on loosing focus
 - [ ] free following camera (for bigger levels)
 - [ ] level complete condition
 - [ ] bomb load visual indicator?
 - [ ] wall load visual indicator?
 - [ ] turret load visual indicator?
-- [ ] "Pause<LF> Press any key to continue..." label
-- [ ] "Game Over<LF> Press any key to restart..." label and behavior
-- [ ] flying stars on background
-- [ ] load and play background music
 - [ ] you can build walls on resource points and turrets - dissallow building when something is on the way
 - [ ] fix player jumps inside walls
 - [ ] fix jetpack missing bug (explosion should not be killed)
 - [ ] on Firefox tranlsated font doesn't work, need to recalculate player screen coordinates and put text there
+- [x] title screen
+- [x] theme music
+- [x] load and play background music
+- [x] "Pause<LF> Press any key to continue..." label
+- [x] "Game Over<LF> Press any key to restart..." label and behavior
+- [x] flying stars on background
 - [x] background with flying stars
 - [x] titles with credits
 - [x] responsive exhaust
