@@ -104,8 +104,10 @@ var PlanetProto = function () {
         x = Util.absToRounded(x);
         y = Util.absToRounded(y);
         if (this.getElement(x, y) instanceof EmptySpace){
-            this.setElement(x, y,my._initElement(new Wall(type), this.scene, x, y));
+            var wall = new Wall(type)
+            this.setElement(x, y, my._initElement(wall, this.scene, x, y))
         }
+        return wall
     };
 
     this.init = function (parentNode, scene) {

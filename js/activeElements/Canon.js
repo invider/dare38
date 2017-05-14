@@ -20,8 +20,6 @@ var Canon = function(x, y, scene) {
             scene.res.img['drone-10'],
             scene.res.img['drone-1'],
             scene.res.img['drone-1'],
-            scene.res.img['drone-1'],
-            scene.res.img['drone-1'],
             scene.res.img['drone-10'],
             scene.res.img['drone-9'],
             scene.res.img['drone-8'],

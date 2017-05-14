@@ -77,6 +77,15 @@ var _$root = {
         this.title.attach(this.fpsTag)
 
         this.scene.play('track-1')
+
+        /*
+        this.term = new TermText(0, 0, "Test terminal output", "#FFFF00", "24px alien", "center")
+        this.term.lifespan = 10
+        this.term.fadespan = 3
+        this.title.attach(this.term)
+        */
+        this.trg = new TargetText(200, 200, "Target here", "#FFFF00", "24px alien", 5, 2)
+        this.title.attach(this.trg)
     },
 
     explode: function(type, src) {
@@ -87,6 +96,13 @@ var _$root = {
                     0, Math.PI*2,
                     0.5, 0.5))
             this.scene.sfx('hit-1', 0.2)
+            break;
+        case 'construct':
+            this.effect.attach(new Explosion(src.x+0.5, src.y+0.5, 0.1, 800,
+                    '#7070C0', 0.4, 0, 2, 0.2,
+                    0, Math.PI*2,
+                    0.5, 0))
+            scene.sfx('place-block', 0.3)
             break;
         case 'bomb':
             this.effect.attach(new Explosion(src.x+0.5, src.y+0.5, 0.2, 1000,

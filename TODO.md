@@ -7,7 +7,12 @@ TODO
 - [ ] hints
 - [ ] basic stat
 - [ ] pause on loosing focus
+- [ ] turn music on/off
+- [ ] sfx volume control
+- [ ] music volume control
 - [ ] free following camera (for bigger levels)
+- [ ] help page
+- [ ] open help on F1
 - [ ] level complete condition
 - [ ] bomb load visual indicator?
 - [ ] wall load visual indicator?
@@ -18,11 +23,11 @@ TODO
 - [ ] on Firefox tranlsated font doesn't work, need to recalculate player screen coordinates and put text there
 - [x] title screen
 - [x] theme music
-- [x] load and play background music
+- [x] background with flying stars
 - [x] "Pause<LF> Press any key to continue..." label
 - [x] "Game Over<LF> Press any key to restart..." label and behavior
 - [x] flying stars on background
-- [x] background with flying stars
+- [x] load and play background music
 - [x] titles with credits
 - [x] responsive exhaust
 - [x] pause on keys

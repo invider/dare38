@@ -80,8 +80,8 @@ Player.prototype.evolve = function(delta, scene) {
 	if (scene.keys[scene.root.env.SPACE] && scene.statistic.walls > 0){
 		delete scene.keys[scene.root.env.SPACE];
 		scene.statistic.walls --;
-		scene.root.planet.spawnWall(this.x, this.y + 1, "0");
-        scene.sfx('place-block', 0.3)
+		var wall = scene.root.planet.spawnWall(this.x, this.y + 1, "0");
+        scene.root.explode('construct', wall)
 	}
 
 	if (scene.keys[scene.root.env.DEL]){
