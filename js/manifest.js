@@ -85,6 +85,7 @@ var _$resManifest = {
 	{ name:"recharge", src:"sfx/pickup-1.wav" },
 	{ name:"respawn", src:"sfx/respawn.wav" },
 	{ name:"digger-spawn", src:"sfx/digger-spawn.wav" },
+	{ name:"msg", src:"sfx/msg.wav" },
 	{ name:"levelup", src:"sfx/wave-1.wav" },
 	{ name:"gameover", src:"sfx/gameover.wav" },
   ],

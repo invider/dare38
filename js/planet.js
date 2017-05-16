@@ -174,6 +174,46 @@ var PlanetProto = function () {
                 retVal = node
             }
         });
+        return retVal;
+    };
+
+    this.getBombPoint = function(){
+        var retVal = false;
+        this.eachNode(function(node, x, y){
+            if (node instanceof BombStation){
+                retVal = node
+            }
+        });
+        return retVal;
+    };
+
+    this.getWallPoint = function(){
+        var retVal = false;
+        this.eachNode(function(node, x, y){
+            if (node instanceof WallStation){
+                retVal = node
+            }
+        });
+        return retVal;
+    };
+
+    this.getTurretPoint = function(){
+        var retVal = false;
+        this.eachNode(function(node, x, y){
+            if (node instanceof TurretStation){
+                retVal = node
+            }
+        });
+        return retVal;
+    };
+
+    this.getFuelPoint = function(){
+        var retVal = false;
+        this.eachNode(function(node, x, y){
+            if (node instanceof FuelStation){
+                retVal = node
+            }
+        });
         if (!retVal){
             // probably game over
             //throw new Error("Could not find player spawn!!!");

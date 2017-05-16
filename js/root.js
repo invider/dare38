@@ -83,9 +83,10 @@ var _$root = {
         this.term.lifespan = 10
         this.term.fadespan = 3
         this.title.attach(this.term)
-        */
+
         this.trg = new TargetText(200, 200, "Target here", "#FFFF00", "24px alien", 5, 2)
         this.title.attach(this.trg)
+        */
     },
 
     explode: function(type, src) {
@@ -242,6 +243,9 @@ var _$root = {
                 this.showTitle("Specially for Ludum Dare 38 Jam", "#FFC000", scene)
             }
         }
+
+        // hints
+        scene.hint.lastHint += delta
     },
 
     showTitle: function(msg, color, scene) {
@@ -348,5 +352,56 @@ var _$root = {
 
         // draw titles
         this.title.render(ctx, scene)
+
+        // hints
+        if (!scene.hint.base && scene.statistic.playTime > 10 && scene.hint.lastHint > 10) {
+            scene.hint.base = true
+            scene.hint.lastHint = 0
+            var point = this.planet.getSpawnPoint()
+            var x = horizontalEdge/2 + (point.x+0.5) * scaleFactor
+            var y = verticalEdge/2 + (point.y+0.5) * scaleFactor
+            this.title.attach(new TargetText(x, y, scaleFactor, "Protect the base entry from diggers", "#FFFFFF", "24px alien", 5, 2))
+            scene.sfx('msg')
+        }
+
+        if (!scene.hint.bomb && scene.statistic.bombs < 2 && scene.hint.lastHint > 10) {
+            scene.hint.bomb = true
+            scene.hint.lastHint = 0
+            var point = this.planet.getBombPoint()
+            var x = horizontalEdge/2 + (point.x+0.5) * scaleFactor
+            var y = verticalEdge/2 + (point.y+0.5) * scaleFactor
+            this.title.attach(new TargetText(x, y, scaleFactor, "Load bombs here", "#FFA040", "24px alien", 5, 2))
+            scene.sfx('msg')
+        }
+
+        if (!scene.hint.turrent && scene.statistic.turrets < 2 && scene.hint.lastHint > 10) {
+            scene.hint.turrent = true
+            scene.hint.lastHint = 0
+            var point = this.planet.getTurretPoint()
+            var x = horizontalEdge/2 + (point.x+0.5) * scaleFactor
+            var y = verticalEdge/2 + (point.y+0.5) * scaleFactor
+            this.title.attach(new TargetText(x, y, scaleFactor, "Load turrents here", "#80FFFF", "24px alien", 5, 2))
+            scene.sfx('msg')
+        }
+        
+        if (!scene.hint.walls && scene.statistic.walls < 2 && scene.hint.lastHint > 10) {
+            scene.hint.walls = true
+            scene.hint.lastHint = 0
+            var point = this.planet.getWallPoint()
+            var x = horizontalEdge/2 + (point.x+0.5) * scaleFactor
+            var y = verticalEdge/2 + (point.y+0.5) * scaleFactor
+            this.title.attach(new TargetText(x, y, scaleFactor, "Load blocks here", "#FF80FF", "24px alien", 5, 2))
+            scene.sfx('msg')
+        }
+
+        if (!scene.hint.fuel && scene.root.player && scene.root.player.stats.fuel < 20 && scene.hint.lastHint > 10) {
+            scene.hint.fuel = true
+            scene.hint.lastHint = 0
+            var point = this.planet.getFuelPoint()
+            var x = horizontalEdge/2 + (point.x+0.5) * scaleFactor
+            var y = verticalEdge/2 + (point.y+0.5) * scaleFactor
+            this.title.attach(new TargetText(x, y, scaleFactor, "Refuel here", "#FF0000", "24px alien", 5, 2))
+            scene.sfx('msg')
+        }
     }
 };

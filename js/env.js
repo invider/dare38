@@ -8,6 +8,10 @@ var _$env = {
     ESC: 27,
     PAUSE: 80,
     F1: 112,
+    ADD: 187,
+    SUB: 189,
+    OPEN: 219,
+    CLOSE: 221,
 
     UP: 38,
     DOWN: 40,

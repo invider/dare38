@@ -19,6 +19,7 @@ var scene = {
     // music
     playing: false,
     musicVolume: 0.3,
+    sfxVolume: 1,
 
     // event flags
     mouseX: 0,
@@ -26,6 +27,15 @@ var scene = {
     mouseButton: '---',
     statusLine: 'No Status',
     keys: {},
+
+    hint: {
+        lastHint: 0,
+        base: false,
+        fuel: false,
+        bombs: false,
+        blocks: false,
+        turrets: false,
+    },
 
     attach: function(node) {
         this.root.entity.push(node)
@@ -38,7 +48,8 @@ var scene = {
             console.log("WARNING! Missing sfx [" + name +  "]")
             return
         }
-        if (vol) sfx.volume = vol
+        if (vol) sfx.volume = vol * this.sfxVolume
+        else sfx.volume = this.sfxVolume
         sfx.play()
     },
 
@@ -180,6 +191,25 @@ function input(delta) {
 }
 
 function evolve(delta) {
+    if (scene.keys[scene.root.env.ADD]) {
+        scene.musicVolume += 0.5 * delta
+        if (scene.musicVolume > 1) scene.musicVolume = 1
+        if (scene.playing) scene.playing.volume = scene.musicVolume
+    } else if (scene.keys[scene.root.env.SUB]) {
+        scene.musicVolume -= 0.5 * delta
+        if (scene.musicVolume < 0) scene.musicVolume = 0
+        if (scene.playing) scene.playing.volume = scene.musicVolume
+    }
+
+    if (scene.keys[scene.root.env.CLOSE]) {
+        scene.sfxVolume += 0.5 * delta
+        if (scene.sfxVolume > 1) scene.sfxVolume = 1
+    } else if (scene.keys[scene.root.env.OPEN]) {
+        scene.sfxVolume -= 0.5 * delta
+        if (scene.sfxVolume < 0) scene.sfxVolume = 0
+    }
+
+
     if (scene.pause) return
     if (!scene.gameoverFlag) scene.statistic.playTime += delta
     scene.root.evolve(delta, scene)
