@@ -1,0 +1,17 @@
+#!/bin/sh
+
+mkdir out
+
+cp -r font  ./out
+cp -r img   ./out
+cp -r js    ./out
+cp -r music ./out
+cp -r sfx   ./out
+
+cp index.html ./out
+
+cd ./out
+zip -r twin-jet-miner.zip .
+
+mv ./twin-jet-miner.zip ../
+
